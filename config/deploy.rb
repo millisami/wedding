@@ -2,7 +2,7 @@ set :application,  "handmade-weddingcards.com"
 
 set :user, "deploy"
 set :runner, user
-set :use_sudo, true
+#set :use_sudo, true
 
 #from #http://github.com/guides/deploying-with-capistrano
 default_run_options[:pty] = true
