@@ -4,6 +4,8 @@ set :user, "deploy"
 set :runner, user
 #set :use_sudo, true
 
+set :spinner, false
+
 #from #http://github.com/guides/deploying-with-capistrano
 default_run_options[:pty] = true
 set :repository,  "git@github.com:millisami/weddingcards.git"
