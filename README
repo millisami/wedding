@@ -1,0 +1,37 @@
+== Debugging Rails
+
+== Debugger
+
+Debugger support is available through the debugger command when you start your Mongrel or
+Webrick server with --debugger. This means that you can break out of execution at any point
+in the code, investigate and change the model, AND then resume execution! Example:
+
+  class WeblogController < ActionController::Base
+    def index
+      @posts = Post.find(:all)
+      debugger
+    end
+  end
+
+So the controller will accept the action, run the first line, then present you
+with a IRB prompt in the server window. Here you can do things like:
+
+  >> @posts.inspect
+  => "[#<Post:0x14a6be8 @attributes={\"title\"=>nil, \"body\"=>nil, \"id\"=>\"1\"}>,
+       #<Post:0x14a6620 @attributes={\"title\"=>\"Rails you know!\", \"body\"=>\"Only ten..\", \"id\"=>\"2\"}>]"
+  >> @posts.first.title = "hello from a debugger"
+  => "hello from a debugger"
+
+...and even better is that you can examine how your runtime objects actually work:
+
+  >> f = @posts.first
+  => #<Post:0x13630c4 @attributes={"title"=>nil, "body"=>nil, "id"=>"1"}>
+  >> f.
+  Display all 152 possibilities? (y or n)
+
+Finally, when you're ready to resume execution, you enter "cont"
+
+== Console
+
+To reload your controllers and models after launching the console run <tt>reload!</tt>
+

@@ -1,0 +1,27 @@
+<h1>Listing product_sets</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Image</th>
+    <th>Category</th>
+	<th>No. of Products</th>
+  </tr>
+
+<% for product_set in @product_sets %>
+  <tr>
+    <td><%=h product_set.name %></td>
+    <td><%= image_tag product_set.image.public_filename if product_set.image %></td>
+    <td><%=h product_set.category.name %></td>
+	<td><%=h product_set.products.size %></td>
+    <td><%= link_to 'Add Product', new_admin_product_set_product_path(:product_set_id => product_set) %></td>
+	<td><%= link_to 'Show', [:admin, product_set] %></td>
+    <td><%= link_to 'Edit', edit_admin_product_set_path(product_set) %></td>
+    <td><%= link_to 'Destroy', [:admin, product_set], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New product_set', new_admin_product_set_path %>

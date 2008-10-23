@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <title>Wedding: 
+  <%= controller.controller_name -%>:
+  <%= controller.action_name -%>
+ </title>
+    <%= javascript_include_tag :defaults %>
+  <%# = javascript_include_tag 'facebox' %>
+
+  <%= stylesheet_link_tag 'scaffold', 'style' %>
+ 
+</head>
+<body>
+<div id='header'>
+<%= link_to( image_tag( 'rails.png', :id => 'logo'), 'http://rubyonrails.com')  %>
+<h1 class='title'><%= link_to 'RESTful authentication: Bells and Whistles', root_path -%></h1>
+<ul class='menubar'>
+<% if logged_in? %>
+<li>Logged in as: <%= link_to h(current_user.login.capitalize), user_path(current_user) %></li>
+<li><%= link_to 'Edit Profile', edit_user_path(current_user) %></li>
+<li><%= link_to 'Change Password', change_password_path %></li>
+<li><%= link_to 'Log Out', logout_url %></li>
+<% if current_user.has_role?('administrator') %>
+<li><%= link_to 'Administer Users', users_path %></li>
+<li><%= link_to 'Categories', admin_categories_path %></li>
+<li><%= link_to 'Product Sets', admin_product_sets_path %></li>
+<li><%= link_to 'Product', admin_products_path %></li>
+<% end %>
+<% else %>
+<li><%= link_to 'Log In', new_session_path %></li>
+<li><%= link_to 'Sign Up', new_user_path %></li>      
+<li><%= link_to 'Forgot Password?', forgot_password_path %></li>    
+<% end %>     
+</ul>
+</div><!-- header -->
+<div id='container'>
+<div id='menu'>
+<ul>
+<% for page in @pages %>
+  <li>
+    <%= link_to h(page.title), page %>
+<% if logged_in? && current_user.has_role?('administrator') %>
+    <br/>
+    [<%= link_to 'Edit', edit_page_path(page) %>]
+    [<%= link_to 'Destroy', page, :confirm => 'Are you sure?', :method => :delete %>]
+<% end %>
+  </li>
+<% end %>
+<li><%= link_to 'Download', '/bellsandwhistles.tar.gz' %></li>
+<li><%= link_to 'Contact', new_message_path %></li>
+
+<li>&nbsp;</li>
+<% if logged_in? && current_user.has_role?('administrator') %>
+<li><center>[<%= link_to 'Pages', pages_path %>]</center></li>
+<li><center>[<%= link_to 'New&nbsp;page', new_page_path %>]</center></li>
+<% end %>
+</ul>
+</div><!-- menu -->
+
+<div id='content'>
+<% flash.each do |key, msg| %>
+        <%= content_tag :p, msg, :id => key, :class => 'flash' %>
+<% end %>
+<%= yield %>
+</div><!-- content -->
+</div><!-- container -->
+</body>
+</html>

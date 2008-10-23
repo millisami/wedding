@@ -1,0 +1,9 @@
+log/*.log
+tmp/**/*
+public/documents/**/*
+public/records/**/*
+nbproject/
+.DS_Store
+doc/
+RoRED.cfg
+fds

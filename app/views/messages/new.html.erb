@@ -1,0 +1,14 @@
+<% form_tag message_path do %>
+
+<p><label for="subject">Subject</label><br/>
+<%= text_field_tag 'subject', @subject, :size => 60 %></p>
+
+<p><label for="body">Body</label><br/>
+<%= text_area_tag 'body', @body, :cols => 60, :rows => 15 %></p>
+
+<p><%= submit_tag 'Send' %></p>
+<% end %>
+
+<script type='text/javascript'>
+  document.getElementById('subject').focus()
+</script>

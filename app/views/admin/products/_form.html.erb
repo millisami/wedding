@@ -1,0 +1,24 @@
+  <p>
+    <b>Name</b><br />
+    <%= f.text_field :name %>
+  </p>
+
+<p>
+	<%= f.label :product_set %><br />
+	<%#= select('product', 'product_set_id', [['choose one', '']] + @product_sets.collect {|pset| [pset.name, pset.id]}) %>
+	<%= f.collection_select(:product_set_id, ProductSet.find(:all), :id, :name, {:prompt => true}) %>
+
+</p>  
+<p>
+    <b>Default Quantity</b><br />
+    <%= f.text_field :default_qty %>
+  </p>
+  <p>
+    <%= f.label :product_image %><br />
+    <%= f.file_field :uploaded_data %>
+  </p>
+  <p>
+    <%= f.label :document_file %><br />
+	<%= f.file_field :document%>
+  </p>
+  

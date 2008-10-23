@@ -1,0 +1,9 @@
+<% form_remote_tag :url => { :action => "save_order" }, :html => { :id => 'checkout_form' } do %>
+	<label for="customer_first_name">First Name</label>
+	<%= text_field 'customer', 'first_name' %>
+	<label for="customer_last_name">Last Name</label>
+	<%= text_field 'customer', 'last_name' %>
+        <label for="credit_card">Credit Card</label>
+        <%= text_field_tag 'credit_card' %>
+	<%= submit_tag "Submit" %>
+<% end %>

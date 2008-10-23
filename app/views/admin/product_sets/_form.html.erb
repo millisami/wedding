@@ -1,0 +1,17 @@
+<p>
+    <%= f.label :name, "Product Set Name" %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :product_set_image, "Product Set Image" %><br />
+    <%= f.file_field :uploaded_data %>
+  </p>
+  
+    
+<% #collection_select (:product_set, :category_id, @categories, :id, :name)%> 
+
+<p>
+	<%= f.label :category %><br />
+	<%= select('product_set', 'category_id', [['choose one', '']] + @categories.collect {|cat| [cat.name, cat.id]}) %>	
+</p>
+<% #select_tag('category_id', options_for_select([['choose one', '']] + @categories.collect {|cat| [cat.name, cat.id]}, @product_set.category_id)) %>

@@ -1,0 +1,1 @@
+#page.replace_html :contentTop, :partial => 'list_product_sets'

@@ -1,0 +1,54 @@
+<%#= render :partial => "list_product_sets" %>
+
+<div class="innerContentTop">
+            	<div class="contentTitle">
+            	  <img src="images/two.gif" />
+            	  <h5>Design</h5>
+                    Choose the design by clicking  on the images to the right.
+              </div>
+              <div class="contentTopDesigns">
+			  <% for product_set in @product_sets %>
+			<%= link_to_remote image_tag("#{product_set.image.public_filename if product_set.image}"),
+                            :update=>"innercontentBot", :method => "get", :url => product_set_products_path(product_set)  %>
+			<% end %>
+              </div>
+              <div class="topSelectDesign">
+              		<img src="images/btn_classic.gif" />
+              </div>
+</div> <!-- //innerContentTop -->
+<%#= render :partial => "products/list_products", :collection => @products %>
+<%=  javascript_tag "set_class_name('contentTop', 'fixDesign');" %>
+<div id="innercontentBot">
+       		<div class="contentDesignDetail">
+           	   <div class="contentDesignTxt">
+                    	Click on any product to customize it with your own text & colors.
+               </div>
+			<% @products.each_with_index do |product,x| %>
+               <div class="contentDesignSub<%= x + 1%>">
+			   <%= link_to image_tag("#{product.image.public_filename if product.image}"), product.document.url if product.document  %>
+                    <div class="contentDesignSubBot1">
+
+                       	<%=h product.name %>
+					<%=  observe_field 'quantity',
+							:url => 'http://example.com/books/edit/1',
+							:on => 'blur' %>
+                        <%= link_to_remote image_tag("cart-add.png"), :url => add_to_cart_site_path(product), :method => :get %>
+                        <input name="quantity" id="quantity" type="text" /> <span class="txtgrey">3$ / pcs</span>
+                    </div>
+               </div>
+                <%- end -%>
+                </div>
+                <ul class="contentBotMenu">
+                	<li class="tax"><a href="#">» Taxes & delivery costs</a></li>
+                    <li>Total price excl. taxes & delivery costs:</li>
+                    <li><span id="cart_total"><%= @cart.total_price %>  $</span></li>
+                    <li class="fr"><select name="">
+                      <option>Currency</option>
+                    </select></li>
+                </ul>
+                <ul class="btns">
+                	<li class="prev btnPrev"><a href="#"></a></li>
+                	<li class="next btnNext btnNext1"><a href="#"></a></li>
+                </ul>
+              </div>
+           

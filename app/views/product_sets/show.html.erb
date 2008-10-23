@@ -1,0 +1,92 @@
+<div class="innerContentTop">
+            	<div class="contentTitle">
+            	  <img src="images/two.gif" />
+            	  <h5>Design</h5>
+                    Choose the design by clicking
+                    on the images to the right.
+              </div>
+              <div class="contentTopDesigns">
+			  <% for product_set in @product_sets %>
+	
+
+
+			<%= link_to_remote image_tag("#{product_set.image.public_filename if product_set.image}"), :update=>"innercontentBot", :method => "get", :url => product_set  %>
+			<% #= link_to image_tag("#{product_set.image.public_filename if product_set.image}"), product_set  %>
+
+
+<%  #=link_to( image_tag(image_tag product_set.image.public_filename if product_set.image, 
+		#:alt => product_set.category.name), products_url, :title => product_set.name)  %>
+
+              		
+			<% end %>
+
+              </div>
+              <div class="topSelectDesign">
+              		<img src="images/btn_classic.gif" />
+              </div>
+</div> <!-- //innerContentTop -->
+<div id="innercontentBot">
+       		 <div class="contentDesignDetail">
+           	   <div class="contentDesignTxt">
+                    	Click on any product to customize it with your own text & colors.
+               </div>
+               <div class="contentDesignSub1">
+                    <a href="#"><img src="images/classic_invitation-card.jpg" /></a>
+                    <div class="contentDesignSubBot1">
+                       	Invitation Card  +  Envelope<br />
+                        <input name="" type="text" /> <span class="txtgrey">3$ / pcs</span>
+                        <input name="" type="text" /> <span class="txtgrey">3$ / pcs</span>                        
+                    </div>
+               </div>
+               <div class="contentDesignSub2">
+                    <a href="#"><img src="images/classic_reponse-card.jpg" /></a>
+                    <div class="contentDesignSubBot1">
+                       	Response Card<br />
+                        <input name="" type="text" /> <span class="txtgrey">3$ / pcs</span>                       
+                    </div>
+               </div>
+               <div class="contentDesignSub3">
+                    <a href="#"><img src="images/classic_thankyou-card.jpg" /></a>
+                    <div class="contentDesignSubBot1">
+                       	Thank You Card<br />
+                        <input name="" type="text" /> <span class="txtgrey">3$ / pcs</span>                       
+                    </div>
+               </div>
+               <div class="contentDesignSub4">
+                    <a href="#"><img src="images/classic_reception-card.jpg" /></a>
+                    <div class="contentDesignSubBot1">
+                       	Reception Card<br />
+                        <input name="" type="text" /> <span class="txtgrey">3$ / pcs</span>                       
+                    </div>
+               </div>
+               <div class="contentDesignSub5">
+                    <a href="#"><img src="images/classic_place-card.jpg" /></a>
+                    <div class="contentDesignSubBot1">
+                       	Place Card<br />
+                        <input name="" type="text" /> <span class="txtgrey">3$ / pcs</span>                       
+                    </div>
+               </div>
+               <div class="contentDesignSub6">
+                    <a href="#"><img src="images/classic_letter-pad.jpg" /></a>
+                    <div class="contentDesignSubBot1">
+                       	Letter Paper <br />
+                        <input name="" type="text" /> <span class="txtgrey">3$ / pcs</span>                       
+                    </div>
+               </div>
+                     
+             </div>
+                
+                <ul class="contentBotMenu">
+                	<li class="tax"><a href="#">» Taxes & delivery costs</a></li>
+                    <li>Total price excl. taxes & delivery costs:</li>
+                    <li><strong>456 $</strong></li>
+                    <li class="fr"><select name="">
+                      <option>Currency</option>
+                    </select></li>
+                </ul>
+                <ul class="btns">
+                	<li class="prev btnPrev"><a href="#"></a></li>
+                	<li class="next btnNext btnNext1"><a href="#"></a></li>
+                </ul>
+           </div> <!-- //innercontentBot -->
+

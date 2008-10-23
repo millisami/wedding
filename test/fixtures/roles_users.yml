@@ -1,0 +1,13 @@
+
+association1:
+  user_id: 1
+  role_id: 1
+
+association2:
+  user_id: 2
+  role_id: 2
+
+association3:
+  user_id: 3
+  role_id: 1
+

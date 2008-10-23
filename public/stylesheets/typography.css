@@ -1,0 +1,23 @@
+
+
+a{
+	color:#d60000;
+	}
+
+	
+h1{
+	font: italic 22px Georgia, "Times New Roman", Times, serif; 
+	color:#967f67;
+	margin-bottom:16px;
+	}
+	
+h5{
+	font:bold 12px Georgia, "Times New Roman", Times, serif;
+	}
+	
+.floatright{
+	float:right !important;
+	}
+	
+.txtgrey{font:11px Arial, Helvetica, sans-serif; color:#b2aea8;}
+

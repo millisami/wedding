@@ -1,0 +1,3 @@
+page.alert("From Index.js.rjs")
+page.replace_html :contentTop, :partial => 'list_product_sets', :collection => @product_sets
+#page[:contentTop].update :partial => 'list_product_sets', :collection => @product_sets

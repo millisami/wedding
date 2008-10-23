@@ -1,0 +1,3 @@
+# TODO Operate on the page objects
+#page.assign 'cart_total', @cart.total_price
+page << render(:partial => 'totals')

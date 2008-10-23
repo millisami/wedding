@@ -1,0 +1,28 @@
+<h1>Listing products</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Category</th>
+    <th>Image</th>
+	<th>Document</th>
+  </tr>
+
+<% for product in @products %>
+  <tr>
+    <td><%=h product.name %></td>
+    <td><%=h product.product_set.name %></td>
+    <td><%= image_tag(product.image.public_filename, :size => '28x28') if product.image %></td>
+	<td><%=h product.document.url %>
+    <td><%= link_to 'Show', [:admin, product] %></td>
+	
+
+    <td><%= link_to 'Edit', edit_admin_product_path(product) %></td>
+    <td><%= link_to 'Destroy', [:admin, product], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'New product', new_admin_product_path %><br />
+<%= spakit_link_to 'New product spakit', :url => new_admin_product_path %><br />
+<%= facebox_link_to "New product Facebox", :url => new_admin_product_path %>

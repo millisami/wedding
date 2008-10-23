@@ -1,0 +1,94 @@
+<p>Based on </p>
+<ul>
+<li>Rick Olson's ... 
+  script/plugin install http://svn.techno-weenie.net/projects/plugins/restful_authentication</li>
+
+<li>activefx's tutorial ... 
+<a href="http://www.railsforum.com/viewtopic.php?id=14216">
+http://www.railsforum.com/viewtopic.php?id=14216</a>
+</li>
+
+<li>gmail access ...
+<a href="http://21croissants.blogspot.com/2007/08/configuring-rails-to-use-gmails-smtp.html">  http://21croissants.blogspot.com/2007/08/configuring-rails-to-use-gmails-smtp.html</a>
+<br/>
+(formerly <a href="http://blog.pomozov.info/posts/how-to-send-actionmailer-mails-to-gmailcom.html">
+http://blog.pomozov.info/posts/how-to-send-actionmailer-mails-to-gmailcom.html</a>)</li>
+
+<li>acts_as_list ...
+  script/plugin install http://dev.rubyonrails.org/svn/rails/plugins/acts_as_list/</li>
+  
+<li>acts_as_list tutorial ...
+<a href="http://noobonrails.blogspot.com/2007/02/actsaslist-makes-lists-drop-dead-easy.html">
+http://noobonrails.blogspot.com/2007/02/actsaslist-makes-lists-drop-dead-easy.html</a>
+</li>
+<li>As always, thanks to ... <a href="http://peepcode.com">Peepcode</a></li>
+<li>and ... Ryan Bates at <a href="http://railscasts.com">Rails Casts</a></li>
+<li>and ... the <a href="http://rubyonrails.com">Ruby on Rails core</a>.</li>
+</ul>
+
+<hr/>
+
+<p>What have I done?</p>
+<ul>
+<li>Renamed Permissions to Roles_Users to remove the unneeded :through relationship</li>
+<li>Removed failing activation tests due to their move to account_controller</li>
+<li>Added logs of tests</li>
+<li>Added some styling</li>
+<li>Added dynamic menu based on pages and their position</li>
+<li>Removed the default routes (for safety)</li>
+<li>Pages index (show only body abstract (first ~50 characters ...))</li>
+<li>Add acts_as_list to menu</li>
+<li>The root route is pages/1/show_position (put).  The id may need to be changed.</li>
+<li>Added contact feature for user messages to the admin.</li>
+</ul>
+
+<hr/>
+
+<p>What do I need to do before posting?</p>
+<ul>
+<li>add some assertions regarding flash to tests</li>
+<li>add some assertions regarding render to tests</li>
+<li>Add contact page ONLY for registered users.</li>
+</ul>
+
+<hr/>
+
+<p>What I could do?</p>
+<ul>
+<li>Add account avatar</li>
+<li>Add dragability to adjust menu list positions</li>
+<li>pretty urls for pages so that "pages/Home" would show the page with the title "Home"</li>
+</ul>
+
+<hr/>
+
+<p>What I need to do to source before posting?</p>
+<ul>
+<li>Remove versions directories</li>
+<li>Remove my database info</li>
+<li>Remove my email info from mail.rb</li>
+<li>Remove my email info tests</li>
+<li>Remove my email info user_mailer.rb</li>
+<li>Remove my logs</li>
+<li></li>
+</ul>
+
+<hr/>
+
+<p>What will you need to do?</p>
+<ul>
+<li>Setup gmail account for this (and enable the IMAP access?)</li>
+<li>Modify settings to ... config/initializers/mail.rb</li>
+<li>Setup your database</li>
+<li>User your own database config/database.yml</li>
+<li>Change your admin password or disable the account.</li>
+<li>Change your admin email for user messages.</li>
+<li>Change localhost:3000 in lib/authenticated_system.rb</li>
+<li>Change localhost:3000 in app/models/user_mailer.rb</li>
+<li>Change localhost:3000 in config/initializers/mail.rb</li>
+</ul>
+
+<hr/>
+<p>BE ADVISED!</p>
+<p>These unit tests will attempt to send emails to several of the users in the fixtures and unit tests, which will fail unless you change them to real email addresses.</p>
+

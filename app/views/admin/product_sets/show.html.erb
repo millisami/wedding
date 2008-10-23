@@ -1,0 +1,18 @@
+<p>
+  <b>Name:</b>
+  <%=h @product_set.name %>
+</p>
+
+<p>
+  <b>Image:</b>
+  <%= image_tag @product_set.image.public_filename if @product_set.image %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%=h @product_set.category.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_product_set_path(@product_set) %> |
+<%= link_to 'Back', admin_product_sets_path %>
