@@ -2,6 +2,8 @@ set :application,  "handmade-weddingcards.com"
 
 set :user, "deploy"
 set :runner, user
+set :use_sudo, true
+
 #from #http://github.com/guides/deploying-with-capistrano
 default_run_options[:pty] = true
 set :repository,  "git@github.com:millisami/weddingcards.git"
@@ -16,7 +18,7 @@ set :deploy_to, "/home/wedding/public_html/#{application}"          # Where on t
 
 set :chmod755, "app config db lib public vendor script script/* public/disp*"  	# Some files that will need proper permissions
 
-role :app, application, :cron => true
+role :app, application
 role :web, application
 role :db,  application, :primary => true
 

@@ -8,7 +8,7 @@ class CreateRolesUsers < ActiveRecord::Migration
     #Be sure change the password later or in this migration file
     user = User.new({
       :login => "admin",
-      :email => "YOURADMINSEMAILADDRESS",
+      :email => "millisami@gmail.com",
       :password => "admin",
       :password_confirmation => "admin"
     })
