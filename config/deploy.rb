@@ -34,8 +34,7 @@ end
 namespace :thin do
   desc "Restart Thin"
   task :restart, :roles => :app do
-    send(run_method, "`readlink#{current_path}`/script/process/reaper")
-    sudo "/etc/init.d/thin restart"
+    sudo "thin restart -C /etc/thin/handmade-weddingcards.com.yml"
   end
 end
 
