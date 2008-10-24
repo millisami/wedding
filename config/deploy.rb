@@ -33,7 +33,8 @@ end
 
 namespace :thin do
   desc "Restart Thin"
-  task :restart do
+  task :restart, :roles => :app do
+    send(run_method, "`readlink#{current_path}`/script/process/reaper")
     sudo "/etc/init.d/thin restart"
   end
 end
