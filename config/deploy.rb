@@ -38,6 +38,17 @@ namespace :thin do
   end
 end
 
+#overrding capistrano tasks
+namespace :deploy do
+  desc <<-DESC
+    Site5 version of restart task.
+  DESC
+  task :restart do
+    sudo "thin restart -C /etc/thin/handmade-weddingcards.com.yml"
+  end
+ 
+end
+
 after "deploy", "deploy:cleanup"
 after "deploy:cleanup", "nginx:reload"
 after "nginx:reload", "thin:restart"
