@@ -10,6 +10,8 @@ set :spinner, false
 default_run_options[:pty] = true
 set :repository,  "git@github.com:millisami/weddingcards.git"
 set :scm, "git"
+set :scm_verbose,  true
+
 #set :scm_passphrase, "***password***" This is your custom users password
 #set :user, "***username***"
 #set :branch, "master"
@@ -34,14 +36,14 @@ end
 namespace :thin do
   desc "Restart Thin"
   task :restart, :roles => :app do
-    sudo "thin restart -C /etc/thin/handmade-weddingcards.com.yml"
+    sudo "/etc/init.d/thin restart"
   end
 end
 
 #overrding capistrano tasks
 namespace :deploy do
   desc <<-DESC
-    Site5 version of restart task.
+    Restarting Thin via Capistrano overrided :restart task
   DESC
   task :restart do
     sudo "thin restart -C /etc/thin/handmade-weddingcards.com.yml"
@@ -49,9 +51,22 @@ namespace :deploy do
  
 end
 
+namespace :millisami do
+  # change ownership
+  namespace :permissions do
+      desc "Custom Namespace Millisami to do native stuff: #{latest_release}"
+    task :fix, :except => { :no_release => true } do
+      sudo "chown -R www-data:www-data #{latest_release}"
+    end
+  end
+
+  
+end
+# Before restarting the webserver we fix all the 
+# permissions and then symlink it to production
+before 'deploy:restart', 'millisami:permissions:fix' #, 'mikamai:symlink:application'
+
 after "deploy", "deploy:cleanup"
 after "deploy:cleanup", "nginx:reload"
 after "nginx:reload", "thin:restart"
 after "deploy:migrations", "deploy:cleanup"
-#after "thin:restart", "cron:stop"
-#after "cron:stop", "cron:start"
