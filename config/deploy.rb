@@ -4,7 +4,7 @@ set :user, "deploy"
 set :runner, user
 #set :use_sudo, true
 
-set :spinner, false
+#set :spinner, false
 
 #from #http://github.com/guides/deploying-with-capistrano
 default_run_options[:pty] = true
@@ -42,31 +42,37 @@ end
 
 #overrding capistrano tasks
 namespace :deploy do
-  desc <<-DESC
+      task :start, :roles => :app do
+
+    end
+      task :stop, :roles => :app do  
+
+    end
+
+    desc <<-DESC
     Restarting Thin via Capistrano overrided :restart task
-  DESC
-  task :restart do
-    sudo "thin restart -C /etc/thin/handmade-weddingcards.com.yml"
-  end
+    DESC
+    task :restart do
+      sudo "thin restart -C /etc/thin/handmade-weddingcards.com.yml"
+    end
  
 end
 
 namespace :millisami do
   # change ownership
   namespace :permissions do
-      desc "Custom Namespace Millisami to do native stuff: #{latest_release}"
+      desc "Custom Namespace Millisami to do native stuff: #{release_path}"
     task :fix, :except => { :no_release => true } do
-      sudo "chown -R www-data:www-data #{latest_release}"
+      sudo "chown -R www-data:www-data #{release_path}"
     end
   end
-
-  
 end
+
 # Before restarting the webserver we fix all the 
 # permissions and then symlink it to production
 before 'deploy:restart', 'millisami:permissions:fix' #, 'mikamai:symlink:application'
 
 after "deploy", "deploy:cleanup"
 after "deploy:cleanup", "nginx:reload"
-after "nginx:reload", "thin:restart"
+#after "nginx:reload", "thin:restart"
 after "deploy:migrations", "deploy:cleanup"

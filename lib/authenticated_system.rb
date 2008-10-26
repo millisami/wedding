@@ -97,14 +97,14 @@ protected
     respond_to do |format|
       format.html do
         #Put your domain name here ex. http://www.example.com
-        domain_name = "http://localhost:3000"
+        domain_name = "http://handmade-weddingcards.com"
         http_referer = session[:refer_to]
         if http_referer.nil?
           store_referer
           http_referer = ( session[:refer_to] || domain_name )
         end
         flash[:error] = "You don't have permission to complete that action."
-        #The [0..20] represents the 21 characters in http://localhost:3000
+        #The [0..20] represents the 21 characters in http://handmade-weddingcards.com
         #You have to set that to the number of characters in your domain name
         if http_referer[0..20] != domain_name  
           session[:refer_to] = nil
