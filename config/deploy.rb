@@ -52,7 +52,7 @@ namespace :deploy do
     desc <<-DESC
     Restarting Thin via Capistrano overrided :restart task
     DESC
-    task :restart do
+    task :restart, :roles => :app do
       sudo "thin restart -C /etc/thin/handmade-weddingcards.com.yml"
     end
  
@@ -63,7 +63,7 @@ namespace :millisami do
   namespace :permissions do
       desc "Custom Namespace Millisami to do native stuff: #{release_path}"
     task :fix, :except => { :no_release => true } do
-      sudo "chown -R www-data:www-data #{release_path}"
+      sudo "chown -R www-data:www-data #{latest_release}"
     end
   end
 end
