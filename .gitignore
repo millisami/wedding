@@ -3,6 +3,7 @@ tmp/**/*
 public/documents/**/*
 public/records/**/*
 nbproject/
+config/database.yml
 .DS_Store
 doc/
 RoRED.cfg
