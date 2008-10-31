@@ -186,8 +186,8 @@ set :application, "weddingcards"
       adapter: mysql
       host: localhost
       port: 3306
-      username: deploy
-      password: deployPass237
+      username: weddingcards
+      password: weddingcards123
 
     development:
       database: <%= "#{application}_development" %>

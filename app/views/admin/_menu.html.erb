@@ -1,5 +1,5 @@
 <ul id="nav">
-<li><%= link_to "Main menu", root_path %></li>
+<!-- <li><%= link_to "Main menu", root_path %></li> -->
 <% if logged_in? %>
 <li><%= link_to h(current_user.login.capitalize), user_path(current_user) %>
 	<ul>

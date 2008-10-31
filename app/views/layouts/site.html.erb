@@ -72,12 +72,7 @@ window.onload = function() {
       <% end %>
       <%= yield %> </div>
     <!-- contentTop -->
-    <% if RAILS_ENV == 'development' %>
-    <center>
-      <button onclick="show_debug_popup(); return false;">Show debug popup</button>
-    </center>
-    <%= debug_popup %>
-    <% end %>
+   
     <div class="contentBot">
       <div class="contentFlower"> <img src="/images/flower.png" /> </div>
       <div class="contentBotRight"> <img src="/images/card_design1.jpg" class="card" />
