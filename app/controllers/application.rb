@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
 
   include AuthenticatedSystem
+  include HoptoadNotifier::Catcher
+  
   # don't show passwords in logs
   filter_parameter_logging 'password'
 
