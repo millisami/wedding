@@ -148,7 +148,7 @@ set :application, "weddingcards"
     vhost_config =<<-EOF
      <VirtualHost *:80>
       ServerName #{domain}
-       DocumentRoot #{deploy_to}/current
+       DocumentRoot #{deploy_to}/current/public
     </VirtualHost>
      EOF
      put vhost_config, "src/vhost_config"
