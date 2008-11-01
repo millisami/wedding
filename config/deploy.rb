@@ -208,7 +208,7 @@ set :application, "weddingcards"
 
     desc "Link in the production database.yml"
     task :after_update_code do
-      run "ln -nfs #{release_path}/config/database.yml"
+      run "ln -nfs #{release_path}/config/database.yml" " #{current_path}/config/database.yml"
     end
      
     desc "Restarting mod_rails with restart.txt"
