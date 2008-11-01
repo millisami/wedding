@@ -190,15 +190,15 @@ set :application, "weddingcards"
       password: weddingcards123
 
     development:
-      database: <%= "#{application}_development" %>
+      database: #{application}_development
       <<: *login
 
     test:
-      database: <%= "#{application}_test" %>
+      database: #{application}_test
       <<: *login
 
     production:
-      database: <%= "#{application}_production" %>
+      database: #{application}_production
       <<: *login
     EOF
 
