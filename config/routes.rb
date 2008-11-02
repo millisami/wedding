@@ -25,12 +25,14 @@ ActionController::Routing::Routes.draw do |map|
 	:add_to_cart => :get, 
 	:remove_from_cart => :delete,
 	:update_cart_quantity => :put,
-	:empty_cart => :put, 
+	
 	:save_order => :post,
 	:show_receipt => :get,
 	:change_currency => :put
    }
    
+    map.empty_cart '/empty_cart', :controller => 'sites', :action => 'empty_cart'
+
 #map.checkout '/checkout', :controller => 'payments', :action => 'checkout'
     
   #map.root :controller => "pages", :action => "show_position", :id => 1
