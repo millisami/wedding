@@ -4,3 +4,6 @@
 [submodule "vendor/plugins/acts_as_tree"]
 	path = vendor/plugins/acts_as_tree
 	url = git://github.com/rails/acts_as_tree.git
+[submodule "vendor/plugins/tester_xtreme"]
+	path = vendor/plugins/tester_xtreme
+	url = git://github.com/vigetlabs/tester_xtreme.git
