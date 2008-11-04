@@ -222,6 +222,4 @@ set :application, "weddingcards"
        end
  end
 
- after 'deploy:update_code', 'deploy:upload_database_yml'
-after 'deploy:update_code', 'deploy:create_symlinks'
-
+after 'deploy:update_code', 'deploy:after_update_code'
