@@ -7,3 +7,6 @@
 [submodule "vendor/plugins/tester_xtreme"]
 	path = vendor/plugins/tester_xtreme
 	url = git://github.com/vigetlabs/tester_xtreme.git
+[submodule "vendor/plugins/sandstone"]
+	path = vendor/plugins/sandstone
+	url = git://github.com/vigetlabs/sandstone.git
