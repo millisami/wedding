@@ -210,6 +210,12 @@ set :application, "weddingcards"
     task :after_update_code do
       run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
     end
+    
+     desc "Symlink the uploads directory"
+     task :symlink_uploads_directory do
+       run "ln -nsf #{shared_path}/uploads/records #{release_path}/public/records"
+       run "ln -nsf #{shared_path}/uploads/documents #{release_path}/public/documents"
+     end
      
     desc "Restarting mod_rails with restart.txt"
     task :restart, :roles => :app, :except => { :no_release => true } do
@@ -223,3 +229,4 @@ set :application, "weddingcards"
  end
 
 after 'deploy:update_code', 'deploy:after_update_code'
+after 'deploy:after_update_code', 'deploy:symlink_uploads_directory'
