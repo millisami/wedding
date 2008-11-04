@@ -221,3 +221,7 @@ set :application, "weddingcards"
 	 task t, :roles => :app do ; end
        end
  end
+
+ after 'deploy:update_code', 'deploy:upload_database_yml'
+after 'deploy:update_code', 'deploy:create_symlinks'
+
