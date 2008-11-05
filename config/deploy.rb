@@ -168,8 +168,8 @@ set :application, "weddingcards"
  #############################################################
  
  namespace :deploy do
-    desc "Symlink the upload directories"
-	 task :before_symlink do
+    desc "Creating and Symlink the upload directories"
+	 task :create_upload_symlink do
 
 	 if File.exists?("#{shared_path}/uploads/records")
 	      run "ln -nsf #{shared_path}/uploads/records #{release_path}/public/records"
