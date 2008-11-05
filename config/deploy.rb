@@ -161,7 +161,7 @@ set :application, "weddingcards"
   task :apache_reload do
     sudo "/etc/init.d/apache2 reload"
   end
- end
+ end #end of slicehost namespace
 
  #############################################################
  # Deploy for Passenger
@@ -171,11 +171,19 @@ set :application, "weddingcards"
     desc "Symlink the upload directories"
 	 task :before_symlink do
 
-	 run "mkdir -p #{shared_path}/uploads/records"
-	 run "ln -nsf #{shared_path}/uploads/records #{release_path}/public/records"
+	 if File.exists?("#{shared_path}/uploads/records")
+	      run "ln -nsf #{shared_path}/uploads/records #{release_path}/public/records"
+	 else
+	     run "mkdir -p #{shared_path}/uploads/records"
+	     run "ln -nsf #{shared_path}/uploads/records #{release_path}/public/records"
+	 end
 	 
-	 run "mkdir -p #{shared_path}/uploads/documents"
-	 run "ln -nsf #{shared_path}/uploads/documents #{release_path}/public/documents"
+	 if File.exists?("#{shared_path}/uploads/documents")
+	    run "ln -nsf #{shared_path}/uploads/documents #{release_path}/public/documents"
+	else
+	    run "mkdir -p #{shared_path}/uploads/documents"
+	    run "ln -nsf #{shared_path}/uploads/documents #{release_path}/public/documents"
+	 end
     end
 
     ##http://archive.jvoorhis.com/articles/2006/07/07/managing-database-yml-with-capistrano
@@ -202,17 +210,13 @@ set :application, "weddingcards"
       <<: *login
     EOF
 
-    run "mkdir -p #{shared_path}/config"
+      run "mkdir -p #{shared_path}/config"
       put database_configuration, "#{shared_path}/config/database.yml"
     end
 
-    desc "Link in the production database.yml"
-    task :after_update_code do
+    desc "Symlinking uploads and database.yml"
+    task :symlink_shared do
       run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-    end
-    
-     desc "Symlink the uploads directory"
-     task :symlink_uploads_directory do
        run "ln -nsf #{shared_path}/uploads/records #{release_path}/public/records"
        run "ln -nsf #{shared_path}/uploads/documents #{release_path}/public/documents"
      end
@@ -226,7 +230,6 @@ set :application, "weddingcards"
 	 desc "#{t} task is a no-op with mod_rails"
 	 task t, :roles => :app do ; end
        end
- end
+ end #deploy namespace end
 
-after 'deploy:update_code', 'deploy:after_update_code'
-after 'deploy:after_update_code', 'deploy:symlink_uploads_directory'
+after 'deploy:update_code', 'deploy:symlink_shared'
