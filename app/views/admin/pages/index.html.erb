@@ -1,0 +1,25 @@
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Body</th>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
+  </tr>
+
+<% for page in @pages %>
+  <tr>
+    
+    <td><%= link_to h(page.title), [:admin, page] %></td>
+    <td>
+      <% if page.body.length >= 60 %>
+        <%=h page.body[0,56] + " ..." %>
+      <% else %>
+        <%=h page.body %>
+      <% end %>
+    </td>
+    <td><%= link_to "Edit", edit_admin_page_path(page) %></td>
+  </tr>
+<% end %>
+</table>
+<br />
+
