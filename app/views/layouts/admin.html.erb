@@ -8,7 +8,7 @@
   <%= controller.action_name -%>
  </title>
   <%= javascript_include_tag :defaults %>
-  
+  <%= javascript_include_tag 'table-sorter' %>
  <%= stylesheet_link_tag 'admin-html','admin-layout' %>
 
   <!-- Conditional comment to apply opacity fix for IE #content background.
@@ -25,9 +25,8 @@
     <!-- #header: holds site title and subtitle -->
     <div id="header">
       <h1><span class="big darkBrown">H</span>andMade <span class="big darkBrown">W</span>edding Cards</h1>
-      <h2><span class="highlight">Developed by Millisami</span></h2>
-	  <% #link_to( image_tag( 'rails.png', :id => 'logo'), 'http://rubyonrails.com')  %>
-		<%= link_to 'Start Page', root_path -%>
+      <h2><span class="highlight">Websearch Professional</span></h2>
+        <%= link_to 'Website', root_path -%>
     </div>
     <%= render :partial => "admin/menu" %>
     <%#= navigation [:admin_categories, 'Categories'], :hover_text => true  %>
@@ -42,7 +41,7 @@
 
       <!-- .footer: the site footer text, links and whatever else -->
       <p class="footer">
-        Developed by <a title="Millisami" href="http://millisami.info">Millisami</a> | Copyright© 2008 Handmade-weddingcards.com.</p>
+        Developed by <a title="Millisami" href="http://millisami.info" target="_blank">Millisami</a> | Copyright© 2008 Handmade-weddingcards.com.</p>
     </div> <!-- //page -->
 
 </div> <!-- //container -->
