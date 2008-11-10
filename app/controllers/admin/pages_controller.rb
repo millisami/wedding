@@ -84,6 +84,7 @@ class Admin::PagesController < ApplicationController
   def destroy
     @page = Page.find(params[:id])
     @page.destroy
+    flash[:notice] = 'Page deleted successfully'
     respond_to do |format|
       format.html { redirect_to(admin_pages_url) }
       format.xml  { head :ok }
