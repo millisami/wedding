@@ -5,24 +5,19 @@
                </div>
                 <% @products.each_with_index do |product,x| %>
                <div class="contentDesignSub<%= x + 1%>">
-                 <% form_tag('/posts', :method => :put, :id => "form#{x+1}") do -%>
+                 
 
-                    <%= link_to image_tag("#{product.image.public_filename if product.image}", :alt => product.name), (product.document.url if product.document), :id => "adToCart"  %>
+                    <%= link_to image_tag("#{product.image.public_filename if product.image}", :alt => product.name), (product.document.url if product.document)  %>
                     <div class="contentDesignSubBot1">
-                       	<%=h product.name %>
-                        <%= link_to_remote image_tag("cart-add.png"), :url => add_to_cart_site_path(product), :method => :get %>
-                        <input name="quantity" id="quantity" type="text" /> <span class="txtgrey">3$ / pcs</span>
-                        <%#=  observe_field "quantity",
-							:url => update_cart_quantity_site_path(product),
-                                                        :method => :put, 
-							:on => 'blur',
-                                                        :with => 'quantity'
-                        %>
-                         <%= observe_form "form#{x+1}",
-                                                    :url => update_cart_quantity_site_path(product)
-                         %>
+                       	<% form_remote_tag(:url => add_to_cart_site_path(product), :html => { :id => "form#{x+1}" }) do -%>
+                            <%#=h product.name %>
+                            <%#= link_to_remote image_tag("cart-add.png"), :url => add_to_cart_site_path(product), :html => { :class => "addToCartBtn", :method => :get } %>
+                            <%= hidden_field_tag('id', product.id) %>
+                            <%= text_field_tag("quantity") %><span class="txtgrey">3$ / pcs</span>
+                            <%= image_submit_tag("cart-add.png", :class => "imageSubmit") %>
+                        <%- end -%>
                     </div>
-                    <%- end -%>
+                    
                </div>
                 <%- end -%>
                 </div>

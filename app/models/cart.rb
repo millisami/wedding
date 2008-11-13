@@ -6,15 +6,15 @@ class Cart
 		empty_all_items
 	end
 	
-	def add_product(product)
+	def add_product(product, quantity)
 	    existing_item = @items.find {|item|item.product_id == product.id}
 	    if existing_item
-		existing_item.quantity += 1
+		existing_item.quantity += quantity
 	    else
-		@items << LineItem.new_based_on(product)
+		@items << LineItem.new_based_on(product, quantity)
 		
     	    end
-	    @total_price += product.price
+	    @total_price += product.price * quantity
 	end
 
 	def remove_product(product)

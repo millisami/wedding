@@ -22,7 +22,7 @@ ActionController::Routing::Routes.draw do |map|
   map.controller_actions 'payments', %w[checkout confirm]
   map.resources :payments
     map.resources :sites, :collection => {:show_cart => :get}, :member => {
-	:add_to_cart => :get, 
+	:add_to_cart => :post,
 	:remove_from_cart => :delete,
 	:update_cart_quantity => :put,
 	

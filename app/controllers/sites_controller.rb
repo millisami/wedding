@@ -10,7 +10,8 @@ class SitesController < ApplicationController
 	
 	def add_to_cart
 		product = Product.find(params[:id])
-		@cart.add_product(product)
+		quantity = params[:quantity].to_i
+		@cart.add_product(product, quantity)
 		respond_to do |format|
 		    format.html  { redirect_to(:action => 'show_cart') }
 		    format.js
