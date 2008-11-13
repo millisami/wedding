@@ -6,18 +6,11 @@ class ProductSetsController < ApplicationController
 	@products = Product.find(:all, :conditions => ["product_set_id = ?", 5]) #@product_sets[0].id])
     respond_to do |format|
       format.html  { render :layout => false }# index.html.erb
-      format.xml  { render :xml => @product_sets }
-	 # format.js
+      # format.js
     end
   end
   
-  #def self.all_cached
-#	Rails.cache.fetch("ProductSet.all", { all })
- # end
-
-  # GET /product_sets/1
-  # GET /product_sets/1.xml
-  def show
+    def show
     @product_set = ProductSet.find(params[:id])
 
     respond_to do |format|
