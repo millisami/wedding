@@ -359,9 +359,7 @@ html>body* .thankyou {
 	bottom: 54px;
 }
 .contentDesignSubBot1, .contentDesignSubBot2, .contentDesignSubBot3, .contentDesignSubBot4, .contentDesignSubBot5, .contentDesignSubBot6 {
-	position: absolute;
-	bottom: 0;
-	left: 0;
+	
 }
 .contentDesignSubBot1 a img{
 	position: relative;
