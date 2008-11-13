@@ -63,8 +63,8 @@ window.onload = function() {
                 :id => 'checkout_menu' %></li>
     <li><img src="/images/txt_confirmation.gif" /></li>
   </ul>
-  <div class="content">
-    <div id="contentTop">
+  <div class="content clearfix">
+    <div id="contentTop" class="clearfix">
       <% flash.each do |key, msg| %>
       <%= content_tag :p, msg, :id => key, :class => 'flash' %>
       <% end %>

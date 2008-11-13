@@ -5,3 +5,15 @@ h2{font:bold 18px Arial, Helvetica, sans-serif; color:#0C3E83; margin-bottom:14p
 a.mail{font:bold 11px Arial, Helvetica, sans-serif; color:#0C3E83;}
 a.mail:hover{font:bold 11px Arial, Helvetica, sans-serif; color:#0C3E83; text-decoration:underline;}
 
+.clearfix:after {
+content:".";
+display:block;
+height:0;
+clear:both; 
+visibility:hidden;
+}
+.clearfix {display:inline-block;}
+/* Hide from IE Mac \*/
+.clearfix {display:block;}
+/* End hide from IE Mac */
+
