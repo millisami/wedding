@@ -52,11 +52,11 @@ window.onload = function() {
   <%#= image_tag 'indicator.gif', :id => 'form-indicator', :style => 'display:none;' %>
   <div id="form-indicator" style="display:none;">Loading...</div>
   <ul class="nav">
-    <li class="done pr themes"><a href="#"></a></li>
+    <li class="done pr themes"><%= link_to '', root_path %></li>
     <li class="current"><img src="/images/txt_format-products-current.gif" /></li>
     <li><img src="/images/txt_style.gif" /></li>
-    <li><img src="/images/txt_text.gif" /></li>
-    <li><%= link_to image_tag("/images/txt_preview.gif"), {:controller => :sites, :action => 'show_cart'}, :method => :get, :id => 'show_cart_menu', :class => 'lbOn' %></li>
+    <li><%= link_to image_tag("txt_text.gif"), {:controller => :sites, :action => 'save_cart'}, :method => :get, :id => 'show_cart_menu', :class => 'lbOn' %></li>
+    <li><%= link_to image_tag("/images/txt_preview.gif"), {:controller => :sites, :action => 'show_cart'}, :id => 'show_cart_menu', :class => 'lbOn' %></li>
     <li><%= link_to_remote image_tag("/images/txt_order.gif"),
                 :url => '/checkout',
                 :method => :get, 

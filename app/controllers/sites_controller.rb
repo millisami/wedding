@@ -2,8 +2,9 @@ class SitesController < ApplicationController
 	layout 'site'
 	
 	#before_filter :find_or_create_cart, :only => [:add_to_cart, :show_cart, :empty_cart]
+	before_filter :login_required, :only => [:save_cart, :save_order]
 
-        def index
+    def index
 		@categories = Category.find(:all, :order => 'updated_at DESC')
 		#@products = Product.find(:all)
 	end
@@ -48,6 +49,7 @@ class SitesController < ApplicationController
 		#format.js
 	    end
 	end
+	
 	def change_currency
 	    #product = Product.find(params[:id])
 	    @exchange_currency = params[:exchange_rate]
@@ -57,7 +59,13 @@ class SitesController < ApplicationController
 		format.js
 	    end
 	end
-	
+
+	def save_cart
+	    respond_to do |format|
+		format.html {render :layout => false}
+	    end
+	end
+
 	def checkout
 	    @customer = Customer.new
 	    respond_to do |format|

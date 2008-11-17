@@ -8,13 +8,13 @@
                  
 
                     <%= link_to image_tag("#{product.image.public_filename if product.image}", :alt => product.name), (product.document.url if product.document)  %>
-                    <div class="contentDesignSubBot1">
+                    <div class="contentDesignSubBot<%= x + 1%>">
                        	<% form_remote_tag(:url => add_to_cart_site_path(product), :html => { :id => "form#{x+1}" }) do -%>
                             <%#=h product.name %>
                             <%#= link_to_remote image_tag("cart-add.png"), :url => add_to_cart_site_path(product), :html => { :class => "addToCartBtn", :method => :get } %>
                             <%= hidden_field_tag('id', product.id) %>
-                            <%= text_field_tag("quantity") %><span class="txtgrey">3$ / pcs</span>
-                            <%= image_submit_tag("cart-add.png", :class => "imageSubmit") %>
+                        <p><%= text_field_tag("quantity") %><span class="txtgrey">3$ / pcs</span></p>
+                        <p><%= image_submit_tag("cart-add.png", :class => "imageSubmit") %></p>
                         <%- end -%>
                     </div>
                     

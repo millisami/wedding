@@ -35,6 +35,10 @@ class Cart
 	    end
 	end
 
+	def save_cart
+	    
+	end
+
 	def empty_all_items
 	    @items = []
 	    @total_price = 0.0
