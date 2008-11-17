@@ -57,6 +57,7 @@ class SitesController < ApplicationController
 		format.js
 	    end
 	end
+	
 	def checkout
 	    @customer = Customer.new
 	    respond_to do |format|

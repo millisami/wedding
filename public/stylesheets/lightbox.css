@@ -15,10 +15,10 @@ Modified : February 1, 2006
 	top:50%;
 	left:50%;
 	z-index:9999;
-	width:600px;
+	width:700px;
 	height:400px;
-	margin:-220px 0 0 -250px;
-	
+	margin:-220px 0 0 -350px;
+	padding: 10px;
         border:3px solid #333;
 
 	background-color:#ffffe5;
