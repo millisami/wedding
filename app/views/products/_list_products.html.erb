@@ -30,7 +30,7 @@
 
                     <%= select_tag(:exchange_rate, "<option>Currency</option>" + options_from_collection_for_select(@exchange_rate, :currency, :currency, session[:exchange_currency])) %>
 
-                    <%= link_to 'Show Cart', "#", :onclick => "onClickLightbox('/sites/show_cart')" %>
+                    
                         <%= observe_field  'exchange_rate',
                                                 :url => change_currency_site_path(2),
                                                 :method => :put,

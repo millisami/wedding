@@ -1,8 +1,7 @@
 class SitesController < ApplicationController
-	layout 'site'
-	
-	#before_filter :find_or_create_cart, :only => [:add_to_cart, :show_cart, :empty_cart]
-	before_filter :login_required, :only => [:save_cart, :save_order]
+    layout 'site'
+
+    before_filter :login_required, :only => [:save_cart, :save_order]
 
     def index
 		@categories = Category.find(:all, :order => 'updated_at DESC')
@@ -86,8 +85,8 @@ class SitesController < ApplicationController
 		#if payment succeeds
 		@cart.empty_all_items
 		redirect_to(:action => 'show_receipt', :id => @order.id)
-    	else
-	    render(:action => 'checkout')
+	    else
+		render(:action => 'checkout')
 	    end
 	end
 

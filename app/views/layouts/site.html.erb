@@ -11,7 +11,7 @@
     <![endif]-->
 
 <%= javascript_include_tag :defaults %>
-<%#= javascript_include_tag 'lightbox' %>
+<%= javascript_include_tag 'lightbox' %>
 <%#= javascript_include_tag 'json2007','rsh' %>
 
 <script type="text/javascript">
@@ -56,7 +56,7 @@ window.onload = function() {
     <li class="done pr themes"><%= link_to '', root_path %></li>
     <li class="current"><img src="/images/txt_format-products-current.gif" /></li>
     <li><img src="/images/txt_style.gif" /></li>
-    <li><%= link_to image_tag("txt_text.gif"), {:controller => :sites, :action => 'save_cart'}, :method => :get, :id => 'show_cart_menu', :class => 'lbOn' %></li>
+    <li><%= link_to image_tag("txt_text.gif"), save_cart_path, :id => 'save_cart_menu', :class => 'lbOn' %></li>
     <li><%= link_to image_tag("/images/txt_preview.gif"), {:controller => :sites, :action => 'show_cart'}, :id => 'show_cart_menu', :class => 'lbOn' %></li>
     <li><%= link_to_remote image_tag("/images/txt_order.gif"),
                 :url => '/checkout',

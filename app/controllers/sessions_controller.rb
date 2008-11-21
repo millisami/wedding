@@ -6,6 +6,10 @@ class SessionsController < ApplicationController
 
   # render new.rhtml
   def new
+      if session[:return_to] == "/save_cart"
+	    render :layout => false
+	    
+      end
   end
 
   def create
