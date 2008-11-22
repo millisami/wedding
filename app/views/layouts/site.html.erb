@@ -6,12 +6,14 @@
 
 <%= stylesheet_link_tag 'master' %>
 <%= stylesheet_link_tag 'lightbox' %>
+<%= stylesheet_link_tag 'modalbox' %>
 <!--[if IE 6]>
     	<%= stylesheet_link_tag 'bug/ie6' %>
     <![endif]-->
 
 <%= javascript_include_tag :defaults %>
 <%= javascript_include_tag 'lightbox' %>
+<%= javascript_include_tag 'modalbox' %>
 <%#= javascript_include_tag 'json2007','rsh' %>
 
 <script type="text/javascript">
@@ -96,7 +98,7 @@ window.onload = function() {
         <ul class="footerLeft">
           <li>Startpage</li>
           <li class="separator">|</li>
-          <li><a href="#">Contact Us</a></li>
+          <li><%= link_to "Contact Us", page_path(2), :title => 'Contact Us', :onclick => "Modalbox.show(this.href, {title: this.title, width: 600}); return false;"  %></li>
           <li class="separator">|</li>
           <li><a href="#">Shipping</a></li>
           <li class="separator">|</li>
