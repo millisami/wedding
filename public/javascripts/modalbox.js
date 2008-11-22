@@ -31,7 +31,7 @@ Modalbox.Methods = {
 		transitions: true, // Toggles transition effects. Transitions are enabled by default
 		loadingString: "Please wait. Loading...", // Default loading string message
 		closeString: "Close window", // Default title attribute for close window link
-		closeValue: "&times;", // Default string for close link in the header
+		closeValue: "<img src=\"/images/closelabels.gif\" alt=\"Close\">", // Default string for close link in the header
 		params: {},
 		method: 'get', // Default Ajax request method
 		autoFocusing: true, // Toggles auto-focusing for form elements. Disable for long text pages.
