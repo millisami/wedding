@@ -2,39 +2,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Handmade Wedding Cards:<%= controller.controller_name -%>:<%= action_name -%></title>
+<title>Handmade Wedding Cards Authenticaiton</title>
 
 <%= stylesheet_link_tag 'master' %>
 <%= stylesheet_link_tag 'lightbox' %>
 <%= stylesheet_link_tag 'modalbox' %>
 <!--[if IE 6]>
-    	<%= stylesheet_link_tag 'bug/ie6' %>
-    <![endif]-->
+    <%= stylesheet_link_tag 'bug/ie6' %>
+<![endif]-->
 
 <%= javascript_include_tag :defaults %>
 <%= javascript_include_tag 'lightbox' %>
 <%= javascript_include_tag 'modalbox' %>
-<%#= javascript_include_tag 'json2007','rsh' %>
-
-<script type="text/javascript">
-/*window.dhtmlHistory.create({
-  toJSON: function(o) {
-    return Object.toJSON(o);
-  },
-  fromJSON: function(s) {
-    return s.evalJSON();
-  }
-});
-
-var pageListener = function(newLocation, historyData) {
-  eval(historyData);
-};
-
-window.onload = function() {
-  dhtmlHistory.initialize();
-  dhtmlHistory.addListener(pageListener);
-}*/
-</script>
 </head>
 <body>
 <div class="wrapper">
@@ -42,8 +21,8 @@ window.onload = function() {
     <ul class="headerTopLeft">
       <li><%= link_to "Startpage", root_path %></li>
       <li class="separator">|</li>
-      <li><%= link_to "Contact Us", page_path(2), :title => 'Contact Us', :onclick => "Modalbox.show(this.href, {title: this.title, width: 600}); return false;"  %></li>
-      
+      <li><%= link_to "Contact Us", "#", :onclick => "onClickLightbox('/pages/2')" %></li>
+
     </ul>
     <ul class="headerTopRight">
       <li>Wedding Cards </li>
@@ -58,12 +37,12 @@ window.onload = function() {
     <li class="done pr themes"><%= link_to '', root_path %></li>
     <li class="current"><img src="/images/txt_format-products-current.gif" /></li>
     <li><img src="/images/txt_style.gif" /></li>
-    <li><%= link_to image_tag("txt_text.gif"), save_cart_path, :id => 'save_cart_menu', :title => 'Save cart', :onclick => "Modalbox.show(this.href, {title: this.title, width: 600}); return false;" %></li>
-    
-    <li><%= link_to image_tag("/images/txt_preview.gif"), show_cart_path, :id => 'show_cart_menu', :title => 'Shopping Cart', :onclick => "Modalbox.show(this.href, {title: this.title, width: 600}); return false;" %></li>
+    <li><%= link_to image_tag("txt_text.gif"), save_cart_path, :id => 'save_cart_menu', :class => '', :title => 'Save cart', :onclick => "Modalbox.show(this.href, {title: this.title, width: 600}); return false;" %></li>
+
+    <li><%= link_to image_tag("/images/txt_preview.gif"), {:controller => :sites, :action => 'show_cart'}, :id => 'show_cart_menu', :class => 'lbOn' %></li>
     <li><%= link_to_remote image_tag("/images/txt_order.gif"),
                 :url => '/checkout',
-                :method => :get, 
+                :method => :get,
                 :id => 'checkout_menu' %></li>
     <li><img src="/images/txt_confirmation.gif" /></li>
   </ul>
@@ -74,26 +53,8 @@ window.onload = function() {
       <% end %>
       <%= yield %> </div>
     <!-- contentTop -->
+
    
-    <div class="contentBot">
-      <div class="contentFlower"> <img src="/images/flower.png" /> </div>
-      <div class="contentBotRight"> <img src="/images/card_design1.jpg" class="card" />
-        <div class="contentBotRightSub"> <strong>Välj  bland följande produkter:</strong><br />
-          <ul>
-            <li><a href="#" class="active">Inbjudan</a></li>
-            <li><a href="#">Mottagningskort</a></li>
-            <li><a href="#">Kuvert</a></li>
-            <li><a href="#">Placeringskort</a></li>
-            <li><a href="#">Svarskort</a></li>
-            <li><a href="#">Brevpapper</a></li>
-            <li><a href="#">Tackkort</a></li>
-          </ul>
-        </div>
-        <div class="contentBotRightSubB"> <strong>Socialt ansvar</strong><br />
-          <em>Handmade Wedding Invitations</em> tillhör nätverket Fair Enterprise Network som arbetar med att bygga upp och utveckla ansvarsfulla företag i fattiga länder. <br />
-          <a href="#">» Läs mer</a> </div>
-      </div>
-    </div>
     <div class="bottom">
       <div class="footer">
         <ul class="footerLeft">
