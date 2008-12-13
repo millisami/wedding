@@ -147,7 +147,8 @@ set :application, "weddingcards"
  task :config_vhost do
     vhost_config =<<-EOF
      <VirtualHost *:80>
-      ServerName #{domain}
+       ServerName #{domain}
+       ServerAlias www.#{domain}
        DocumentRoot #{deploy_to}/current/public
     </VirtualHost>
      EOF
