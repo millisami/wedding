@@ -6,7 +6,7 @@ class Product < ActiveRecord::Base
 	
 	validates_presence_of :name, :product_set_id
 	validates_numericality_of :price
-	validates_uniqueness_of :name
+	#validates_uniqueness_of :name
 
     protected
     def validate
