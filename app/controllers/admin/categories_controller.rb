@@ -1,5 +1,5 @@
 class Admin::CategoriesController < ApplicationController
-  #layout 'admin'
+  layout 'admin'
   before_filter :login_required
   before_filter :check_administrator_role
   
