@@ -1,3 +1,14 @@
+# == Schema Info
+# Schema version: 20081129104621
+#
+# Table name: product_sets
+#
+#  id          :integer(4)      not null, primary key
+#  category_id :integer(4)
+#  name        :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
+
 class ProductSet < ActiveRecord::Base
 	include Imageable
 	

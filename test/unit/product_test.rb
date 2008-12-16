@@ -1,3 +1,19 @@
+# == Schema Info
+# Schema version: 20081129104621
+#
+# Table name: products
+#
+#  id                    :integer(4)      not null, primary key
+#  product_set_id        :integer(4)
+#  default_qty           :integer(4)      default(35)
+#  document_content_type :string(255)
+#  document_file_name    :string(255)
+#  document_file_size    :string(255)
+#  name                  :string(255)
+#  price                 :decimal(8, 2)   default(0.0)
+#  created_at            :datetime
+#  updated_at            :datetime
+
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ProductTest < ActiveSupport::TestCase
