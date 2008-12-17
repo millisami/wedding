@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081014172340) do
+ActiveRecord::Schema.define(:version => 20081217061449) do
 
   create_table "carts", :force => true do |t|
     t.datetime "created_at"
@@ -56,6 +56,9 @@ ActiveRecord::Schema.define(:version => 20081014172340) do
     t.string   "invoice_number"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.string   "pay_type"
+    t.string   "status"
   end
 
   create_table "pages", :force => true do |t|
@@ -85,6 +88,7 @@ ActiveRecord::Schema.define(:version => 20081014172340) do
     t.string   "document_file_name"
     t.string   "document_content_type"
     t.string   "document_file_size"
+    t.float    "weight",                                              :default => 1000.0
   end
 
   create_table "roles", :force => true do |t|

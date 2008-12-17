@@ -4,7 +4,7 @@
   </p>
 
 <p>
-	<%= f.label :product_set %><br />
+	<b>Product Set</b><br />
 	<%#= select('product', 'product_set_id', [['choose one', '']] + @product_sets.collect {|pset| [pset.name, pset.id]}) %>
 	<%= f.collection_select(:product_set_id, ProductSet.find(:all), :id, :name, {:prompt => true}) %>
 
@@ -13,16 +13,21 @@
     <b>Default Quantity</b><br />
     <%= f.text_field :default_qty %>
   </p>
-  <p>
+ 
 <p>
-    <b>Price</b><br />
+    <b>Price</b>(SEK)<br />
     <%= f.text_field :price %>
   </p>
-    <%= f.label :product_image %><br />
+<p>
+    <b>Weight</b>(for 100 pcs in kilogram)<br />
+    <%= f.text_field :weight %>
+  </p>
+  <p>
+  <b>Product Image</b><br />
     <%= f.file_field :uploaded_data %>
   </p>
   <p>
-    <%= f.label :document_file %><br />
+    <b>PDF File</b><br />
 	<%= f.file_field :document%>
   </p>
   
