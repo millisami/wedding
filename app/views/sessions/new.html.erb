@@ -1,7 +1,3 @@
-<% if session[:return_to] == "/save_cart" %>
-     <a href="#" class="lbAction" rel="deactivate"><img id="reading-close" src="/images/closelabels.gif" alt="Close Button" title="Close" class="right"
-    style="width: 66px; height: 22px; float: right" /></a>
-<%  end %>
 <h2>Login with your User ID and Password:</h2>
 <% form_tag session_path do %>
 <p><label for="login">Login</label><br/>
@@ -13,7 +9,7 @@
 <p><label for="remember_me">Remember me:</label>
 <%= check_box_tag 'remember_me' %></p>
 
-<p><%= submit_tag 'Log in' %><%= link_to "Sign Up", new_user_path %></p>
+<p><%= submit_tag 'Log in' %><%#= link_to "Sign Up", new_user_path %></p>
 <% end %>
 <script type='text/javascript'>
   document.getElementById('login').focus()
