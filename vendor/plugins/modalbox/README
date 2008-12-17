@@ -1,0 +1,27 @@
+ModalBoxHelper v.1.0
+====================
+
+# Author:: Millisami
+# WebSite:: http://millisami.info
+# Based on Modalbox Js Library
+To complete the installation, run the following rake task:
+
+rake modalbox:setup
+
+This Modalbox Helper is based on the javascript at http://www.wildbit.com/labs/modalbox/
+
+Note: this js use Prototype JavaScript framework, version 1.6.0 and script.aculo.us 1.8.0 library
+
+You must add the stylesheet, so add the following line on your page head of your layout:
+
+<%= stylesheet_link_tag 'modalbox' %>
+
+The is very simple to add a Modalbox in your page add this:
+<%= modalbox_link_to(name, options = {}, html_options = {}, *parameters_for_method_reference) %>
+
+Example:
+<%= modalbox_link_to 'New project via Modalbox', { :url => new_project_path, :width => "500" }, :title => 'New Project' %>
+
+Vist my website: http://millisami.info
+
+Copyright (c) 2008 [Millisami], released under the MIT license.
