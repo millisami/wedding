@@ -5,7 +5,7 @@
     <th>Name</th>
     <th>Category</th>
     <th class="nosort">Image</th>
-    <th class="nosort">Document</th>
+    <th class="nosort">PDF</th>
     <th class="nosort">&nbsp;</th>
     <th class="nosort">&nbsp;</th>
     <th class="nosort">&nbsp;</th>
@@ -16,10 +16,8 @@
     <td><%=h product.name %></td>
     <td><%=h product.product_set.name %></td>
     <td><%= image_tag(product.image.public_filename, :size => '28x28') if product.image %></td>
-	<td><%=h product.document.url %>
+	<td><%= link_to image_tag('pdf-icon.png'), product.document.url, :target => "_blank" %>
     <td><%= link_to 'Show', [:admin, product] %></td>
-	
-
     <td><%= link_to 'Edit', edit_admin_product_path(product) %></td>
     <td><%= link_to 'Destroy', [:admin, product], :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
