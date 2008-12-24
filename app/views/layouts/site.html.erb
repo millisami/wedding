@@ -42,8 +42,7 @@ window.onload = function() {
     <ul class="headerTopLeft">
       <li><%= link_to "Startpage", root_path %></li>
       <li class="separator">|</li>
-      <li><%= link_to "Contact Us", page_path(2), :title => 'Contact Us', :onclick => "Modalbox.show(this.href, {title: this.title, width: 600}); return false;"  %></li>
-      
+            <li><%= modalbox_link_to 'Contact Us', { :url => page_path(2), :width => "500" }, :title => 'Contact Us' %></li>
     </ul>
     <ul class="headerTopRight">
       <li>Wedding Cards </li>
