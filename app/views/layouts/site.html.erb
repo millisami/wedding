@@ -42,30 +42,31 @@ window.onload = function() {
     <ul class="headerTopLeft">
       <li><%= link_to "Startpage", root_path %></li>
       <li class="separator">|</li>
-            <li><%= modalbox_link_to 'Contact Us', { :url => page_path(2), :width => "500" }, :title => 'Contact Us' %></li>
+            <li><%= modalbox_link_to 'Contact Us', { :url => page_path(2), :width => "600" }, :title => 'Contact Us' %></li>
     </ul>
     <ul class="headerTopRight">
       <li>Wedding Cards </li>
       <li><a href="#">Christmas Cards</a></li>
       <li><a href="#">Bags &amp; Boxes</a></li>
     </ul>
-    <div class="headetBot"> <img src="/images/logo.jpg" class="logo" alt="Handmade Wedding Invitations" /> <img src="/images/card_design.jpg" alt="Card Design" /> </div>
+    <div class="headetBot"><img src="/images/logo.jpg" class="logo" alt="Handmade Wedding Invitations" /> <img src="/images/card_design.jpg" alt="Card Design" /> </div>
   </div>
   <%#= image_tag 'indicator.gif', :id => 'form-indicator', :style => 'display:none;' %>
   <div id="form-indicator" style="display:none;">Loading...</div>
+  <!-- nav -->
   <ul class="nav">
     <li class="done pr themes"><%= link_to '', root_path %></li>
     <li class="current"><img src="/images/txt_format-products-current.gif" /></li>
     <li><img src="/images/txt_style.gif" /></li>
-    <li><%= link_to image_tag("txt_text.gif"), save_cart_path, :id => 'save_cart_menu', :title => 'Save cart', :onclick => "Modalbox.show(this.href, {title: this.title, width: 600}); return false;" %></li>
-    
-    <li><%= link_to image_tag("/images/txt_preview.gif"), show_cart_path, :id => 'show_cart_menu', :title => 'Shopping Cart', :onclick => "Modalbox.show(this.href, {title: this.title, width: 600}); return false;" %></li>
+    <li><%= modalbox_link_to image_tag("txt_text.gif"), { :url => save_cart_path, :width => "600" }, :title => 'Savew Cart' %></li>
+    <li><%= modalbox_link_to image_tag("/images/txt_preview.gif"), { :url => show_cart_path, :width => "600" }, :title => 'Shopping Cart' %></li>
     <li><%= link_to_remote image_tag("/images/txt_order.gif"),
                 :url => '/checkout',
                 :method => :get, 
                 :id => 'checkout_menu' %></li>
     <li><img src="/images/txt_confirmation.gif" /></li>
   </ul>
+  <!-- //end nav -->
   <div class="content clearfix">
     <div id="contentTop" class="clearfix">
       <% flash.each do |key, msg| %>
@@ -79,13 +80,13 @@ window.onload = function() {
       <div class="contentBotRight"> <img src="/images/card_design1.jpg" class="card" />
         <div class="contentBotRightSub"> <strong>Välj  bland följande produkter:</strong><br />
           <ul>
-            <li><a href="#" class="active">Inbjudan</a></li>
-            <li><a href="#">Mottagningskort</a></li>
-            <li><a href="#">Kuvert</a></li>
-            <li><a href="#">Placeringskort</a></li>
-            <li><a href="#">Svarskort</a></li>
-            <li><a href="#">Brevpapper</a></li>
-            <li><a href="#">Tackkort</a></li>
+            <li><%= modalbox_link_to 'Inbjudan', { :url => page_path(2), :width => "600" }, :title => 'Inbjudan' %></li>
+            <li><%= modalbox_link_to 'Mottagningskort', { :url => page_path(2), :width => "600" }, :title => 'Mottagningskort' %></li>
+            <li><%= modalbox_link_to 'Kuvert', { :url => page_path(2), :width => "600" }, :title => 'Kuvert' %></li>
+            <li><%= modalbox_link_to 'Placeringskort', { :url => page_path(2), :width => "600" }, :title => 'Placeringskort' %></li>
+            <li><%= modalbox_link_to 'Svarskort', { :url => page_path(2), :width => "600" }, :title => 'Svarskort' %></li>
+            <li><%= modalbox_link_to 'Brevpapper', { :url => page_path(2), :width => "600" }, :title => 'Brevpapper' %></li>
+            <li><%= modalbox_link_to 'Tackkort', { :url => page_path(2), :width => "600" }, :title => 'Tackkort' %></li>
           </ul>
         </div>
         <div class="contentBotRightSubB"> <strong>Socialt ansvar</strong><br />
@@ -96,15 +97,15 @@ window.onload = function() {
     <div class="bottom">
       <div class="footer">
         <ul class="footerLeft">
-          <li>Startpage</li>
+          <li><%= link_to "Startpage", root_path %></li>
           <li class="separator">|</li>
-          <li><%= link_to "Contact Us", page_path(2), :title => 'Contact Us', :onclick => "Modalbox.show(this.href, {title: this.title, width: 600}); return false;"  %></li>
+          <li><%= modalbox_link_to 'Contact Us', { :url => page_path(2), :width => "600" }, :title => 'Contact Us' %></li>
           <li class="separator">|</li>
-          <li><a href="#">Shipping</a></li>
+          <li><%= modalbox_link_to 'Shipping', { :url => page_path(2), :width => "600" }, :title => 'Shipping' %></li>
           <li class="separator">|</li>
-          <li><a href="#">Coockies</a></li>
+          <li><%= modalbox_link_to 'Coockies', { :url => page_path(2), :width => "600" }, :title => 'Coockies' %></li>
         </ul>
-        <div class="footerRight"> PHONE 00977-1-4700253  |  E-MAIL <a href="#">info@handmade-weddingcards.com</a><br />
+        <div class="footerRight"> PHONE 00977-1-4700253  |  E-MAIL <a href="mailto:info@handmade-weddingcards.com">info@handmade-weddingcards.com</a><br />
           Copyright © Handmade Wedding Invitations 2007 </div>
       </div>
       <ul class="footerBot">
@@ -112,13 +113,6 @@ window.onload = function() {
         <li><a href="#">Christmas Cards</a></li>
         <li><a href="#">Bags &amp; Boxes</a></li>
       </ul>
-    </div>
-  </div>
-  <div id="inline-sample" style="display: none;">
-    <div>
-      <p>Oh yeah, this content was pulled from within the page!</p>
-      <p>In order to get the LightWindow to fit the content, you have to define the height and width of a div in the inline div or send values for lightwindow_width and lightwindow_height in the url string.   Personally I prefer the inner div method, this way you can gracefully degrade the link as I did into an anchor if javascript isn't available.</p>
-      <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Vestibulum hendrerit nibh at libero. Donec lectus enim, condimentum ac, scelerisque non, malesuada id, diam. Sed porta magna. Ut luctus bibendum nulla. Ut sit amet tellus. Aliquam ut justo. Duis sapien magna, sagittis et, molestie at, interdum a, mi. Nunc nisi arcu, tincidunt quis, adipiscing ac, faucibus convallis, ligula. Aenean lacinia laoreet nisi. Integer dictum. Maecenas porttitor dictum felis. </p>
     </div>
   </div>
 </div>
