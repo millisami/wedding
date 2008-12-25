@@ -1,4 +1,6 @@
-
+body {
+    height: 100%;
+}
 h2{font:bold 18px Arial, Helvetica, sans-serif; color:#0C3E83; margin-bottom:14px;}
 
 
@@ -7,6 +9,26 @@ a.mail:hover{font:bold 11px Arial, Helvetica, sans-serif; color:#0C3E83; text-de
 
 a.addToCartBtn img {
   border: none;
+}
+
+#overlay {
+     
+     position: absolute;
+     left: 0px;
+     top: 0px;
+     width:100%;
+     height:100%;
+     text-align:center;
+     z-index: 1000;
+     background-image:url("../images/background-trans.png");
+}
+#overlay div {
+     width:300px;
+     margin: 100px auto;
+     background-color: #fff;
+     border:1px solid #000;
+     padding:15px;
+     text-align:center;
 }
 .clearfix:after {
 content:".";
@@ -19,4 +41,3 @@ visibility:hidden;
 /* Hide from IE Mac \*/
 .clearfix {display:block;}
 /* End hide from IE Mac */
-

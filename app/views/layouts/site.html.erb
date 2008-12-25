@@ -2,17 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Handmade Wedding Cards:<%= controller.controller_name -%>:<%= action_name -%></title>
+<title>Handmade Wedding Cards<%#= controller.controller_name -%><%#= action_name -%></title>
 
 <%= stylesheet_link_tag 'master' %>
-<%= stylesheet_link_tag 'lightbox' %>
 <%= stylesheet_link_tag 'modalbox' %>
 <!--[if IE 6]>
     	<%= stylesheet_link_tag 'bug/ie6' %>
     <![endif]-->
 
 <%= javascript_include_tag :defaults %>
-<%= javascript_include_tag 'lightbox' %>
 <%= javascript_include_tag 'modalbox' %>
 <%#= javascript_include_tag 'json2007','rsh' %>
 
@@ -52,7 +50,12 @@ window.onload = function() {
     <div class="headetBot"><img src="/images/logo.jpg" class="logo" alt="Handmade Wedding Invitations" /> <img src="/images/card_design.jpg" alt="Card Design" /> </div>
   </div>
   <%#= image_tag 'indicator.gif', :id => 'form-indicator', :style => 'display:none;' %>
-  <div id="form-indicator" style="display:none;">Loading...</div>
+
+  <div id="overlay" style="display: none;">
+     <div>
+          <p>Loading...</p>
+     </div>
+</div>
   <!-- nav -->
   <ul class="nav">
     <li class="done pr themes"><%= link_to '', root_path %></li>

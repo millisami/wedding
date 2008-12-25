@@ -4,11 +4,11 @@
 Ajax.Responders.register({
  onCreate: function() {
    if (Ajax.activeRequestCount > 0)
-     Element.show('form-indicator');
+     Element.show('overlay');
  },
  onComplete: function() {
    if (Ajax.activeRequestCount == 0)
-     Element.hide('form-indicator');
+     Element.hide('overlay');
  }
  });
 
