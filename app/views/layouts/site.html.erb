@@ -53,12 +53,19 @@ window.onload = function() {
 
   <div id="overlay" style="display: none;">
      <div>
-          <p>Loading...</p>
+          <p><%= image_tag 'ajax-loading.gif', :alt => 'Loading..' %></p>
      </div>
 </div>
   <!-- nav -->
   <ul class="nav">
-    <li class="done pr themes"><%= link_to '', root_path %></li>
+
+      <li class="active"><%= link_to '', root_path, :class => 'themes' %></li>
+      <li class="menu"><a href="#" class="format"></a></li>
+      <li class="menu"><a href="#" class="typeContent"></a></li>
+      <li class="menu"><a href="#" class="order"></a></li>
+      <li class="menu"><a href="#" class="confirmation"></a></li>
+<!--
+    <li class="done pr themes"></li>
     <li class="current"><img src="/images/txt_format-products-current.gif" /></li>
     <li><img src="/images/txt_style.gif" /></li>
     <li><%= modalbox_link_to image_tag("txt_text.gif"), { :url => save_cart_path, :width => "600" }, :title => 'Savew Cart' %></li>
@@ -68,6 +75,7 @@ window.onload = function() {
                 :method => :get, 
                 :id => 'checkout_menu' %></li>
     <li><img src="/images/txt_confirmation.gif" /></li>
+    -->
   </ul>
   <!-- //end nav -->
   <div class="content clearfix">

@@ -1,4 +1,7 @@
-
+body {
+	font:11px/16px Georgia, "Times New Roman", Times, serif;
+	color:#6B655B;
+	}
 
 a{
 	color:#d60000;
@@ -15,9 +18,20 @@ h5{
 	font:bold 12px Georgia, "Times New Roman", Times, serif;
 	}
 	
+h2{font:bold 18px Arial, Helvetica, sans-serif; color:#0C3E83; margin-bottom:14px;}
+
+
+a.mail{font:bold 11px Arial, Helvetica, sans-serif; color:#0C3E83;}
+a.mail:hover{font:bold 11px Arial, Helvetica, sans-serif; color:#0C3E83; text-decoration:underline;}
+	
 .floatright{
 	float:right !important;
 	}
 	
 .txtgrey{font:11px Arial, Helvetica, sans-serif; color:#b2aea8;}
 
+.addCart a{font:11px Geneva, Arial, Helvetica, sans-serif; line-height:22px;color:#AE6102;}
+
+.addCart a:hover{color:#AE1800;}
+
+.contentDesignSubBot1 input{color:#6B655B; font-size:11px; line-height:20px;}
