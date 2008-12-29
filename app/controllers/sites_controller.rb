@@ -2,7 +2,7 @@ class SitesController < ApplicationController
     layout 'site'
 
     before_filter :login_required, :only => [:save_cart, :save_order]
-
+    
     def index
 		@categories = Category.find(:all, :order => 'updated_at DESC')
 		#@products = Product.find(:all)

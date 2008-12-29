@@ -2,10 +2,7 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-  expires_session :time => 2.hours, :redirect_to => '/login', :on_expiry => lambda {
-    flash[:notice] = "Your session has been expired, and you have been logged out."
-  }
-
+  
   before_filter :find_or_create_cart, :exchange_rate
 
   helper :all # include all helpers, all the time
