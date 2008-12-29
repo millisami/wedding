@@ -53,12 +53,11 @@ window.onload = function() {
 
   <div id="overlay" style="display: none;">
      <div>
-          <p><%= image_tag 'ajax-loading.gif', :alt => 'Loading..' %></p>
+          <p>Loading...<br /><%= image_tag 'ajax-loading.gif', :alt => 'Loading..' %></p>
      </div>
 </div>
   <!-- nav -->
-  <ul class="nav">
-
+  <ul id="nav">
       <li class="active"><%= link_to '', root_path, :class => 'themes' %></li>
       <li class="menu"><a href="#" class="format"></a></li>
       <li class="menu"><a href="#" class="typeContent"></a></li>

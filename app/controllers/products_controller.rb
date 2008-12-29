@@ -12,16 +12,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  # GET /products/1
-  # GET /products/1.xml
-  def show
-    @product = Product.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @product }
-    end
-  end
   
   def find_product_set
 	@product_set = ProductSet.find(params[:product_set_id])

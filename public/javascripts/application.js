@@ -15,6 +15,13 @@ Ajax.Responders.register({
 function set_class_name(element, class_name) {
 	new Element.ClassNames(element).set(class_name);
 }
-/*jQuery.ajaxSetup({
-  'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")} 
-})*/
+function set_navigation(navid) {
+    var nav_array = $('nav').childElements();
+    nav_array.each(function(item, index) {
+        if (index+1 == navid) {
+            item.removeClassName('menu').addClassName('active');
+            $(nav_array[index-1]).removeClassName('active').addClassName('visited');
+            //$(nav_array[index-1]).addClassName('visited');
+        }
+    });
+}

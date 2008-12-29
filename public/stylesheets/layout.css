@@ -66,55 +66,55 @@ li.separator {
 	margin:50px 40px 0 0;
 }
 	
-/*.nav{
+/*#nav{
 	float:left;
 	width:940px;
 	height:36px;
 	background:url(../images/nav_bg.gif) repeat-x;
 	}
 	
-	.nav li{float:left;height:36px;padding:0 12px 0 20px;}
+	#nav li{float:left;height:36px;padding:0 12px 0 20px;}
 	
-	.nav li img{margin-top:10px;}
+	#nav li img{margin-top:10px;}
 	
-	.nav li.done{background:url(../images/nav_bg1.gif) repeat-x;}
+	#nav li.done{background:url(../images/nav_bg1.gif) repeat-x;}
 	
-	.nav li.current{background:url(../images/nav_arrow.gif) no-repeat right;padding-right:20px;padding-left:0;}
+	#nav li.current{background:url(../images/nav_arrow.gif) no-repeat right;padding-right:20px;padding-left:0;}
 	
-	.nav li.pr{padding-right:20px;}
+	#nav li.pr{padding-right:20px;}
 	
-	.nav li.themes a{width:88px; height:36px; background:url(../images/txt_themes1.gif) no-repeat left top; display:block;}
+	#nav li.themes a{width:88px; height:36px; background:url(../images/txt_themes1.gif) no-repeat left top; display:block;}
 	
-	.nav li.design a{width:86px; height:36px; background:url(../images/txt_design1.gif) no-repeat left top; display:block;}
+	#nav li.design a{width:86px; height:36px; background:url(../images/txt_design1.gif) no-repeat left top; display:block;}
 	
-	.nav li.colors a{width:88px; height:36px; background:url(../images/txt_color1.gif) no-repeat left top; display:block;}
+	#nav li.colors a{width:88px; height:36px; background:url(../images/txt_color1.gif) no-repeat left top; display:block;}
 	
-	.nav li.text a{width:67px; height:36px; background:url(../images/txt_text1.gif) no-repeat left top; display:block;}
+	#nav li.text a{width:67px; height:36px; background:url(../images/txt_text1.gif) no-repeat left top; display:block;}
 	
-	.nav li.preview a{width:86px; height:36px; background:url(../images/txt_preview1.gif) no-repeat left top; display:block;}
+	#nav li.preview a{width:86px; height:36px; background:url(../images/txt_preview1.gif) no-repeat left top; display:block;}
 	
-	.nav li.order a{width:73px; height:36px; background:url(../images/txt_order1.gif) no-repeat left top; display:block;}
+	#nav li.order a{width:73px; height:36px; background:url(../images/txt_order1.gif) no-repeat left top; display:block;}
 	
-	.nav li.themes a:hover, .nav li.design a:hover, .nav li.colors a:hover, .nav li.text a:hover, .nav li.preview a:hover, 
-	.nav li.order a:hover{background-position:left bottom;}*/
+	#nav li.themes a:hover, #nav li.design a:hover, #nav li.colors a:hover, #nav li.text a:hover, #nav li.preview a:hover,
+	#nav li.order a:hover{background-position:left bottom;}*/
 	
-.nav {
+#nav {
 	float:left;
 	width:940px;
 	height:36px;
 	background:url(../images/nav_bg.gif) repeat-x;
 }
-.nav li {
+#nav li {
 	float:left;
 	}
 	
-	.nav li.bgOrder{
+	#nav li.bgOrder{
 	width:30px;
 	height:36px;
 	display:block;
 	background:url(../images/bg_nav.gif) no-repeat;
 }
-	.nav li li{
+	#nav li li{
 	float:left;
 	width:100px;
 	background:#e69934;
@@ -123,57 +123,57 @@ li.separator {
 	border-top:none;
 	color:#fff;
 }
-	.nav li.visited{
+	#nav li.visited{
 	background:url(../images/nav_bg1.gif) repeat-x;
 	padding:0 20px;
 }
 	
-	.nav li.visited a.themes{
+	#nav li.visited a.themes{
 	width:88px;
 	height:36px;
 	display:block;
 	background:url(../images/txt_themes1.gif) no-repeat left top;
 	}
 	
-	.nav li.visited a.format{
+	#nav li.visited a.format{
 	width:156px;
 	height:36px;
 	display:block;
 	background:url(../images/txt_format-products1.gif) no-repeat left top;
 	}
 	
-	.nav li.visited a.typeContent{
+	#nav li.visited a.typeContent{
 	width:180px;
 	height:36px;
 	display:block;
 	background:url(../images/txt_type-content1.gif) no-repeat left top;
 	}
 	
-	.nav li.visited a.order{
+	#nav li.visited a.order{
 	width:75px;
 	height:36px;
 	display:block;
 	background:url(../images/txt_order1.gif) no-repeat left top;
 	}
 	
-	.nav li.visited a.confirmation{
+	#nav li.visited a.confirmation{
 	width:121px;
 	height:36px;
 	display:block;
 	background:url(../images/txt_confirmation1.gif) no-repeat left top;
 	}
 	
-	.nav li.visited a.themes:hover, .nav li.visited a.format:hover, .nav li.visited a.typeContent:hover, .nav li.visited a.order:hover, .nav li.visited a.confirmation:hover{
+	#nav li.visited a.themes:hover, #nav li.visited a.format:hover, #nav li.visited a.typeContent:hover, #nav li.visited a.order:hover, #nav li.visited a.confirmation:hover{
 	background-position:left bottom;
 	}
 	
-	.nav li.active{
+	#nav li.active{
 	background:url(../images/nav_arrow.gif) no-repeat right;
 	padding-right:20px;
 	padding-left:0;
 }
 	
-	.nav li.active a.themes{
+	#nav li.active a.themes{
 	width:106px;
 	height:36px;
 	display:block;
@@ -181,7 +181,7 @@ li.separator {
 	cursor:default;
 	}
 	
-	.nav li.active a.format{
+	#nav li.active a.format{
 	width:156px;
 	height:36px;
 	display:block;
@@ -189,7 +189,7 @@ li.separator {
 	cursor:default;
 }
 
-	.nav li.active a.typeContent{
+	#nav li.active a.typeContent{
 	width:156px;
 	height:36px;
 	display:block;
@@ -197,7 +197,7 @@ li.separator {
 	cursor:default;
 	}
 	
-	.nav li.active a.order{
+	#nav li.active a.order{
 	width:75px;
 	height:36px;
 	display:block;
@@ -205,7 +205,7 @@ li.separator {
 	cursor:default;
 	}
 	
-	.nav li.active a.confirmation{
+	#nav li.active a.confirmation{
 	width:121px;
 	height:36px;
 	display:block;
@@ -213,32 +213,32 @@ li.separator {
 	cursor:default;
 	}
 	
-	.nav li.menu{
+	#nav li.menu{
 	padding:0 20px;
 }
 	
-	.nav li.menu a.format{
+	#nav li.menu a.format{
 	width:156px;
 	height:36px;
 	display:block;
 	background:url(../images/txt_format-products.gif) no-repeat left;
 }
 	
-	.nav li.menu a.typeContent{
+	#nav li.menu a.typeContent{
 	width:178px;
 	height:36px;
 	display:block;
 	background:url(../images/txt_type-comment.gif) no-repeat left;
 }
 	
-	.nav li.menu a.order{
+	#nav li.menu a.order{
 	width:75px;
 	height:36px;
 	display:block;
 	background:url(../images/txt_order.gif) no-repeat left;
 }
 	
-	.nav li.menu a.confirmation{
+	#nav li.menu a.confirmation{
 	width:121px;
 	height:36px;
 	display:block;
