@@ -25,3 +25,10 @@ function set_navigation(navid) {
         }
     });
 }
+function submitForm(elem) {
+    while (elem.parentNode && elem.parentNode.tagName != "FORM") {
+        elem = elem.parentNode;
+    }
+    var oForm = elem.parentNode;
+    oForm.submit();
+}

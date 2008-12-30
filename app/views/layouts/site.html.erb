@@ -43,19 +43,20 @@ window.onload = function() {
             <li><%= modalbox_link_to 'Contact Us', { :url => page_path(2), :width => "600" }, :title => 'Contact Us' %></li>
     </ul>
     <ul class="headerTopRight">
-      <li>Wedding Cards </li>
-      <li><a href="#">Christmas Cards</a></li>
-      <li><a href="#">Bags &amp; Boxes</a></li>
+      <li><%= modalbox_link_to "Show Cart", { :url => show_cart_path, :width => "600" }, :title => "Shopping Cart"  %></li>
+      <li><%= modalbox_link_to "Save Cart", { :url => save_cart_path, :width => "600" }, :title => 'Savew Cart' %></li>
+      <li><%= link_to_remote "Checkout", :url => checkout_path, :method => :get, :id => 'checkout_menu' %></li>
     </ul>
-    <div class="headetBot"><img src="/images/logo.jpg" class="logo" alt="Handmade Wedding Invitations" /> <img src="/images/card_design.jpg" alt="Card Design" /> </div>
-  </div>
-  <%#= image_tag 'indicator.gif', :id => 'form-indicator', :style => 'display:none;' %>
+    <div class="headetBot"><%= link_to image_tag('logo.jpg', :alt => 'Handmade Wedding Invitation Cards', :class => 'logo'), root_path, :title => 'Handmade Wedding Cards'  %>
+    <img src="/images/card_design.jpg" alt="Card Design" /> </div>
+  </div> <!-- //header -->
 
   <div id="overlay" style="display: none;">
      <div>
           <p>Loading...<br /><%= image_tag 'ajax-loading.gif', :alt => 'Loading..' %></p>
      </div>
 </div>
+
   <!-- nav -->
   <ul id="nav">
       <li class="active"><%= link_to '', root_path, :class => 'themes' %></li>
@@ -125,6 +126,6 @@ window.onload = function() {
       </ul>
     </div>
   </div>
-</div>
+</div> <!-- //wrapper -->
 </body>
 </html>

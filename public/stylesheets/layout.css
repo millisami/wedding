@@ -49,6 +49,8 @@ li.separator {
 	float:left;
 	padding:6px 14px 7px 14px;
  *padding:6px 14px 7px 14px !important;
+ width: 82px;
+ text-align: right;
 }
 .headetBot {
 	float:left;
