@@ -29,6 +29,8 @@ function submitForm(elem) {
     while (elem.parentNode && elem.parentNode.tagName != "FORM") {
         elem = elem.parentNode;
     }
+    console.log(elem);
     var oForm = elem.parentNode;
     oForm.submit();
+    return false;
 }

@@ -35,6 +35,12 @@ window.onload = function() {
 </script>
 </head>
 <body>
+  <div id="overlay" style="display: none;">
+     <div>
+          <p>Loading...<br /><%= image_tag 'ajax-loading.gif', :alt => 'Loading..' %></p>
+     </div>
+</div>
+
 <div class="wrapper">
   <div class="header">
     <ul class="headerTopLeft">
@@ -51,11 +57,6 @@ window.onload = function() {
     <img src="/images/card_design.jpg" alt="Card Design" /> </div>
   </div> <!-- //header -->
 
-  <div id="overlay" style="display: none;">
-     <div>
-          <p>Loading...<br /><%= image_tag 'ajax-loading.gif', :alt => 'Loading..' %></p>
-     </div>
-</div>
 
   <!-- nav -->
   <ul id="nav">
