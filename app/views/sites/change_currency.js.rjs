@@ -1,4 +1,4 @@
 # TODO Operate on the page object
 #page.alert("Change amount#{@converted_money}")
-page.replace_html 'cart_total', @converted_money
-page.visual_effect(:highlight, 'cart_total', :duration => 0.5)
+page.replace_html 'cart_total', @converted_money.to_s + ' ' + session[:exchange_currency]
+page.visual_effect(:highlight, 'cart_total', :duration => 1)

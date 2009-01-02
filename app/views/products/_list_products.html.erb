@@ -26,8 +26,6 @@
                     <li>Total price excl. taxes & delivery costs:</li>
                     <li><span id="cart_total"><%= @cart.total_price %>  $</span></li>
                     <li class="fr">
-                    
-
                     <%= select_tag(:exchange_rate, "<option>Currency</option>" + options_from_collection_for_select(@exchange_rate, :currency, :currency, session[:exchange_currency])) %>
 
                     

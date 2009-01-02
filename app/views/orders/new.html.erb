@@ -1,15 +1,124 @@
-<h1>New order</h1>
+<div class="innerContentTop clearfix">
+  <div class="contentTitleIn">
+    <img src="images/four.gif"/><br/>
+    <h5>Order <br/>Summary</h5>
+  </div>
+  <div class="contentTitleSelect">
+    <%= select_tag(:exchange_rate, "<option>Currency</option>" + options_from_collection_for_select(@exchange_rate, :currency, :currency, session[:exchange_currency])) %>
+    <%= observe_field  'exchange_rate',
+                                                :url => change_currency_site_path(2),
+                                                :method => :put,
+                                                :on => 'change',
+                                                :with => 'exchange_rate'
+                        %>
+  </div>
+</div> <!-- //innerContentTop -->
 
-<% form_for(@order) do |f| %>
-  <%= f.error_messages %>
+<div id="innercontentBot" class="clearfix">
+  <div class="orderSummary clearfix">
+    <% remote_form_for(@order) do |f|  -%>
+    <table cellspacing="0" cellpadding="0" width="100%" border="0">
+  <tbody>
+    <tr>
+      <th width="15%">Amount</th>
+      <th width="37%">Product</th>
+      <th width="11%">Rate</th>
+      <th width="11%">Total</th>
+      <th width="26%"> </th>
+    </tr>
+    <tr>
+      <td class="border" colspan="5"> </td>
+    </tr>
 
-  <p>
-    <%= f.label :invoice_number %><br />
-    <%= f.text_field :invoice_number %>
-  </p>
-  <p>
-    <%= f.submit "Create" %>
-  </p>
-<% end %>
+    <% for item in @cart.items
+            product = item.product
+      -%>
+    <tr>
+      <td><%= text_field_tag("quantity",item.quantity)  %> </td>
+      <td><%= h(product.name) %></td>
+      <td><%= product.price %> </td>
+      <td><%= item.quantity * product.price %> </td>
+      <td><%= link_to "Preview", "#" %> </td>
+    </tr>
+    <% end -%>
+    <tr>
+      <th>Total</th>
+      <th>USD</th>
+      <th> </th>
+      <th><%= @cart.total_price %></th>
+      <th> </th>
+    </tr>
+    <tr>
+      <th colspan="2">Shipping (UPS door-to door)
+        <select id="select" name="select">
+          <option>Choose Country</option>
+        </select>
+      </th>
+      <th> </th>
+      <th>$85</th>
+      <th> </th>
+    </tr>
+  </tbody>
+</table>
+<% end -%>
+  </div>
+  
+  <div class="orderForm">
+    <div class="orderFormLeft">
+      <div class="formInput">
+        <label>Name</label>
+        <input type="text" name=""/>
+      </div>
+      <div class="formInput">
+        <label>Email</label>
+        <input type="text" name=""/>
+      </div>
+      <div class="formInput">
+        <label>Phone </label>
+        <input type="text" name=""/>
+      </div>
+      <div class="formInput">
+        <label>Country</label>
+        <input type="text" name=""/>
+      </div>
+      <div class="formInput">
+        <label>Address 1</label>
+        <input type="text" name=""/>
+      </div>
+      <div class="formInput">
+        <label>Address 2</label>
+        <input type="text" name=""/>
+      </div>
+      <div class="formInput">
+        <label>Zip Code</label>
+        <input type="text" name="input"/>
+      </div>
+      <div class="formInput">
+        <label>City</label>
+        <input type="text" name="input"/>
+      </div>
+    </div>
+    <div class="orderFormRight">
+      <div class="formInput">
+        <label>Message</label><br/>
+        <textarea rows="" cols="" name=""></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="paymentVia">
+    <h5>Payment via</h5>
+    <ul>
+      <li><input type="radio" value="" name="id"/> Credit Card</li>
+      <li><input type="radio" value="" name="id"/> Pay Pal</li>
+      <li><input type="radio" value="" name="id"/> Invoice (Sweden Only)</li>
+    </ul>
+  </div>
+  <div class="btnSubmit">
+    <input type="button" class="submit" value="Submit"/>
+    <ul class="btns">
+      <li class="prev"><a href="#"/></li>
+      <li class="next btnNext1"><a href="#"/></li>
+    </ul>
+  </div>
 
-<%= link_to 'Back', orders_path %>
+</div>

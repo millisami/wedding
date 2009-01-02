@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   # Uncomment the :secret if you're not using the cookie session store
   protect_from_forgery  :secret => 'afe76908822b45fd48062836e82f84bfghfjfyd'
 
-protected
+  protected
   def get_pages
     @pages = Page.find(:all, :order => :position)
   end
@@ -28,9 +28,9 @@ protected
 		@cart = session[:cart] ||= Cart.new
 	end
 	def exchange_rate
-	    if session[:exchange_currency].nil?
-		session[:exchange_currency] = "SEK"
-	    end
-	    @exchange_rate = ExchangeRate.all
+    if session[:exchange_currency].nil?
+      session[:exchange_currency] = "SEK"
+    end
+    @exchange_rate = ExchangeRate.all
 	end
 end

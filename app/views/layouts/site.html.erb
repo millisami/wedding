@@ -53,7 +53,7 @@ window.onload = function() {
       <li><%= modalbox_link_to "Save Cart", { :url => save_cart_path, :width => "600" }, :title => 'Savew Cart' %></li>
       <li><%= link_to_remote "Checkout", :url => checkout_path, :method => :get, :id => 'checkout_menu' %></li>
     </ul>
-    <div class="headetBot"><%= link_to image_tag('logo.jpg', :alt => 'Handmade Wedding Invitation Cards', :class => 'logo'), root_path, :title => 'Handmade Wedding Cards'  %>
+    <div class="headetBot"><%= link_to image_tag('logo.jpg', :alt => 'Handmade Wedding Invitation Cards'), root_path, :class => 'logo', :title => 'Handmade Wedding Cards'  %>
     <img src="/images/card_design.jpg" alt="Card Design" /> </div>
   </div> <!-- //header -->
 
@@ -63,7 +63,8 @@ window.onload = function() {
       <li class="active"><%= link_to '', root_path, :class => 'themes' %></li>
       <li class="menu"><a href="#" class="format"></a></li>
       <li class="menu"><a href="#" class="typeContent"></a></li>
-      <li class="menu"><a href="#" class="order"></a></li>
+      <li class="menu"><%= link_to_remote '',  :update => "contentTop", :method => :get, :url => { :controller => 'orders', :action => 'new' },
+  :html => {:class => "order"} %></li>
       <li class="menu"><a href="#" class="confirmation"></a></li>
 <!--
     <li class="done pr themes"></li>
@@ -79,7 +80,7 @@ window.onload = function() {
     -->
   </ul>
   <!-- //end nav -->
-  <div class="content clearfix">
+  <div class="content">
     <div id="contentTop" class="clearfix">
       <% flash.each do |key, msg| %>
       <%= content_tag :p, msg, :id => key, :class => 'flash' %>

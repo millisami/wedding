@@ -27,8 +27,7 @@ class OrdersController < ApplicationController
     @order = Order.new
 
     respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @order }
+      format.html { render :layout => false }
     end
   end
 

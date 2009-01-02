@@ -1,6 +1,6 @@
 <%#= render :partial => "list_product_sets" %>
 
-<div class="innerContentTop">
+<div class="innerContentTop clearfix">
   <div class="contentTitle">
     <%= image_tag("two.gif") %>
     <h5>Design</h5>
@@ -18,7 +18,7 @@
   </div>
 </div> <!-- //innerContentTop -->
 <%#= render :partial => "products/list_products", :collection => @products %>
-<div id="innercontentBot">
+<div id="innercontentBot" class="clearfix">
   <div class="contentDesignDetail">
     <div class="contentDesignTxt">
       Click on any product to customize it with your own text & colors.
@@ -30,7 +30,7 @@
           <div class="contentDesignSubBot<%= x + 1%>">
             <%=h product.name %><br/>
             <%= hidden_field_tag('id', product.id) %>
-            <%= text_field_tag("quantity") %><span class="txtgrey">3$ / pcs</span>
+            <%= text_field_tag("quantity") %><span class="txtgrey"><%= product.price %>/pcs</span>
           </div>
           <!-- <div class="addCart"><%= link_to_function "Add to cart", update_page { |page|
                                    page["form#{x+1}"].submit
@@ -44,9 +44,9 @@
   </div>
 
   <ul class="contentBotMenu">
-    <li class="tax"><a href="#">» Taxes & delivery costs</a></li>
+    <li class="tax"><%= modalbox_link_to "» Taxes & delivery costs", { :url => tax_delivery_cost_path, :width => "600" }, :title => 'Tax and Delivery Cost'%></li>
     <li>Total price excl. taxes & delivery costs:</li>
-    <li><span id="cart_total"><%= @cart.total_price %>  $</span></li>
+    <li><span id="cart_total"><%= @cart.total_price %>  SEK</span></li>
     <li class="fr"><%= select_tag(:exchange_rate, "<option>Currency</option>" + options_from_collection_for_select(@exchange_rate, :currency, :currency, session[:exchange_currency])) %>
 
                         <%= observe_field  'exchange_rate',
@@ -62,4 +62,8 @@
   </ul>
 </div> 
 <!-- //end innercontentBot -->
-<%=  javascript_tag "set_navigation(2);" %>
+<%#=  javascript_tag "set_navigation(2)" %>
+<% javascript_tag do %>
+set_navigation(2);
+//new PeriodicalExecuter(function() {new Ajax.Updater({success:'invoice',failure:'error'}, '/testing/invoice/16', {asynchronous:true, evalScripts:true})}, 10)
+<% end %>
