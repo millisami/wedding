@@ -431,6 +431,7 @@ border:2px solid #c2b19d;
     background: url(../images/inner-content_bg.gif) repeat-x left bottom;
     border-bottom: 2px solid #cdb9a4;
     padding:0 0 40px -1px !important;
+    margin-bottom: 55px;
     
 }
 .contentDesignDetail {
