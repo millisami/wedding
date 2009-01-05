@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081217061449) do
+ActiveRecord::Schema.define(:version => 20090105070802) do
 
   create_table "carts", :force => true do |t|
     t.datetime "created_at"
@@ -56,9 +56,19 @@ ActiveRecord::Schema.define(:version => 20081217061449) do
     t.string   "invoice_number"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
-    t.string   "pay_type"
+    t.string   "email"
+    t.string   "phone_number"
+    t.string   "ship_to_first_name"
+    t.string   "ship_to_last_name"
+    t.string   "ship_to_address1"
+    t.string   "ship_to_address2"
+    t.string   "ship_to_city"
+    t.string   "ship_to_postal_code"
+    t.string   "ship_to_country"
+    t.string   "customer_ip"
     t.string   "status"
+    t.string   "error_message"
+    t.text     "message"
   end
 
   create_table "pages", :force => true do |t|
