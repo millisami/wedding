@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
   # GET /orders/new.xml
   def new
     @order = Order.new
-
+    @customer = Customer.new
     respond_to do |format|
       format.html { render :layout => false }
     end

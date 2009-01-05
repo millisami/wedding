@@ -16,7 +16,6 @@
 
 <div id="innercontentBot" class="clearfix">
   <div class="orderSummary clearfix">
-    <% remote_form_for(@order) do |f|  -%>
     <table cellspacing="0" cellpadding="0" width="100%" border="0">
   <tbody>
     <tr>
@@ -38,7 +37,11 @@
       <td><%= h(product.name) %></td>
       <td><%= product.price %> </td>
       <td><%= item.quantity * product.price %> </td>
-      <td><%= link_to "Preview", "#" %> </td>
+      <td><%= link_to "Preview", "#" %> |
+          <% form_remote_tag :url => { :controller => :sites,  :action => :remove_from_cart, :id => item.product_id} do %>
+            <%= submit_tag "Remove" %>
+          <% end %>
+      </td>
     </tr>
     <% end -%>
     <tr>
@@ -60,22 +63,22 @@
     </tr>
   </tbody>
 </table>
-<% end -%>
   </div>
-  
+
+  <% remote_form_for(@order) do |f| %>
   <div class="orderForm">
     <div class="orderFormLeft">
       <div class="formInput">
         <label>Name</label>
-        <input type="text" name=""/>
+        <%= f.text_field :name %>
       </div>
       <div class="formInput">
         <label>Email</label>
-        <input type="text" name=""/>
+        <%= f.text_field :email %>
       </div>
       <div class="formInput">
         <label>Phone </label>
-        <input type="text" name=""/>
+        <%= f.text_field('name', :phone) %>
       </div>
       <div class="formInput">
         <label>Country</label>
@@ -113,6 +116,7 @@
       <li><input type="radio" value="" name="id"/> Invoice (Sweden Only)</li>
     </ul>
   </div>
+  <% end -%>
   <div class="btnSubmit">
     <input type="button" class="submit" value="Submit"/>
     <ul class="btns">

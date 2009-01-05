@@ -56,7 +56,7 @@ ActionController::Routing::Routes.draw do |map|
     :move_higher => :put, 
     :move_lower => :put 
   }
- 
+  
   map.resources :users, :member => { :enable => :put } do |user|
     user.resource :account
     user.resources :roles
