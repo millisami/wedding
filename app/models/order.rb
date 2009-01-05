@@ -12,5 +12,7 @@
 #  updated_at     :datetime
 
 class Order < ActiveRecord::Base
+  attr_protected :id, :customer_ip, :status, :error_message
 	has_many :line_items
+  has_many :products, :through => :line_items
 end
