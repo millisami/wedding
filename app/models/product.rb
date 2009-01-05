@@ -1,5 +1,5 @@
 # == Schema Info
-# Schema version: 20081129104621
+# Schema version: 20090105070802
 #
 # Table name: products
 #
@@ -11,6 +11,7 @@
 #  document_file_size    :string(255)
 #  name                  :string(255)
 #  price                 :decimal(8, 2)   default(0.0)
+#  weight                :float           default(1000.0)
 #  created_at            :datetime
 #  updated_at            :datetime
 
