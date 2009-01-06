@@ -62,7 +62,7 @@ window.onload = function() {
       <li class="active"><%= link_to '', root_path, :class => 'themes' %></li>
       <li class="menu"><a href="#" class="format"></a></li>
       <li class="menu"><a href="#" class="typeContent"></a></li>
-      <li class="menu"><%= link_to_remote '',  :update => "contentTop", :method => :get, :url => { :controller => 'orders', :action => 'new' },
+      <li class="menu"><%= link_to_remote '',  :update => "contentTop", :method => :get, :url => { :controller => 'checkout', :action => 'index' },
   :html => {:class => "order"} %></li>
       <li class="menu"><a href="#" class="confirmation"></a></li>
 <!--

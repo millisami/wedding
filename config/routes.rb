@@ -17,10 +17,11 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :products
     admin.resources :pages
   end
-  map.controller_actions 'payments', %w[checkout confirm]
+  #map.controller_actions 'payments', %w[checkout confirm]
   map.controller_actions 'sites', %w[tax_delivery_cost]
   map.resources :payments
-  
+  map.checkout '/checkout', :controller => 'checkout', :action => 'index'
+
   map.resources :sites, :member => {
     :add_to_cart => :post,
     :remove_from_cart => :delete,
