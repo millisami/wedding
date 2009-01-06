@@ -21,11 +21,42 @@
 #  created_at          :datetime
 #  updated_at          :datetime
 
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
 
 class OrderTest < ActiveSupport::TestCase
   # Replace this with your real tests.
-  def test_truth
-    assert true
+  def test_that_we_can_create_a_valid_order
+    order = Order.new(
+      #Contact Info
+      :email => 'sachin@gmail.com',
+      :phone_number => '32483578343245235432',
+      #Shipping
+      :ship_to_first_name => 'Sachin',
+      :ship_to_last_name => 'Sagar',
+      :ship_to_address1 => 'Lazimpat',
+      :ship_to_address2 => 'Laz',
+      :ship_to_city => 'Kathmandu',
+      :ship_to_country => 'Nepal',
+      :ship_to_postal_code => 'P Code',
+      #Billing
+      :card_type => 'Visa',
+      :card_number => '4007000000027',
+      :card_expiration_month => '1',
+      :card_expiration_year => '2010',
+      :card_verification_value => '333'
+    )
+    #Private parts
+    order.customer_ip = '10.10.10.1',
+      order.status = 'processed',
+
+      order.line_items << LineItem.new(
+        :product_id => 1,
+        :price => 100.55,
+        :quantity => 12
+    )
+    assert order.save
+    order.reload
+    assert_equal 1, order.line_items.size
+    assert_equal 100.55, order.order_items[0].price
   end
 end

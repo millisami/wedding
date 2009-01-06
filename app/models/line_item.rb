@@ -22,4 +22,9 @@ class LineItem < ActiveRecord::Base
 		line_item.price = product.price
 		return line_item
 	end
+
+  def validate
+    errors.add(:quantity, "should be one or more") unless quantity.nil? || quantity > 0
+    errors.add(:price, "should be a positive number") unless price.nil? || price > 0.0
+  end
 end
