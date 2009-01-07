@@ -40,16 +40,23 @@ class OrdersController < ApplicationController
   # POST /orders.xml
   def create
     @order = Order.new(params[:order])
-
+    @order.customer_ip = request.remote_ip
+    populate_order
     respond_to do |format|
-      if @order.save
-        flash[:notice] = 'Order was successfully created.'
-        format.html { redirect_to(@order) }
-        format.xml  { render :xml => @order, :status => :created, :location => @order }
+    if @order.save
+      if @order.process
+        flash[:notice] = 'Your order has been submitted, and will be processed immediately.'
+        session[:order_id] = @order.id
+        # Empty the cart
+        @cart.cart_items.destroy_all
+        format.html { redirect_to :action => 'thank_you' }
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @order.errors, :status => :unprocessable_entity }
+        flash[:notice] = "Error while placing order. '#{@order.error_message}'"
+        format.html { render :action => 'index' }
       end
+    else
+      format.html {render :action => 'index'}
+    end
     end
   end
 

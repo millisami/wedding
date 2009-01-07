@@ -102,22 +102,23 @@
       </div>
       <div class="formInput">
         <label>Country</label>
-        <%= country_select(:ship_to_country, priority_countries = ['United States']) %>
+        <%= country_code_select(:order, :ship_to_country, priority_countries=[{:code=>'US',:name=>'United States'}], {:selected=>'SE',:include_blank=>true}) %>
+        <%#= country_select(:ship_to_country, priority_countries = ['United States']) %>
       </div>
       <p>Billing Information</p>
       <div class="formInput">
         <label>Credit Card Type</label>
         <select name="order[card_type]" id="order_card_type">
-        <%= options_for_select([ "Visa", "MasterCard", "Discover" ], f.card_type) %>
+        <%= options_for_select([ "Visa", "MasterCard", "Discover" ], :card_type) %>
         </select>
       </div>
       <div class="formInput">
         <label>Expiration Date</label>
         <select name="order[card_expiration_month]">
-        <%= options_for_select(%w(1 2 3 4 5 6 7 8 9 10 11 12), f.card_expiration_month) %>
+        <%= options_for_select(%w(1 2 3 4 5 6 7 8 9 10 11 12), :card_expiration_month) %>
         </select>
         <select name="order[card_expiration_year]">
-<%= options_for_select(%w(2006 2007 2008 2009 2010 2011), f.card_expiration_year) %>
+<%= options_for_select(%w(2009 2010 2011 2012 2013 2014), :card_expiration_year) %>
 </select>
       </div>
       <div class="formInput">
@@ -144,9 +145,13 @@
       <li><input type="radio" value="" name="id"/> Invoice (Sweden Only)</li>
     </ul>
   </div>
+  <div class="btnSubmit">
+    <%= f.submit("Submit", :class => 'submit') %>
+  
+  </div>
   <% end -%>
   <div class="btnSubmit">
-    <input type="button" class="submit" value="Submit"/>
+    
     <ul class="btns">
       <li class="prev"><a href="#"/></li>
       <li class="next btnNext1"><a href="#"/></li>

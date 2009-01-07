@@ -37,6 +37,7 @@ Rails::Initializer.run do |config|
     #gems dependencies
     #config.gem 'RedCloth', :version => '>= 3.0.4', :source => 'http://code.whytheluckystiff.net'
     #config.gem 'aws-s3', :lib => 'aws/s3' #use this syntax for installing gems from github.com
+    config.gem 'tzinfo'
   
   #ActionView::Base.field_error_proc = Proc.new do |html_tag, instance_tag|
 	#"<span class='field_error'>#{html_tag}</span>"

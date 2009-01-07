@@ -2,7 +2,7 @@ class CheckoutController < ApplicationController
   def index
     @order = Order.new
     respond_to do |format|
-      format.html
+      format.html { render :layout => false }
       
     end
   end
