@@ -81,9 +81,9 @@ window.onload = function() {
   <!-- //end nav -->
   <div class="content">
     <div id="contentTop" class="clearfix">
-      <% flash.each do |key, msg| %>
-      <%= content_tag :p, msg, :id => key, :class => 'flash' %>
-      <% end %>
+<div id="flash_messages">
+  <%= render :partial => 'layouts/flash_notices' %>
+</div>
       <%= yield %> </div>
     <!-- contentTop -->
    

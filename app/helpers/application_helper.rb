@@ -4,6 +4,10 @@ module ApplicationHelper
     number_to_currency(CurrencyExchange.currency_exchange(price, "SEK", session[:exchange_currency]))
   end
 
+  def reload_flash
+    page.replace "flash_messages", :partial => 'layouts/flash_notices'
+  end
+
   #======== Functions to list the country_select with the CountryCODES instead of Country name
   def make_attributes(hsh)
     unless hsh.nil?

@@ -29,7 +29,6 @@ class SitesController < ApplicationController
 
 	def update_cart_quantity
     product = Product.find(params[:id])
-	    
     @cart.update_quantity(product, params[:quantity])
     flash[:notice] = "Quantity updated successfully!"
     respond_to do |format|

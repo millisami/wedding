@@ -43,20 +43,27 @@ class OrdersController < ApplicationController
     @order.customer_ip = request.remote_ip
     populate_order
     respond_to do |format|
-    if @order.save
-      if @order.process
-        flash[:notice] = 'Your order has been submitted, and will be processed immediately.'
-        session[:order_id] = @order.id
-        # Empty the cart
-        @cart.cart_items.destroy_all
-        format.html { redirect_to :action => 'thank_you' }
+      if @order.save
+        if @order.process
+          flash[:notice] = 'Your order has been submitted, and will be processed immediately.'
+          session[:order_id] = @order.id
+          # Empty the cart
+          @cart.empty_all_items
+          format.html { redirect_to :action => 'thank_you' }
+        else
+          flash[:notice] = "Error while placing order. '#{@order.error_message}'"
+          format.html { render :action => 'index' }
+        end
       else
-        flash[:notice] = "Error while placing order. '#{@order.error_message}'"
-        format.html { render :action => 'index' }
+        format.js do
+          #render :action => 'index'
+          render :update do |page|
+            flash[:notice] = "Entering 'beast mode'..."
+          page.reload_flash
+         end
+
+        end
       end
-    else
-      format.html {render :action => 'index'}
-    end
     end
   end
 
@@ -77,15 +84,8 @@ class OrdersController < ApplicationController
     end
   end
 
-  # DELETE /orders/1
-  # DELETE /orders/1.xml
-  def destroy
-    @order = Order.find(params[:id])
-    @order.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(orders_url) }
-      format.xml  { head :ok }
-    end
+  private #=============
+  def populate_order
+    @order.line_items << @cart.items
   end
 end

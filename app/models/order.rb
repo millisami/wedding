@@ -47,4 +47,14 @@ class Order < ActiveRecord::Base
   validates_inclusion_of :card_expiration_year, :in => %w(2006 2007 2008 2009 2010), :on => :create
   validates_length_of :card_verification_value, :in => 3..4, :on => :create
   
+  private #===========
+  def process
+    result = true
+    #
+    # TODO Charge the customer by calling the payment gateway
+    #
+    self.status = 'processed'
+    save!
+    result
+  end
 end

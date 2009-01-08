@@ -4,6 +4,8 @@
 class ApplicationController < ActionController::Base
   
   before_filter :find_or_create_cart, :exchange_rate
+  
+  after_filter :discard_flash_if_xhr
 
   helper :all # include all helpers, all the time
 
@@ -27,10 +29,16 @@ class ApplicationController < ActionController::Base
 	def find_or_create_cart
 		@cart = session[:cart] ||= Cart.new
 	end
+
 	def exchange_rate
     if session[:exchange_currency].nil?
       session[:exchange_currency] = "SEK"
     end
     @exchange_rate = ExchangeRate.all
 	end
+
+  def discard_flash_if_xhr
+    flash.discard if request.xhr?
+  end
+
 end

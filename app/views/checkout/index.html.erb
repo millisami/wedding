@@ -1,3 +1,7 @@
+<div id="flash_messages">
+  <%= render :partial => 'layouts/flash_notices' %>
+</div>
+
 <div class="innerContentTop clearfix">
   <div class="contentTitleIn">
     <img src="images/four.gif"/><br/>
@@ -32,7 +36,7 @@
     <% for item in @cart.items
             product = item.product
       -%>
-    <tr>
+    <tr id="cart_item_<%= item.product_id %>">
       <td><%= text_field_tag("quantity",item.quantity)  %> </td>
       <td><%= h(product.name) %></td>
       <td><%= product.price %> </td>
