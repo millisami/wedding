@@ -1,0 +1,88 @@
+= ajax_error_handlers
+
+== Summary
+
+This is a plugin for Ruby on Rails that gives you a way to catch errors in an action
+called via a request made through Ajax.Request or Ajax.Updater and dump them to an
+HTML element.
+
+== Examples
+
+=== Example 1
+
+You have a view with a remote form:
+
+  <% form_remote_for :foo, :url => { :action => 'bar' } do |f| %>
+    ...
+  <% end %>
+  
+  <div id="caught_errors"></div>
+  
+a) You're explicitly returning an RJS response (say, highlighting some element if
+the action is successful). Your controller will look something like:
+
+  class FooController < ApplicationController
+    def bar
+      dumping_errors_to "caught_errors" do |page|
+        # ... some stuff ...
+        page['some_element'].visual_effect :highlight
+      end
+    end
+  end
+  
+b) You're not going to return an RJS response. In this case, don't bother receiving
+the page variable:
+
+  class FooController < ApplicationController
+    def bar
+      dumping_errors_to "caught_errors" do
+        # ... some stuff ...
+      end
+    end
+  end
+
+In both cases, if an exception occurs within the block, an error report will be inserted
+into the element instead.
+  
+=== Example 2
+
+You have a view with a remote form, but this time with an :update option (so the action
+returns a partial):
+
+  <% form_remote_for :foo, :url => { :action => 'bar' }, :update => 'some_element' do |f| %>
+    ...
+  <% end %>
+  
+  <div id="some_element"></div>
+  
+In this case your controller will look something like:
+
+  class FooController < ApplicationController
+    def bar
+      catching_errors do
+        # ... some stuff ...
+        render :partial => 'something'
+      end
+    end
+  end
+  
+If an exception occurs within the block, an error report will be inserted into the element instead.
+
+== Annoyances
+
+Since the block to dumping_errors_to is evaluated in view context (not controller context), instance variables
+set within the block will NOT be propagated to the controller, so you'll either need to set them before you
+call dumping_errors_to, or set them explicitly with instance_variable_set:
+
+  controller.instance_variable_set("@blah", "this is a value")
+  
+Also, for the same reason, if you want to call a controller method that's protected or private, you have
+to call it explicitly using send:
+
+  controller.send :protected_or_private_method, "some argument"
+  
+There's not really any way to get around this. Sorry.
+
+== Author
+
+(c) 2008 Elliot Winkler (elliot dot winkler at gmail dot com). Released under the MIT license.
