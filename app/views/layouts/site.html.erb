@@ -50,7 +50,7 @@ window.onload = function() {
     <ul class="headerTopRight">
       <li><%= modalbox_link_to "Show Cart", { :url => show_cart_path, :width => "600" }, :title => "Shopping Cart"  %></li>
       <li><%= modalbox_link_to "Save Cart", { :url => save_cart_path, :width => "600" }, :title => 'Savew Cart' %></li>
-      <li><%= link_to_remote "Checkout", :url => checkout_path, :method => :get, :id => 'checkout_menu' %></li>
+      <li><%= link_to_remote "Checkout", :url => new_order_path, :id => 'checkout_menu' %></li>
     </ul>
     <div class="headetBot"><%= link_to image_tag('logo.jpg', :alt => 'Handmade Wedding Invitation Cards'), root_path, :class => 'logo', :title => 'Handmade Wedding Cards'  %>
     <img src="/images/card_design.jpg" alt="Card Design" /> </div>
@@ -62,7 +62,7 @@ window.onload = function() {
       <li class="active"><%= link_to '', root_path, :class => 'themes' %></li>
       <li class="menu"><a href="#" class="format"></a></li>
       <li class="menu"><a href="#" class="typeContent"></a></li>
-      <li class="menu"><%= link_to_remote '',  :update => "contentTop", :method => :get, :url => { :controller => 'checkout', :action => 'index' },
+      <li class="menu"><%= link_to_remote '',  :update => "contentTop", :method => :get, :url => new_order_path,
   :html => {:class => "order"} %></li>
       <li class="menu"><a href="#" class="confirmation"></a></li>
 <!--
@@ -72,9 +72,8 @@ window.onload = function() {
     <li><%= modalbox_link_to image_tag("txt_text.gif"), { :url => save_cart_path, :width => "600" }, :title => 'Savew Cart' %></li>
     <li><%= modalbox_link_to image_tag("/images/txt_preview.gif"), { :url => show_cart_path, :width => "600" }, :title => 'Shopping Cart' %></li>
     <li><%= link_to_remote image_tag("/images/txt_order.gif"),
-                :url => '/checkout',
-                :method => :get, 
-                :id => 'checkout_menu' %></li>
+                :url => new_order_path,
+                :id => 'checkout' %></li>
     <li><img src="/images/txt_confirmation.gif" /></li>
     -->
   </ul>

@@ -42,6 +42,9 @@ class SitesController < ApplicationController
 	end
 	
 	def show_cart
+    if @cart.items.empty?
+      flash[:notice] = "Your cart is empty."
+    end
     respond_to do |format|
       format.html {render :layout => false}
       #format.js

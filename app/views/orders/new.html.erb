@@ -1,0 +1,164 @@
+<div id="flash_messages">
+  <%= render :partial => 'layouts/flash_notices' %>
+</div>
+
+<div class="innerContentTop clearfix">
+  <div class="contentTitleIn">
+    <img src="images/four.gif"/><br/>
+    <h5>Order <br/>Summary</h5>
+  </div>
+  <div class="contentTitleSelect">
+    <%= select_tag(:exchange_rate, "<option>Currency</option>" + options_from_collection_for_select(@exchange_rate, :currency, :currency, session[:exchange_currency])) %>
+    <%= observe_field  'exchange_rate',
+                                                :url => change_currency_site_path(2),
+                                                :method => :put,
+                                                :on => 'change',
+                                                :with => 'exchange_rate'
+                        %>
+  </div>
+</div> <!-- //innerContentTop -->
+
+<div id="innercontentBot" class="clearfix">
+  <div class="orderSummary clearfix">
+    <table cellspacing="0" cellpadding="0" width="100%" border="0">
+  <tbody>
+    <tr>
+      <th width="15%">Amount</th>
+      <th width="37%">Product</th>
+      <th width="11%">Rate</th>
+      <th width="11%">Total</th>
+      <th width="26%"> </th>
+    </tr>
+    <tr>
+      <td class="border" colspan="5"> </td>
+    </tr>
+
+    <% for item in @cart.items
+            product = item.product
+      -%>
+    <tr id="cart_item_<%= item.product_id %>">
+      <td><%= text_field_tag("quantity",item.quantity)  %> </td>
+      <td><%= h(product.name) %></td>
+      <td><%= product.price %> </td>
+      <td><%= item.quantity * product.price %> </td>
+      <td><%= link_to "Preview", "#" %> |
+          <% form_remote_tag :url => { :controller => :sites,  :action => :remove_from_cart, :id => item.product_id} do %>
+            <%= submit_tag "Remove" %>
+          <% end %>
+      </td>
+    </tr>
+    <% end -%>
+    <tr>
+      <th>Total</th>
+      <th>USD</th>
+      <th> </th>
+      <th><%= @cart.total_price %></th>
+      <th> </th>
+    </tr>
+    <tr>
+      <th colspan="2">Shipping (UPS door-to door)
+        <select id="select" name="select">
+          <option>Choose Country</option>
+        </select>
+      </th>
+      <th> </th>
+      <th>$85</th>
+      <th> </th>
+    </tr>
+  </tbody>
+</table>
+  </div>
+
+  <% remote_form_for(@order) do |f| %>
+  <div class="orderForm">
+    <div class="orderFormLeft">
+      <div class="formInput">
+        <label>Email</label>
+        <%= f.text_field :email %>
+      </div>
+      <div class="formInput">
+        <label>Phone </label>
+        <%= f.text_field(:phone_number) %>
+      </div>
+      <div class="formInput">
+        <label>First Name</label>
+        <%= f.text_field(:ship_to_first_name) %>
+      </div>
+      <div class="formInput">
+        <label>Last Name</label>
+        <%= f.text_field(:ship_to_last_name) %>
+      </div>
+      <div class="formInput">
+        <label>Address 1</label>
+        <%= f.text_field(:ship_to_address1) %>
+      </div>
+      <div class="formInput">
+        <label>Address 2</label>
+        <%= f.text_field(:ship_to_address2) %>
+      </div>
+      <div class="formInput">
+        <label>City</label>
+        <%= f.text_field(:ship_to_city) %>
+      </div>
+      <div class="formInput">
+        <label>Postal Code</label>
+        <%= f.text_field(:ship_to_postal_code) %>
+      </div>
+      <div class="formInput">
+        <label>Country</label>
+        <%= country_code_select(:order, :ship_to_country, priority_countries=[{:code=>'US',:name=>'United States'}], {:selected=>'SE',:include_blank=>true}) %>
+      </div>
+      <p>Billing Information</p>
+      <div class="formInput">
+        <label>Credit Card Type</label>
+        <select name="order[card_type]" id="order_card_type">
+        <%= options_for_select([ "Visa", "MasterCard", "Discover" ], :card_type) %>
+        </select>
+      </div>
+      <div class="formInput">
+        <label>Expiration Date</label>
+        <select name="order[card_expiration_month]">
+        <%= options_for_select(%w(1 2 3 4 5 6 7 8 9 10 11 12), :card_expiration_month) %>
+        </select>
+        <select name="order[card_expiration_year]">
+<%= options_for_select(%w(2009 2010 2011 2012 2013 2014), :card_expiration_year) %>
+</select>
+      </div>
+      <div class="formInput">
+        <label>Card Number</label>
+        <%= f.text_field(:card_number) %>
+      </div>
+      <div class="formInput">
+        <label><abbr title="Card Verification Value">CVV</abbr>/<abbr title="Card Validation Check">CVC</abbr></label>
+        <%= f.text_field(:card_verification_value) %>
+      </div>
+    </div>
+    <div class="orderFormRight">
+      <div class="formInput">
+        <label>Message</label><br/>
+        <%= f.text_area(:message, :cols => 20, :rows => 10) %>
+      </div>
+    </div>
+  </div>
+  <div class="paymentVia">
+    <h5>Payment via</h5>
+    <ul>
+      <li><input type="radio" value="" name="id"/> Credit Card</li>
+      <li><input type="radio" value="" name="id"/> Pay Pal</li>
+      <li><input type="radio" value="" name="id"/> Invoice (Sweden Only)</li>
+    </ul>
+  </div>
+  <div class="btnSubmit">
+    <%= f.submit("Submit", :class => 'submit') %>
+
+  </div>
+  <% end -%>
+  <div class="btnSubmit">
+
+    <ul class="btns">
+      <li class="prev"><a href="#"/></li>
+      <li class="next btnNext1"><a href="#"/></li>
+    </ul>
+  </div>
+
+</div>
