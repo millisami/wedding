@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     #Uncomment to have the user logged in after creating an account - Not Recommended
     #self.current_user = @user
     flash[:notice] = "Thanks for signing up! Please check your email to activate your account before logging in."
-    redirect_to login_path    
+    redirect_to login_path
   rescue ActiveRecord::RecordInvalid
     flash[:error] = "There was a problem creating your account."
     render :action => 'new'

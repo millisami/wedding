@@ -4,7 +4,7 @@
 
 <div class="innerContentTop clearfix">
   <div class="contentTitleIn">
-    <img src="images/four.gif"/><br/>
+    <%= image_tag 'four.gif', :alt => 'Four' %> <br/>
     <h5>Order <br/>Summary</h5>
   </div>
   <div class="contentTitleSelect">
@@ -69,8 +69,13 @@
 </table>
   </div>
 
+<<<<<<< Updated upstream:app/views/orders/new.html.erb
   <% remote_form_for(@order) do |f| %>
     <%= error_messages_for(:order) %>
+=======
+  <% form_for(@order, :html => {:class => :order, :id => :order_form}) do |f| %>
+    <%= f.error_messages %>
+>>>>>>> Stashed changes:app/views/orders/new.html.erb
   <div class="orderForm">
     <div class="orderFormLeft">
       <div class="formInput">
@@ -141,6 +146,7 @@
       </div>
     </div>
   </div>
+  <!--
   <div class="paymentVia">
     <h5>Payment via</h5>
     <ul>
@@ -149,6 +155,7 @@
       <li><input type="radio" value="" name="id"/> Invoice (Sweden Only)</li>
     </ul>
   </div>
+  -->
   <div class="btnSubmit">
     <%= f.submit("Submit", :class => 'submit') %>
 

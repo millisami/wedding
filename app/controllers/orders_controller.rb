@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  layout 'site'
   # GET /orders
   # GET /orders.xml
   def index
@@ -27,7 +28,7 @@ class OrdersController < ApplicationController
     @order = Order.new
    #@customer = Customer.new
     respond_to do |format|
-      format.html { render :layout => false }
+      format.html #{ render :layout => false }
     end
   end
 
@@ -42,6 +43,7 @@ class OrdersController < ApplicationController
     @order = Order.new(params[:order])
     @order.customer_ip = request.remote_ip
     #populate_order
+<<<<<<< Updated upstream:app/controllers/orders_controller.rb
      @order.line_items << @cart.items
     respond_to do |format|
       if @order.save
@@ -61,6 +63,35 @@ class OrdersController < ApplicationController
             flash[:notice] = "Thank you for your order."
           page.reload_flash
          end
+=======
+    debugger
+    @order.line_items << @cart.items
+    debugger
+    respond_to do |format|
+      format. js {
+        if @order.save
+
+          flash[:notice] = 'Your order has been submitted, and will be processed immediately.'
+          session[:order_id] = @order.id
+          # Empty the cart
+          @cart.empty_all_items
+
+        else
+          render :json => {:object => "order", :success => false, :errors => @order.errors}
+          debugger
+        end
+        
+      }
+      format.html {
+        if @order.save
+          flash[:notice] = 'Your order has been submitted'
+          session[:order_id] = @order.id
+          @cart.empty_all_items
+          render :action => 'new'
+        else
+          flash[:notice] = 'Some error occured'
+          redirect_to new_order_path
+>>>>>>> Stashed changes:app/controllers/orders_controller.rb
         end
       else
         format.js do
