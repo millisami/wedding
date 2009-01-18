@@ -19,6 +19,9 @@ class UsersController < ApplicationController
   def create
     cookies.delete :auth_token
     @user = User.new(params[:user])
+    @customer = Customer.new
+    @user.customer = @customer
+    #@user.customer.name = @user.name
     @user.save!
     #Uncomment to have the user logged in after creating an account - Not Recommended
     #self.current_user = @user
