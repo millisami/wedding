@@ -33,6 +33,7 @@ class User < ActiveRecord::Base
   validates_format_of       :email, :with => /(^([^@\s]+)@((?:[-_a-z0-9]+\.)+[a-z]{2,})$)|(^$)/i
 
   has_and_belongs_to_many :roles
+  has_one :customer, :dependent => :destroy
 
   before_save :encrypt_password
   before_create :make_activation_code
