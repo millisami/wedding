@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :payment_notifications
+
   def map.controller_actions(controller, actions)
     actions.each do |action|
 	    self.send("#{action}", "/#{action}", :controller => controller, :action => action)
