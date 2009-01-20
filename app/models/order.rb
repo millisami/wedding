@@ -48,6 +48,7 @@ class Order < ActiveRecord::Base
   validates_length_of :card_verification_value, :in => 3..4, :on => :create
 
   def process
+    return true
     raise "Order is closed" if closed?
     begin
       process_with_active_merchant
@@ -59,6 +60,61 @@ class Order < ActiveRecord::Base
       self.status = 'processed'
     end
   end
-
   
+  def paypal_url(return_url)
+    values = {
+      :business => 'seller_dddh@gmail.com',
+      :cmd => '_cart',
+      :upload => 1,
+      :return => return_url,
+      :invoice => id
+    }
+    line_items.each_with_index do |item, index|
+      values.merge!({
+          "amount_#{index+1}" => item.price,
+          "item_name_#{index+1}" => item.product.name,
+          "item_number_#{index+1}" => item.id,
+          "quantity_#{index+1}" => item.quantity
+      })
+    end
+    "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.map {|k, v| "#{k}=#{v}"}.join("&")
+  end
+
+  def process_with_active_merchant
+    Base.gateway_mode = :test
+    gateway = PaypalGateway.new(
+      :login => 'business_account_login',
+      :password => 'business_account_password',
+      :cert_path => File.join(File.dirname(__FILE__), "../../config/paypal")
+    )
+    gateway.connection.wiredump_dev = STDERR
+    creditcard = CreditCard.new(
+      :type => card_type,
+      :number => card_number,
+      :verification_value => card_verification_value,
+      :month => card_expiration_month,
+      :year => card_expiration_year,
+      :first_name => ship_to_first_name,
+      :last_name => ship_to_last_name
+    )
+    # Buyer information
+    params = {
+      :order_id => self.id,
+      :email => email,
+      :address => { :address1 => ship_to_address,
+        :city => ship_to_city,
+        :country => ship_to_country,
+        :zip => ship_to_postal_code
+      } ,
+      :description => 'Books',
+      :ip => customer_ip
+    }
+    response = gateway.purchase(total, creditcard, params)
+    if response.success?
+      self.status = 'processed'
+    else
+      self.error_message = response.message
+      self.status = 'failed'
+    end
+  end
 end
