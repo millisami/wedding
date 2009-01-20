@@ -68,14 +68,10 @@
   </tbody>
 </table>
   </div>
-
-<<<<<<< Updated upstream:app/views/orders/new.html.erb
-  <% remote_form_for(@order) do |f| %>
-    <%= error_messages_for(:order) %>
-=======
+  
   <% form_for(@order, :html => {:class => :order, :id => :order_form}) do |f| %>
     <%= f.error_messages %>
->>>>>>> Stashed changes:app/views/orders/new.html.erb
+
   <div class="orderForm">
     <div class="orderFormLeft">
       <div class="formInput">

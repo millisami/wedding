@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
   # GET /orders/new.xml
   def new
     @order = Order.new
-   #@customer = Customer.new
+    #@customer = Customer.new
     respond_to do |format|
       format.html #{ render :layout => false }
     end
@@ -42,67 +42,26 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(params[:order])
     @order.customer_ip = request.remote_ip
+    @order.status = 'open'
     #populate_order
-<<<<<<< Updated upstream:app/controllers/orders_controller.rb
-     @order.line_items << @cart.items
-    respond_to do |format|
-      if @order.save
-#        if @order.process
-#          flash[:notice] = 'Your order has been submitted, and will be processed immediately.'
-#          session[:order_id] = @order.id
-#          # Empty the cart
-#          @cart.empty_all_items
-#          format.html { redirect_to :action => 'thank_you' }
-#        else
-#          flash[:notice] = "Error while placing order. '#{@order.error_message}'"
-#          format.html { render :action => 'index' }
-#        end
-        format.js do
-          #render :action => 'index'
-          render :update do |page|
-            flash[:notice] = "Thank you for your order."
-          page.reload_flash
-         end
-=======
-    debugger
+
     @order.line_items << @cart.items
-    debugger
     respond_to do |format|
-      format. js {
-        if @order.save
-
-          flash[:notice] = 'Your order has been submitted, and will be processed immediately.'
-          session[:order_id] = @order.id
-          # Empty the cart
-          @cart.empty_all_items
-
-        else
-          render :json => {:object => "order", :success => false, :errors => @order.errors}
-          debugger
-        end
-        
-      }
       format.html {
         if @order.save
-          flash[:notice] = 'Your order has been submitted'
-          session[:order_id] = @order.id
-          @cart.empty_all_items
-          render :action => 'new'
+          if @order.process
+            flash[:notice] = 'Your order has been submitted'
+            session[:order_id] = @order.id
+            @cart.empty_all_items
+            redirect_to root_url
+          else
+            flash[:notice] = 'Some error occured'
+            render :action => 'new'
+          end
         else
-          flash[:notice] = 'Some error occured'
-          redirect_to new_order_path
->>>>>>> Stashed changes:app/controllers/orders_controller.rb
+          render :action => 'new'
         end
-      else
-        format.js do
-          #render :action => 'index'
-          render :update do |page|
-            flash[:notice] = "Error checking out. Re-order again!!"
-          page.reload_flash
-         end
-
-        end
-      end
+      }
     end
   end
 

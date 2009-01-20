@@ -25,7 +25,7 @@ class Order < ActiveRecord::Base
   attr_protected :id, :customer_ip, :status, :error_message
   attr_accessor :card_type, :card_number, :card_expiration_month, :card_expiration_year, :card_verification_value
 	has_many :line_items
-  has_many :products, :through => :line_items
+  #has_many :products, :through => :line_items
 
   #Validations
   validates_size_of :line_items, :minimum => 1
@@ -46,15 +46,19 @@ class Order < ActiveRecord::Base
   validates_inclusion_of :card_expiration_month, :in => %w(1 2 3 4 5 6 7 8 9 10 11 12), :on => :create
   validates_inclusion_of :card_expiration_year, :in => %w(2006 2007 2008 2009 2010), :on => :create
   validates_length_of :card_verification_value, :in => 3..4, :on => :create
-  
-  private #===========
+
   def process
-    result = true
-    #
-    # TODO Charge the customer by calling the payment gateway
-    #
-    self.status = 'processed'
-    save!
-    result
+    raise "Order is closed" if closed?
+    begin
+      process_with_active_merchant
+    rescue => e
+      logger.error("Order #{id} failed with error message #{e}")
+      self.error_message = 'Error while processing order'
+      self.status = 'failed'
+      save!
+      self.status = 'processed'
+    end
   end
+
+  
 end
