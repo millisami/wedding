@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090118061701) do
+ActiveRecord::Schema.define(:version => 20090120062446) do
 
   create_table "carts", :force => true do |t|
     t.datetime "created_at"
@@ -87,6 +87,15 @@ ActiveRecord::Schema.define(:version => 20090118061701) do
   end
 
   add_index "pages", ["position"], :name => "index_pages_on_position"
+
+  create_table "payment_notifications", :force => true do |t|
+    t.text     "params"
+    t.integer  "cart_id"
+    t.string   "status"
+    t.string   "transaction_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "product_sets", :force => true do |t|
     t.string   "name"

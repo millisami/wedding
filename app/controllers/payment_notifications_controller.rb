@@ -1,11 +1,8 @@
 class PaymentNotificationsController < ApplicationController
+  protect_from_forgery :except => [:create]
   def create
-    @payment_notification = PaymentNotification.new(params[:payment_notification])
-    if @payment_notification.save
-      flash[:notice] = "Successfully created payment notification."
-      redirect_to payment_notifications_url
-    else
-      render :action => 'new'
-    end
+    #PaymentNotification.create!(:params => params, :cart_id => params[:invoice], :status => params[:payment_status], :transaction_id => params[:txn_id])
+    PaymentNotification.create!(:params => params)
+    render :nothing => true
   end
 end
