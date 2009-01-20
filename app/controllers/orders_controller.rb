@@ -52,7 +52,7 @@ class OrdersController < ApplicationController
           if @order.process
             flash[:notice] = 'Your order has been submitted'
             session[:order_id] = @order.id
-            #@cart.empty_all_items
+            
             redirect_to @order.paypal_url(root_url)
           else
             flash[:notice] = 'Some error occured'
