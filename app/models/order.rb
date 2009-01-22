@@ -25,6 +25,7 @@ class Order < ActiveRecord::Base
   attr_protected :id, :customer_ip, :status, :error_message
   attr_accessor :card_type, :card_number, :card_expiration_month, :card_expiration_year, :card_verification_value
 	has_many :line_items
+  has_one :payment_notification
   #has_many :products, :through => :line_items
 
   #Validations
@@ -61,13 +62,20 @@ class Order < ActiveRecord::Base
     end
   end
   
-  def paypal_url(return_url)
+  def paypal_url(return_url, notify_url, order_id)
     values = {
-      :business => 'seller_dddh@gmail.com',
+      #Seller Password: 232606200
+      #Seller ID: handma_1232606255_biz@gmail.com
+
+      #Buyer Password 232549441
+      #Buyer ID:buyer_1232549492_per@gmail.com
+      :business => 'millis_1232546946_biz@gmail.com',
       :cmd => '_cart',
       :upload => 1,
       :return => return_url,
-      :invoice => id
+      :invoice => id,
+      :notify_url => notify_url,
+      :custom => order_id
     }
     line_items.each_with_index do |item, index|
       values.merge!({
