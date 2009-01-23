@@ -16,3 +16,11 @@ config.action_controller.perform_caching             = true
 
 # Disable delivery errors, bad email addresses will be ignored
 # config.action_mailer.raise_delivery_errors = false
+config.after_initialize do
+  ActiveMerchant::Billing::Base.mode = :production
+  ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
+    :login => "handma_1232606255_biz_api1.gmail.com",
+    :password => "1232606281",
+    :signature => "AQJBdjpcRyV6ec4yJz74ZOnUNlbGAyP85u6SZbfS4menEEnxcXFhnjX0"
+  )
+end

@@ -23,3 +23,7 @@ config.action_mailer.delivery_method = :test
 
 config.gem 'mocha'
 config.gem 'Shoulda'
+config.after_initialize do
+  ActiveMerchant::Billing::Base.mode = :test
+  ::GATEWAY = ActiveMerchant::Billing::BogusGateway.new
+end
