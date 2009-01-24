@@ -32,22 +32,15 @@ class OrdersController < ApplicationController
     end
   end
 
-  # GET /orders/1/edit
-  def edit
-    @order = Order.find(params[:id])
-  end
-
-  # POST /orders
-  # POST /orders.xml
   def create
     @order = Order.new(params[:order])
     @order.customer_ip = request.remote_ip
     @order.status = 'open'
-    #populate_order
 
     @order.line_items << @cart.items
     respond_to do |format|
       format.html {
+        #@order.payment_mode_card = true if params[:payment_mode] == 'CreditCard'
         if @order.save
           if @order.process
             flash[:notice] = 'Your order has been submitted'
@@ -65,25 +58,4 @@ class OrdersController < ApplicationController
     end
   end
 
-  # PUT /orders/1
-  # PUT /orders/1.xml
-  def update
-    @order = Order.find(params[:id])
-
-    respond_to do |format|
-      if @order.update_attributes(params[:order])
-        flash[:notice] = 'Order was successfully updated.'
-        format.html { redirect_to(@order) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @order.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  private #=============
-  def populate_order
-    @order.line_items << @cart.items
-  end
 end

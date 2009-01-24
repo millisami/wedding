@@ -24,6 +24,7 @@
 class Order < ActiveRecord::Base
   attr_protected :id, :customer_ip, :status, :error_message
   attr_accessor :card_type, :card_number, :card_expiration_month, :card_expiration_year, :card_verification_value
+  #attr_accessor :payment_type
 	has_many :line_items
   has_one :payment_notification
   #has_many :products, :through => :line_items
@@ -42,12 +43,17 @@ class Order < ActiveRecord::Base
   validates_length_of :customer_ip, :in => 7..15
   validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
   validates_inclusion_of :status, :in => %w(open processed closed failed)
-  validates_inclusion_of :card_type, :in => ['Visa', 'MasterCard', 'Discover'], :on => :create
-  validates_length_of :card_number, :in => 13..19, :on => :create
-  validates_inclusion_of :card_expiration_month, :in => %w(1 2 3 4 5 6 7 8 9 10 11 12), :on => :create
-  validates_inclusion_of :card_expiration_year, :in => %w(2006 2007 2008 2009 2010), :on => :create
-  validates_length_of :card_verification_value, :in => 3..4, :on => :create
+  
+  validates_inclusion_of :card_type, :in => ['Visa', 'MasterCard', 'Discover'], :on => :create, :if => :payment_mode_credit_card
+  validates_length_of :card_number, :in => 13..19, :on => :create, :if => :payment_mode_credit_card
+  validates_inclusion_of :card_expiration_month, :in => %w(1 2 3 4 5 6 7 8 9 10 11 12), :on => :create, :if => :payment_mode_credit_card
+  validates_inclusion_of :card_expiration_year, :in => %w(2006 2007 2008 2009 2010), :on => :create, :if => :payment_mode_credit_card
+  validates_length_of :card_verification_value, :in => 3..4, :on => :create, :if => :payment_mode_credit_card
 
+  def payment_mode_credit_card
+    payment_mode_card
+  end
+  
   def process
     return true
     raise "Order is closed" if closed?
@@ -83,7 +89,7 @@ class Order < ActiveRecord::Base
           "item_name_#{index+1}" => item.product.name,
           "item_number_#{index+1}" => item.id,
           "quantity_#{index+1}" => item.quantity
-      })
+        })
     end
     "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.map {|k, v| "#{k}=#{v}"}.join("&")
   end
@@ -109,7 +115,8 @@ class Order < ActiveRecord::Base
     params = {
       :order_id => self.id,
       :email => email,
-      :address => { :address1 => ship_to_address,
+      :address => {
+        :address1 => ship_to_address,
         :city => ship_to_city,
         :country => ship_to_country,
         :zip => ship_to_postal_code

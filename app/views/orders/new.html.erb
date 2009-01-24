@@ -110,7 +110,17 @@
         <label>Country</label>
         <%= country_code_select(:order, :ship_to_country, priority_countries=[{:code=>'US',:name=>'United States'}], {:selected=>'SE',:include_blank=>true}) %>
       </div>
-      <p>Billing Information</p>
+
+        <div class="paymentVia">
+    <h5>Payment via</h5>
+    <ul>
+      <li><%= radio_button_tag 'payment_type', 'CreditCard', true %>Credit Card</li>
+      <li><%= radio_button_tag 'payment_type', 'PayPal' %> Paypal</li>
+      <li><%= radio_button_tag 'payment_type', 'Invoice' %> Invoice (Sweden Only)</li>
+    </ul>
+  </div>
+
+      <h2>Billing Information</h2>
       <div class="formInput">
         <label>Credit Card Type</label>
         <select name="order[card_type]" id="order_card_type">
@@ -142,16 +152,8 @@
       </div>
     </div>
   </div>
-  <!--
-  <div class="paymentVia">
-    <h5>Payment via</h5>
-    <ul>
-      <li><input type="radio" value="" name="id"/> Credit Card</li>
-      <li><input type="radio" value="" name="id"/> Pay Pal</li>
-      <li><input type="radio" value="" name="id"/> Invoice (Sweden Only)</li>
-    </ul>
-  </div>
-  -->
+  
+  
   <div class="btnSubmit">
     <%= f.submit("Submit", :class => 'submit') %>
 

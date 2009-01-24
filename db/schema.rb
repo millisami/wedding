@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090122111553) do
+ActiveRecord::Schema.define(:version => 20090124053848) do
 
   create_table "carts", :force => true do |t|
     t.datetime "created_at"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(:version => 20090122111553) do
     t.string   "error_message"
     t.text     "message"
     t.datetime "purchased_at"
+    t.string   "payment_type"
   end
 
   create_table "pages", :force => true do |t|
