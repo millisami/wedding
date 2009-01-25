@@ -114,9 +114,9 @@
         <div class="paymentVia">
     <h5>Payment via</h5>
     <ul>
-      <li><%= radio_button_tag 'payment_type', 'CreditCard', true %>Credit Card</li>
-      <li><%= radio_button_tag 'payment_type', 'PayPal' %> Paypal</li>
-      <li><%= radio_button_tag 'payment_type', 'Invoice' %> Invoice (Sweden Only)</li>
+      <li><%= radio_button('order', 'payment_type', 'CreditCard') %>Credit Card</li>
+      <li><%= radio_button("order", "payment_type", "Paypal") %> Paypal</li>
+      <li><%= radio_button('order', 'payment_type', 'Invoice') %> Invoice (Sweden Only)</li>
     </ul>
   </div>
 

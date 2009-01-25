@@ -36,7 +36,7 @@ class OrdersController < ApplicationController
     @order = Order.new(params[:order])
     @order.customer_ip = request.remote_ip
     @order.status = 'open'
-
+    
     @order.line_items << @cart.items
     respond_to do |format|
       format.html {
@@ -45,8 +45,6 @@ class OrdersController < ApplicationController
           if @order.process
             flash[:notice] = 'Your order has been submitted'
             session[:order_id] = @order.id
-           
-            redirect_to @order.paypal_url(root_url, payment_notifications_url, @order.id)
           else
             flash[:notice] = 'Some error occured'
             render :action => 'new'
