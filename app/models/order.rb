@@ -26,6 +26,7 @@ class Order < ActiveRecord::Base
   attr_accessor :card_type, :card_number, :card_expiration_month, :card_expiration_year, :card_verification_value
 
 	has_many :line_items
+  has_many :transactions, :class_name => 'OrderTransaction'
   has_one :payment_notification
 
   #Validations
