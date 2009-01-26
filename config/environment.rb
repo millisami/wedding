@@ -34,12 +34,21 @@ Rails::Initializer.run do |config|
 	config.active_record.colorize_logging = false
 	config.log_level = :debug
 
-    #gems dependencies
-    #config.gem 'RedCloth', :version => '>= 3.0.4', :source => 'http://code.whytheluckystiff.net'
-    #config.gem 'aws-s3', :lib => 'aws/s3' #use this syntax for installing gems from github.com
-    config.gem 'tzinfo'
-    config.gem 'activemerchant', :lib => 'active_merchant', :version => '1.4.1'
+  #gems dependencies
+  #config.gem 'RedCloth', :version => '>= 3.0.4', :source => 'http://code.whytheluckystiff.net'
+  #config.gem 'aws-s3', :lib => 'aws/s3' #use this syntax for installing gems from github.com
+  config.gem 'tzinfo'
+  config.gem 'activemerchant', :lib => 'active_merchant', :version => '1.4.1'
   #ActionView::Base.field_error_proc = Proc.new do |html_tag, instance_tag|
 	#"<span class='field_error'>#{html_tag}</span>"
   #end
+#  ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
+#    if instance.error_message.kind_of?(Array)
+#      %(#{html_tag}<span class='validation-error'>&nbsp;
+#      #{instance.error_message.join(',')}</span>)
+#    else
+#      %(#{html_tag}<span class='validation-error'>&nbsp;
+#      #{instance.error_message}</span>)
+#    end
+#  end
 end

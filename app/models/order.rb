@@ -42,7 +42,7 @@ class Order < ActiveRecord::Base
   validates_length_of :customer_ip, :in => 7..15
   validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
   validates_inclusion_of :status, :in => %w(open processed closed failed)
-  validates_inclusion_of :payment_type, :in => %w(CreditCard Paypal Invoice), :message => "You must choose the type of Payment"
+  validates_inclusion_of :payment_type, :in => %w(CreditCard Paypal Invoice), :message => "must be chosen for a successful checkout"
 
   validates_inclusion_of :card_type, :in => ['Visa', 'MasterCard', 'Discover'], :on => :create, :if => :payment_type_credit_card
   validates_length_of :card_number, :in => 13..19, :on => :create, :if => :payment_type_credit_card
@@ -55,18 +55,18 @@ class Order < ActiveRecord::Base
   end
 
   def process
-    begin
+   # begin
       debugger
       redirect_to paypal_url(root_url, payment_notifications_url, id) if payment_type.eql?( "Paypal")
       process_with_active_merchant if self.payment_type == "CreditCard"
       process_with_invoice if self.payment_type == "Invoice"
       debugger
-    rescue => e
-      logger.error("Order #{id} failed with error message #{e}")
-      self.error_message = 'Error while processing order'
-      self.status = 'failed'
-      save!
-    end
+    #rescue => e
+#      logger.error("Order #{id} failed with error message #{e}")
+#      self.error_message = 'Error while processing order'
+#      self.status = 'failed'
+#      save!
+   # end
   end
 
   def paypal_url(return_url, notify_url, order_id)
@@ -96,15 +96,7 @@ class Order < ActiveRecord::Base
   end
 
   def process_with_active_merchant
-    
-    gateway = ActiveMerchant::Billing::PaypalGateway.new(
-      :login => 'handma_1232606255_biz_api1.gmail.com',
-      :password => '1232606281',
-      :signature => 'AQJBdjpcRyV6ec4yJz74ZOnUNlbGAyP85u6SZbfS4menEEnxcXFhnjX0'
-      #:cert_path => File.join(File.dirname(__FILE__), "../../config/paypal")
-    )
-    gateway.connection.wiredump_dev = STDERR
-    credit_card = CreditCard.new(
+    credit_card = ActiveMerchant::Billing::CreditCard.new(
       :type => card_type,
       :number => card_number,
       :verification_value => card_verification_value,
@@ -114,11 +106,12 @@ class Order < ActiveRecord::Base
       :last_name => ship_to_last_name
     )
     # Buyer information
-    params = {
+    purchase_options = {
       :order_id => self.id,
       :email => email,
       :address => {
-        :address1 => ship_to_address,
+        :address1 => ship_to_address1,
+        :address2 => ship_to_address2,
         :city => ship_to_city,
         :country => ship_to_country,
         :zip => ship_to_postal_code
@@ -127,13 +120,21 @@ class Order < ActiveRecord::Base
       :ip => customer_ip
     }
     if credit_card.valid?
-      response = gateway.purchase(total, creditcard, params)
+      response = GATEWAY.purchase(price_in_cents, credit_card, purchase_options)
+      transactions.create!(:action => "purchase", :amount => price_in_cents, :response => response)
+
       if response.success?
-        self.status = 'processed'
+        self.update_attribute(:purchased_at, Time.now)
+        self.update_attribute(:status, 'processed')
       else
-        self.error_message = response.message
-        self.status = 'failed'
+        self.update_attribute(:error_message, response.message)
+        self.update_attribute(:status, 'failed')
       end
     end
   end
+
+  def price_in_cents
+    (@cart.total_price*100).round
+  end
+
 end

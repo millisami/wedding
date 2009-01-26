@@ -40,7 +40,6 @@ class OrdersController < ApplicationController
     @order.line_items << @cart.items
     respond_to do |format|
       format.html {
-        #@order.payment_mode_card = true if params[:payment_mode] == 'CreditCard'
         if @order.save
           if @order.process
             flash[:notice] = 'Your order has been submitted'
