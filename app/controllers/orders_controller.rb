@@ -39,8 +39,13 @@ class OrdersController < ApplicationController
     
     @order.line_items << @cart.items
     respond_to do |format|
-      format.html {
+      format.html do
         if @order.save
+          
+if @order.payment_type.eql?( "Paypal")
+          redirect_to(@order.paypal_url(root_url, payment_notifications_url, @order.id))
+end
+          #debugger
           if @order.process
             flash[:notice] = 'Your order has been submitted'
             session[:order_id] = @order.id
@@ -51,7 +56,7 @@ class OrdersController < ApplicationController
         else
           render :action => 'new'
         end
-      }
+      end
     end
   end
 

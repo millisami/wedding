@@ -57,8 +57,8 @@ class Order < ActiveRecord::Base
 
   def process
    # begin
-      debugger
-      redirect_to paypal_url(root_url, payment_notifications_url, id) if payment_type.eql?( "Paypal")
+      #debugger
+      
       process_with_active_merchant if self.payment_type == "CreditCard"
       process_with_invoice if self.payment_type == "Invoice"
       debugger
@@ -93,10 +93,13 @@ class Order < ActiveRecord::Base
           "quantity_#{index+1}" => item.quantity
         })
     end
+    
     "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.map {|k, v| "#{k}=#{v}"}.join("&")
+    
   end
 
   def process_with_active_merchant
+    debugger
     credit_card = ActiveMerchant::Billing::CreditCard.new(
       :type => card_type,
       :number => card_number,
@@ -116,7 +119,7 @@ class Order < ActiveRecord::Base
         :city => ship_to_city,
         :country => ship_to_country,
         :zip => ship_to_postal_code
-      } ,
+      },
       :description => message,
       :ip => customer_ip
     }
@@ -137,5 +140,4 @@ class Order < ActiveRecord::Base
   def price_in_cents
     (@cart.total_price*100).round
   end
-
 end
