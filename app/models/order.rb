@@ -77,7 +77,7 @@ class Order < ActiveRecord::Base
 
       #Buyer Password 232549441
       #Buyer ID:buyer_1232549492_per@gmail.com
-      :business => 'millis_1232546946_biz@gmail.com',
+      :business => APP_CONFIG[:paypal_email],
       :cmd => '_cart',
       :upload => 1,
       :return => return_url,
@@ -94,7 +94,7 @@ class Order < ActiveRecord::Base
         })
     end
     
-    "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.map {|k, v| "#{k}=#{v}"}.join("&")
+    APP_CONFIG[:paypal_url] + values.map {|k, v| "#{k}=#{v}"}.join("&")
     
   end
 
