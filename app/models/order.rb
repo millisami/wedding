@@ -77,13 +77,16 @@ class Order < ActiveRecord::Base
 
       #Buyer Password 232549441
       #Buyer ID:buyer_1232549492_per@gmail.com
+      #Test CC Number 4628438176984728
+      #CVC Use any 3 digits like 123
       :business => APP_CONFIG[:paypal_email],
       :cmd => '_cart',
       :upload => 1,
       :return => return_url,
       :invoice => id,
       :notify_url => notify_url,
-      :custom => order_id
+      :custom => order_id,
+      :shipping => 100
     }
     line_items.each_with_index do |item, index|
       values.merge!({
