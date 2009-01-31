@@ -1,5 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :payment_notifications
 
   def map.controller_actions(controller, actions)
     actions.each do |action|
@@ -7,18 +6,21 @@ ActionController::Routing::Routes.draw do |map|
     end
   end
  
-  map.resources :orders
-  map.resources :product_sets, :has_many => :products
-  map.resources :products
-  map.resources :categories, :has_many => :product_sets
-  
-
   map.namespace :admin do |admin|
     admin.resources :categories, :has_many => :product_sets
     admin.resources :product_sets, :has_many => :products
     admin.resources :products
     admin.resources :pages
+    admin.resources :shipping_rates
   end
+  map.resources :orders
+  map.resources :product_sets, :has_many => :products
+  map.resources :products
+  map.resources :categories, :has_many => :product_sets
+
+  map.resources :shipping_rates
+  map.resources :payment_notifications
+
   #map.controller_actions 'payments', %w[checkout confirm]
   map.controller_actions 'sites', %w[tax_delivery_cost]
   map.resources :payments

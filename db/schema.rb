@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090126151947) do
+ActiveRecord::Schema.define(:version => 20090131071128) do
 
   create_table "carts", :force => true do |t|
     t.datetime "created_at"
@@ -154,6 +154,13 @@ ActiveRecord::Schema.define(:version => 20090126151947) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "shipping_rates", :force => true do |t|
+    t.decimal  "weight",     :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "rate_euro",  :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "login"

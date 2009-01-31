@@ -1,0 +1,13 @@
+<p>
+  <b>Weight:</b>
+  <%=h @shipping_rate.weight %>
+</p>
+
+<p>
+  <b>Rate euro:</b>
+  <%=h @shipping_rate.rate_euro %>
+</p>
+
+
+<%= link_to 'Edit', edit_shipping_rate_path(@shipping_rate) %> |
+<%= link_to 'Back', shipping_rates_path %>

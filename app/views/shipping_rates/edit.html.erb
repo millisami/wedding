@@ -1,0 +1,20 @@
+<h1>Editing shipping_rate</h1>
+
+<% form_for(@shipping_rate) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :weight %><br />
+    <%= f.text_field :weight %>
+  </p>
+  <p>
+    <%= f.label :rate_euro %><br />
+    <%= f.text_field :rate_euro %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @shipping_rate %> |
+<%= link_to 'Back', shipping_rates_path %>
