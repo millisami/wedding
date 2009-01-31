@@ -1,0 +1,22 @@
+<h1>Listing shipping_rates</h1>
+
+<table>
+  <tr>
+    <th>Weight</th>
+    <th>Rate euro</th>
+  </tr>
+
+<% for shipping_rate in @shipping_rates %>
+  <tr>
+    <td><%=h shipping_rate.weight %></td>
+    <td><%=h shipping_rate.rate_euro %></td>
+    <td><%= link_to 'Show', [:admin, shipping_rate] %></td>
+    <td><%= link_to 'Edit', edit_admin_shipping_rate_path(shipping_rate) %></td>
+    <td><%= link_to 'Destroy', [:admin, shipping_rate], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New shipping_rate', new_admin_shipping_rate_path %>

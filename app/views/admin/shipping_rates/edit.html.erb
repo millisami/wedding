@@ -1,6 +1,6 @@
 <h1>Editing shipping_rate</h1>
 
-<% form_for(@shipping_rate) do |f| %>
+<% form_for([:admin, @shipping_rate]) do |f| %>
   <%= f.error_messages %>
 
   <p>
@@ -16,5 +16,5 @@
   </p>
 <% end %>
 
-<%= link_to 'Show', @shipping_rate %> |
-<%= link_to 'Back', shipping_rates_path %>
+<%= link_to 'Show', [:admin, @shipping_rate] %> |
+<%= link_to 'Back', admin_shipping_rates_path %>
