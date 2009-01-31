@@ -1,4 +1,8 @@
 class Admin::ShippingRatesController < ApplicationController
+  layout 'admin'
+  before_filter :login_required
+  before_filter :check_administrator_role
+
     def index
     @shipping_rates = ShippingRate.find(:all)
 
@@ -43,7 +47,7 @@ class Admin::ShippingRatesController < ApplicationController
     respond_to do |format|
       if @shipping_rate.save
         flash[:notice] = 'ShippingRate was successfully created.'
-        format.html { redirect_to(@shipping_rate) }
+        format.html { redirect_to(admin_shipping_rates_url) }
         format.xml  { render :xml => @shipping_rate, :status => :created, :location => @shipping_rate }
       else
         format.html { render :action => "new" }
@@ -60,7 +64,7 @@ class Admin::ShippingRatesController < ApplicationController
     respond_to do |format|
       if @shipping_rate.update_attributes(params[:shipping_rate])
         flash[:notice] = 'ShippingRate was successfully updated.'
-        format.html { redirect_to(@shipping_rate) }
+        format.html { redirect_to(admin_shipping_rates_url) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -76,7 +80,7 @@ class Admin::ShippingRatesController < ApplicationController
     @shipping_rate.destroy
 
     respond_to do |format|
-      format.html { redirect_to(shipping_rates_url) }
+      format.html { redirect_to(admin_shipping_rates_url) }
       format.xml  { head :ok }
     end
   end
