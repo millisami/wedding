@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  layout 'session_user'
+  layout 'admin'
+  layout 'session_user', :only => [:new]
   before_filter :not_logged_in_required, :only => [:new, :create] 
   before_filter :login_required, :only => [:show, :edit, :update]
   before_filter :check_administrator_role, :only => [:index, :destroy, :enable]
