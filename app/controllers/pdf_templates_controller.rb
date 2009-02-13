@@ -41,7 +41,10 @@ class PdfTemplatesController < ApplicationController
 
     def parse
         @pdf_details = params
-
+        @cart.add_pdf_data(params[:product_id], pdf_data)
+        respond_to do |format|
+            format.html  { redirect_to(:action => 'show_cart') }
+		end
     end
 
 

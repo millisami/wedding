@@ -6,7 +6,13 @@ class Cart
 		empty_all_items
 	end
 
-    
+    def add_pdf_data(product_id, pdf_data)
+        existing_item = @items.find {|item|item.product_id == product.id}
+        if existing_item
+            existing_item.pdf_data = pdf_data
+        end
+    end
+
 	def add_product(product, quantity)
         existing_item = @items.find {|item|item.product_id == product.id}
         if existing_item
