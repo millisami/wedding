@@ -23,8 +23,12 @@ ActionController::Routing::Routes.draw do |map|
 
   #map.controller_actions 'payments', %w[checkout confirm]
   map.controller_actions 'sites', %w[tax_delivery_cost]
-  map.resources :payments
+    map.resources :payments
   map.checkout '/checkout', :controller => 'checkout', :action => 'index'
+  
+  map.pdf_show '/pdf_show/:id', :controller => 'pdf_templates', :action => 'show'
+  map.pdf_parse '/pdf_parse', :controller => 'pdf_templates', :action => 'parse'
+  map.pdf_show '/pdf_preview/:id', :controller => 'pdf_templates', :action => 'preview'
 
   map.resources :sites, :member => {
     :add_to_cart => :post,

@@ -5,7 +5,7 @@ include FileUtils
 
 module PDF
     class Stamper
-        def initialize(pdf = nil, options = {})
+    def initialize(pdf = nil, options = {})
       @bytearray    = Rjb::import('java.io.ByteArrayOutputStream')
       @filestream   = Rjb::import('java.io.FileOutputStream')
       @acrofields   = Rjb::import('com.lowagie.text.pdf.AcroFields')
