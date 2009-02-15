@@ -7,5 +7,4 @@ class ShippingRatesController < ApplicationController
       format.xml  { render :xml => @shipping_rate }
     end
   end
-
 end

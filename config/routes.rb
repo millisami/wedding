@@ -11,7 +11,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :product_sets, :has_many => :products
     admin.resources :products
     admin.resources :pages
-    admin.resources :shipping_rates
+    admin.resources :shipping_rates, :member => {:get_text => :get, :update_in_place_edit => :put}
   end
   map.resources :orders
   map.resources :product_sets, :has_many => :products
@@ -70,5 +70,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :session
   map.resource :password
   map.resource :message
-  
+    # Install the default routes as the lowest priority.
+  map.connect ':controller/:action/:id'
+  map.connect ':controller/:action/:id.:format'
+
 end

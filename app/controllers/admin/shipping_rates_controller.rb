@@ -58,20 +58,20 @@ class Admin::ShippingRatesController < ApplicationController
 
   # PUT /shipping_rates/1
   # PUT /shipping_rates/1.xml
-  def update
-    @shipping_rate = ShippingRate.find(params[:id])
-
-    respond_to do |format|
-      if @shipping_rate.update_attributes(params[:shipping_rate])
-        flash[:notice] = 'ShippingRate was successfully updated.'
-        format.html { redirect_to(admin_shipping_rates_url) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @shipping_rate.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
+#  def update
+#    @shipping_rate = ShippingRate.find(params[:id])
+#
+#    respond_to do |format|
+#      if @shipping_rate.update_attributes(params[:shipping_rate])
+#        flash[:notice] = 'ShippingRate was successfully updated.'
+#        format.html { redirect_to(admin_shipping_rates_url) }
+#        format.xml  { head :ok }
+#      else
+#        format.html { render :action => "edit" }
+#        format.xml  { render :xml => @shipping_rate.errors, :status => :unprocessable_entity }
+#      end
+#    end
+#  end
 
   # DELETE /shipping_rates/1
   # DELETE /shipping_rates/1.xml
@@ -84,5 +84,20 @@ class Admin::ShippingRatesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def update_in_place_edit
+    shipping_rate = ShippingRate.find(params[:id])
+    shipping_rate.rate_euro = params[:value]
+    shipping_rate.save
+    shipping_rate.reload
+    #render :text => textilize(shipping_rate.rate_euro)
+    render :text => shipping_rate.rate_euro
+  end
+
+  def get_text
+    shipping_rate = ShippingRate.find(params[:id])
+    render :text => shipping_rate.rate_euro
+  end
+
 
 end

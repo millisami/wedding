@@ -9,7 +9,26 @@
 <% for shipping_rate in @shipping_rates %>
   <tr>
     <td><%=h shipping_rate.weight %></td>
-    <td><%=h shipping_rate.rate_euro %></td>
+    <td><%= editable_content(
+      :content => {
+        :element => 'span',
+        #:text => textilize(mortal_enemy.reason_to_kill),
+        :text => shipping_rate.rate_euro,
+        :options => {
+          :id => "shipping_rate_edit_#{shipping_rate.id}",
+          :class => 'editable-content'
+        }
+       },
+      :url => {
+        :controller => 'shipping_rates',
+        :action => 'update_in_place_edit',
+        :id => shipping_rate.id
+       },
+      :ajax => {
+        :loadTextURL => "'#{ url_for :controller => 'shipping_rates', :action => 'get_text', :id => shipping_rate.id }'"
+       }
+    ) %>
+</td>
     <td><%= link_to 'Show', [:admin, shipping_rate] %></td>
     <td><%= link_to 'Edit', edit_admin_shipping_rate_path(shipping_rate) %></td>
     <td><%= link_to 'Destroy', [:admin, shipping_rate], :confirm => 'Are you sure?', :method => :delete %></td>
