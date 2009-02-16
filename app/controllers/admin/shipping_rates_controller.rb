@@ -1,4 +1,5 @@
 class Admin::ShippingRatesController < ApplicationController
+  protect_from_forgery :except => [:update_in_place_edit]
   layout 'admin'
   before_filter :login_required
   before_filter :check_administrator_role
@@ -58,20 +59,20 @@ class Admin::ShippingRatesController < ApplicationController
 
   # PUT /shipping_rates/1
   # PUT /shipping_rates/1.xml
-#  def update
-#    @shipping_rate = ShippingRate.find(params[:id])
-#
-#    respond_to do |format|
-#      if @shipping_rate.update_attributes(params[:shipping_rate])
-#        flash[:notice] = 'ShippingRate was successfully updated.'
-#        format.html { redirect_to(admin_shipping_rates_url) }
-#        format.xml  { head :ok }
-#      else
-#        format.html { render :action => "edit" }
-#        format.xml  { render :xml => @shipping_rate.errors, :status => :unprocessable_entity }
-#      end
-#    end
-#  end
+  def update
+    @shipping_rate = ShippingRate.find(params[:id])
+
+    respond_to do |format|
+      if @shipping_rate.update_attributes(params[:shipping_rate])
+        flash[:notice] = 'ShippingRate was successfully updated.'
+        format.html { redirect_to(admin_shipping_rates_url) }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @shipping_rate.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
 
   # DELETE /shipping_rates/1
   # DELETE /shipping_rates/1.xml
