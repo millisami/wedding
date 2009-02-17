@@ -40,9 +40,7 @@ class PdfTemplatesController < ApplicationController
     end
 
     def parse
-        @pdf_details = params
-        @cart.add_pdf_data(params[:product_id], params)
-        
+        @cart.add_pdf_data(params)
         respond_to do |format|
             format.html do
                 render :text => "PDF Data added"

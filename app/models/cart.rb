@@ -6,7 +6,8 @@ class Cart
 		empty_all_items
 	end
 
-    def add_pdf_data(product_id, pdf_data)
+    def add_pdf_data(pdf_data)
+        product_id = pdf_data[:product_id]
         debugger
         existing_item = @items.find {|item|item.product_id == product_id}
         debugger
