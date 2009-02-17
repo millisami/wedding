@@ -35,6 +35,10 @@ class PdfTemplatesController < ApplicationController
     def preview
         @product_details = Product.find(params[:id])
         template(@product_details.document.path)
+        @reloaded_hash = case @product_details.document_permalink
+            when "response_template"
+            
+        end
         text(:response)
         text(:bodytext, "Modified the text by sachin sagar")
     end
