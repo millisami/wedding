@@ -1,4 +1,4 @@
-require 'unicode'
+#require 'unicode'
 # A Slug is a unique, human-friendly identifier for an ActiveRecord.
 class Slug < ActiveRecord::Base
 
