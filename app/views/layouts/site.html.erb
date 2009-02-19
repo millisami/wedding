@@ -1,128 +1,95 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Handmade Wedding Cards<%#= controller.controller_name -%><%#= action_name -%></title>
-
-<%= stylesheet_link_tag 'master', 'modalbox', :cache => true %>
-    <!--[if IE 6]>
-    	<%= stylesheet_link_tag 'bug/ie6' %>
-    <![endif]-->
-<%= javascript_include_tag :defaults, :cache => 'modalbox' %>
-
-<script type="text/javascript">
-/*window.dhtmlHistory.create({
-  toJSON: function(o) {
-    return Object.toJSON(o);
-  },
-  fromJSON: function(s) {
-    return s.evalJSON();
-  }
-});
-
-var pageListener = function(newLocation, historyData) {
-  eval(historyData);
-};
-
-window.onload = function() {
-  dhtmlHistory.initialize();
-  dhtmlHistory.addListener(pageListener);
-}*/
-</script>
-</head>
-<body>
-  <div id="overlay" style="display: none;">
-     <div>
-          <p>Loading...<br /><%= image_tag 'ajax-loading.gif', :alt => 'Loading..' %></p>
-     </div>
-</div>
-
-<div class="wrapper">
-  <div class="header">
-    <ul class="headerTopLeft">
-      <li><%= link_to "Startpage", root_path %></li>
-      <li class="separator">|</li>
-            <li><%= modalbox_link_to 'Contact Us', { :url => page_path(2), :width => "600" }, :title => 'Contact Us' %></li>
-    </ul>
-    <ul class="headerTopRight">
-      <li><%= modalbox_link_to "Show Cart", { :url => show_cart_path, :width => "600" }, :title => "Shopping Cart"  %></li>
-      <li><%= modalbox_link_to "Save Cart", { :url => save_cart_path, :width => "600" }, :title => 'Savew Cart' %></li>
-      <li><%= link_to_remote "Checkout", :url => new_order_path, :id => 'checkout_menu' %></li>
-    </ul>
-    <div class="headetBot"><%= link_to image_tag('logo.jpg', :alt => 'Handmade Wedding Invitation Cards'), root_path, :class => 'logo', :title => 'Handmade Wedding Cards'  %>
-    <img src="/images/card_design.jpg" alt="Card Design" /> </div>
-  </div> <!-- //header -->
-
-
-  <!-- nav -->
-  <ul id="nav">
-      <li class="active"><%= link_to '', root_path, :class => 'themes' %></li>
-      <li class="menu"><a href="#" class="format"></a></li>
-      <li class="menu"><a href="#" class="typeContent"></a></li>
-      <li class="menu"><%= link_to_remote '',  :update => "contentTop", :method => :get, :url => new_order_path,
-  :html => {:class => "order"} %></li>
-      <li class="menu"><a href="#" class="confirmation"></a></li>
-<!--
-    <li class="done pr themes"></li>
-    <li class="current"><img src="/images/txt_format-products-current.gif" /></li>
-    <li><img src="/images/txt_style.gif" /></li>
-    <li><%= modalbox_link_to image_tag("txt_text.gif"), { :url => save_cart_path, :width => "600" }, :title => 'Savew Cart' %></li>
-    <li><%= modalbox_link_to image_tag("/images/txt_preview.gif"), { :url => show_cart_path, :width => "600" }, :title => 'Shopping Cart' %></li>
-    <li><%= link_to_remote image_tag("/images/txt_order.gif"),
-                :url => new_order_path,
-                :id => 'checkout' %></li>
-    <li><img src="/images/txt_confirmation.gif" /></li>
-    -->
-  </ul>
-  <!-- //end nav -->
-  <div class="content">
-    <div id="contentTop" class="clearfix">
-<div id="flash_messages">
-  <%= render :partial => 'layouts/flash_notices' %>
-</div>
-      <%= yield %> </div>
-    <!-- contentTop -->
-   
-    <div class="contentBot">
-      <div class="contentFlower"> <img src="/images/flower.png" /> </div>
-      <div class="contentBotRight"> <img src="/images/card_design1.jpg" class="card" />
-        <div class="contentBotRightSub"> <strong>Välj  bland följande produkter:</strong><br />
-          <ul>
-            <li><%= modalbox_link_to 'Inbjudan', { :url => page_path(2), :width => "600" }, :title => 'Inbjudan' %></li>
-            <li><%= modalbox_link_to 'Mottagningskort', { :url => page_path(2), :width => "600" }, :title => 'Mottagningskort' %></li>
-            <li><%= modalbox_link_to 'Kuvert', { :url => page_path(2), :width => "600" }, :title => 'Kuvert' %></li>
-            <li><%= modalbox_link_to 'Placeringskort', { :url => page_path(2), :width => "600" }, :title => 'Placeringskort' %></li>
-            <li><%= modalbox_link_to 'Svarskort', { :url => page_path(2), :width => "600" }, :title => 'Svarskort' %></li>
-            <li><%= modalbox_link_to 'Brevpapper', { :url => page_path(2), :width => "600" }, :title => 'Brevpapper' %></li>
-            <li><%= modalbox_link_to 'Tackkort', { :url => page_path(2), :width => "600" }, :title => 'Tackkort' %></li>
-          </ul>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Handmade Wedding Cards</title>
+        <%= stylesheet_link_tag 'master', 'modalbox', :cache => true %>
+        <!--[if IE 6]>
+        <%= stylesheet_link_tag 'bug/ie6' %>
+        <![endif]-->
+        <%= javascript_include_tag :defaults, :cache => 'modalbox' %>
+    </head>
+    <body>
+        <div id="overlay" style="display: none;">
+            <div>
+                <p>Loading...<br /><%= image_tag 'ajax-loading.gif', :alt => 'Loading..' %></p>
+            </div>
         </div>
-        <div class="contentBotRightSubB"> <strong>Socialt ansvar</strong><br />
-          <em>Handmade Wedding Invitations</em> tillhör nätverket Fair Enterprise Network som arbetar med att bygga upp och utveckla ansvarsfulla företag i fattiga länder. <br />
-          <a href="#">» Läs mer</a> </div>
-      </div>
-    </div>
-    <div class="bottom">
-      <div class="footer">
-        <ul class="footerLeft">
-          <li><%= link_to "Startpage", root_path %></li>
-          <li class="separator">|</li>
-          <li><%= modalbox_link_to 'Contact Us', { :url => page_path(2), :width => "600" }, :title => 'Contact Us' %></li>
-          <li class="separator">|</li>
-          <li><%= modalbox_link_to 'Shipping', { :url => page_path(2), :width => "600" }, :title => 'Shipping' %></li>
-          <li class="separator">|</li>
-          <li><%= modalbox_link_to 'Coockies', { :url => page_path(2), :width => "600" }, :title => 'Coockies' %></li>
-        </ul>
-        <div class="footerRight"> PHONE 00977-1-4700253  |  E-MAIL <a href="mailto:info@handmade-weddingcards.com">info@handmade-weddingcards.com</a><br />
-          Copyright © Handmade Wedding Invitations 2007 </div>
-      </div>
-      <ul class="footerBot">
-        <li>Wedding Cards </li>
-        <li><a href="#">Christmas Cards</a></li>
-        <li><a href="#">Bags &amp; Boxes</a></li>
-      </ul>
-    </div>
-  </div>
-</div> <!-- //wrapper -->
-</body>
+
+        <div class="wrapper">
+            <div class="header">
+                <ul class="headerTopLeft">
+                    <li><%= link_to "Startpage", root_path %></li>
+                    <li class="separator">|</li>
+                    <li><%= modalbox_link_to 'Contact Us', { :url => page_path(2), :width => "600" }, :title => 'Contact Us' %></li>
+                </ul>
+                <ul class="headerTopRight">
+                    <li><%= modalbox_link_to "Show Cart", { :url => show_cart_path, :width => "600" }, :title => "Shopping Cart"  %></li>
+                    <li><%= modalbox_link_to "Save Cart", { :url => save_cart_path, :width => "600" }, :title => 'Savew Cart' %></li>
+                    <li><%= link_to_remote "Checkout", :url => new_order_path, :id => 'checkout_menu' %></li>
+                </ul>
+                <div class="headetBot"><%= link_to image_tag('logo.jpg', :alt => 'Handmade Wedding Invitation Cards'), root_path, :class => 'logo', :title => 'Handmade Wedding Cards'  %>
+                <img src="/images/card_design.jpg" alt="Card Design" /> </div>
+            </div> <!-- //header -->
+
+
+            <!-- nav -->
+            <ul id="nav">
+                <li class="active"><%= link_to '', root_path, :class => 'themes' %></li>
+                <li class="menu"><a href="#" class="format"></a></li>
+                <li class="menu"><a href="#" class="typeContent"></a></li>
+                <li class="menu"><%= link_to_remote '',  :update => "contentTop", :method => :get, :url => new_order_path, :html => {:class => "order"} %></li>
+                <li class="menu"><a href="#" class="confirmation"></a></li>
+            </ul>
+            <!-- //end nav -->
+            <div class="content">
+                <div id="contentTop" class="clearfix">
+                    <div id="flash_messages">
+                        <%= render :partial => 'layouts/flash_notices' %>
+                    </div>
+                <%= yield %> </div>
+                <!-- contentTop -->
+
+                <div class="contentBot">
+                    <div class="contentFlower"> <img src="/images/flower.png" /> </div>
+                    <div class="contentBotRight"> <img src="/images/card_design1.jpg" class="card" />
+                        <div class="contentBotRightSub"> <strong>Välj  bland följande produkter:</strong><br />
+                            <ul>
+                                <li><%= modalbox_link_to 'Inbjudan', { :url => page_path(2), :width => "600" }, :title => 'Inbjudan' %></li>
+                                <li><%= modalbox_link_to 'Mottagningskort', { :url => page_path(2), :width => "600" }, :title => 'Mottagningskort' %></li>
+                                <li><%= modalbox_link_to 'Kuvert', { :url => page_path(2), :width => "600" }, :title => 'Kuvert' %></li>
+                                <li><%= modalbox_link_to 'Placeringskort', { :url => page_path(2), :width => "600" }, :title => 'Placeringskort' %></li>
+                                <li><%= modalbox_link_to 'Svarskort', { :url => page_path(2), :width => "600" }, :title => 'Svarskort' %></li>
+                                <li><%= modalbox_link_to 'Brevpapper', { :url => page_path(2), :width => "600" }, :title => 'Brevpapper' %></li>
+                                <li><%= modalbox_link_to 'Tackkort', { :url => page_path(2), :width => "600" }, :title => 'Tackkort' %></li>
+                            </ul>
+                        </div>
+                        <div class="contentBotRightSubB"> <strong>Socialt ansvar</strong><br />
+                            <em>Handmade Wedding Invitations</em> tillhör nätverket Fair Enterprise Network som arbetar med att bygga upp och utveckla ansvarsfulla företag i fattiga länder. <br />
+                        <a href="#">» Läs mer</a> </div>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <div class="footer">
+                        <ul class="footerLeft">
+                            <li><%= link_to "Startpage", root_path %></li>
+                            <li class="separator">|</li>
+                            <li><%= modalbox_link_to 'Contact Us', { :url => page_path(2), :width => "600" }, :title => 'Contact Us' %></li>
+                            <li class="separator">|</li>
+                            <li><%= modalbox_link_to 'Shipping', { :url => page_path(2), :width => "600" }, :title => 'Shipping' %></li>
+                            <li class="separator">|</li>
+                            <li><%= modalbox_link_to 'Coockies', { :url => page_path(2), :width => "600" }, :title => 'Coockies' %></li>
+                        </ul>
+                        <div class="footerRight"> PHONE 00977-1-4700253  |  E-MAIL <a href="mailto:info@handmade-weddingcards.com">info@handmade-weddingcards.com</a><br />
+                        Copyright © Handmade Wedding Invitations 2007 </div>
+                    </div>
+                    <ul class="footerBot">
+                        <li>Wedding Cards </li>
+                        <li><a href="#">Christmas Cards</a></li>
+                        <li><a href="#">Bags &amp; Boxes</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div> <!-- //wrapper -->
+    </body>
 </html>

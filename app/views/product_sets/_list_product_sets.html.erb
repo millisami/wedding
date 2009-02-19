@@ -1,19 +1,18 @@
-
-<div class="innerContentTop">
-            	<div class="contentTitle">
-            	  <img src="/images/two.gif" />
-            	  <h5>Design</h5>
-                    Choose the design by clicking  on the images to the right.
-              </div>
-              <div class="contentTopDesigns">
-			  <% for product_set in @product_sets %>
-			<%= link_to_remote image_tag("#{product_set.image.public_filename if product_set.image}"),
-                            :update=>"innercontentBot", :method => "get", :url => product_set_products_path(product_set)  %>
-			<% end %>
-              </div>
-              <div class="topSelectDesign">
-              		<img src="/images/btn_classic.gif" />
-              </div>
+<div class="innerContentTop clearfix">
+    <div class="contentTitle">
+        <%= image_tag("two.gif") %>
+        <h5>Design</h5>
+        Choose the design by clicking  on the images to the right.
+    </div>
+    <ul class="contentTopDesigns">
+        <% for product_set in @product_sets %>
+            <li>
+                <%= link_to_remote image_tag("#{product_set.image.public_filename if product_set.image}"),
+                  :update=>"innercontentBot", :method => "get", :url => product_set_products_path(product_set)  %></li>
+            <% end %>
+    </ul>
+    <div class="topSelectDesign">
+        <%= image_tag("btn_classic.gif") %>
+    </div>
 </div> <!-- //innerContentTop -->
 
-<%= render :partial => "products/list_products_dummy", :collection => @products %>
