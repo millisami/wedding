@@ -39,6 +39,7 @@ Rails::Initializer.run do |config|
   #config.gem 'aws-s3', :lib => 'aws/s3' #use this syntax for installing gems from github.com
   config.gem 'tzinfo'
   config.gem 'activemerchant', :lib => 'active_merchant', :version => '1.4.1'
+  config.gem 'mislav-will_paginate', :version => '~> 2.2.3', :lib => 'will_paginate', :source => 'http://gems.github.com'
   #ActionView::Base.field_error_proc = Proc.new do |html_tag, instance_tag|
 	#"<span class='field_error'>#{html_tag}</span>"
   #end
