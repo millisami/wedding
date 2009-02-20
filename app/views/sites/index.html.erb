@@ -7,9 +7,9 @@ Börja med att välja det tema ni önskar; klassiskt eller modernt. Därefter ko
 <div class="contentTopRight">
   <div class="contentTopRightSub classic"> <img src="images/txt_classic.gif" class="floatright" />
     <%= link_to image_tag("img_classic.jpg", :class => 'mt'), category_product_sets_path("Classic"), :html => {:class => 'cat_image'} %>
-    <%= link_to_remote "» Se exempel", :update => 'contentTop', :url => "/categories/1/product_sets", :method => :get, :html => {:class => 'cat_text'}  %> </div>
+    <%= link_to "» Se exempel", category_product_sets_path("Classic"), :html => {:class => 'cat_text'}  %> </div>
   <div class="contentTopRightSub"> <img src="images/txt_modern.gif" />
-  <%= link_to_remote image_tag("imag_modern.jpg", :class => 'mt'), :update => 'contentTop', :url => "/categories/1/product_sets", :method => :get, :html => {:class => 'cat_image'} %>
-  <%= link_to_remote "» Se exempel", :url => "/categories/2/product_sets", :update => 'contentTop', :method => :get, :html => {:class => 'cat_text'} %> </div>
+  <%= link_to image_tag("imag_modern.jpg", :class => 'mt'), category_product_sets_path("Modern"), :html => {:class => 'cat_image'} %>
+  <%= link_to "» Se exempel", category_product_sets_path("Modern"), :html => {:class => 'cat_text'} %> </div>
 </div>
 

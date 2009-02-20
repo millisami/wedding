@@ -12,9 +12,6 @@
                         <%= hidden_field_tag('id', product.id) %>
                         <%= text_field_tag("quantity") %><span class="txtgrey"><%= product.price %>/pcs</span>
                     </div>
-                    <!-- <div class="addCart"><%= link_to_function "Add to cart", update_page { |page|
-            page["form#{x+1}"].submit
-        } %></div> -->
     <%- end -%>
 
     <%= observe_form "form#{x+1}", :url => add_to_cart_site_path(product), :on => 'changed' %>
