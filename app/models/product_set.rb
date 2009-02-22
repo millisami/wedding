@@ -17,6 +17,6 @@ class ProductSet < ActiveRecord::Base
 	
 	validates_presence_of :name, :message => 'ProductSet name cannot be blank'
 	validates_length_of :name, :within => 3..255
-	has_friendly_id :name, :use_slug => true
+	#has_friendly_id :name, :use_slug => true
 	
 end
