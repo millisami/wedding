@@ -18,6 +18,8 @@ class PdfTemplatesController < ApplicationController
 
     def show
         @product_details = Product.find(params[:id])
+        #PUT THIS PRODUCT ID IN THE SESSINO AS NEW_PRODUCT_ID_IN_SESSION
+        
         template(@product_details.document.path)
       
         text(:user_id, 13)
@@ -29,25 +31,54 @@ class PdfTemplatesController < ApplicationController
             :disposition => 'inline',
             :status => "200 OK"
         }
-        send_file(@tmp_path, send_file_options) and return
+        if RAILS_ENV == "production"
+            send_file(@tmp_path, send_file_options, :x_sendfile => true) and return
+        else
+            send_file(@tmp_path, send_file_options) and return
+        end
     end
 
     def preview
         @product_details = Product.find(params[:id])
+        reloaded_hash = @cart.get_pdf_data(@product_details.id)
         template(@product_details.document.path)
-        @reloaded_hash = case @product_details.document_permalink
-            when "response_template"
-            
+#        reloaded_hash = case @product_details.document_file_name
+#            when "response_template.pdf"
+#                @file
+#            when "name_template.pdf"
+#            else
+#
+#        end
+        text(:response, reloaded_hash[:response])
+        text(:bodytext, reloaded_hash[:bodytext])
+        text(:RadioButtonList, reloaded_hash[:RadioButtonList])
+        text(:changefonts, reloaded_hash[:changefonts])
+        @pdf_stamper.close
+        send_file_options = {
+            :type => 'application/pdf', #@product_details.document.content_type,
+            #:length => @product_details.document.size,
+            :disposition => 'inline',
+            :status => "200 OK"
+        }
+        if RAILS_ENV == "production"
+            send_file(@tmp_path, send_file_options, :x_sendfile => true) and return
+        else
+            send_file(@tmp_path, send_file_options) and return
         end
-        text(:response)
-        text(:bodytext, "Modified the text by sachin sagar")
+
     end
 
     def parse
-        @cart.add_pdf_data(params)
+        #THE INCOMING PARAMS IS OF THE PRODUCT IN THE SESSION CART
+        #@cart.add_pdf_data(params)
         respond_to do |format|
             format.html do
-                render :text => "PDF Data added"
+                render :text => request.raw_post
+                # # Create a new file and write to it
+                 File.open("#{RAILS_ROOT}/tmp/pdf.xml", 'w') do |f2|
+                   # use "\n" for two lines of text
+                   f2.puts request.raw_post
+                 end
             end
 		end
     end

@@ -28,7 +28,8 @@ ActionController::Routing::Routes.draw do |map|
   
   map.pdf_show '/pdf_show/:id', :controller => 'pdf_templates', :action => 'show'
   map.pdf_parse '/pdf_parse', :controller => 'pdf_templates', :action => 'parse'
-  map.pdf_show '/pdf_preview/:id', :controller => 'pdf_templates', :action => 'preview'
+  map.pdf_parse '/parser', :controller => 'pdf_templates', :action => 'parse'
+  map.pdf_preview '/pdf_preview/:id', :controller => 'pdf_templates', :action => 'preview'
 
   map.resources :sites, :member => {
     :add_to_cart => :post,

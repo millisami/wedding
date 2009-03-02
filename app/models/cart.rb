@@ -7,7 +7,7 @@ class Cart
 	end
 
     def add_pdf_data(pdf_data)
-        product_id = pdf_data[:product_id]
+        product_id = pdf_data[:product_id].to_i
         debugger
         existing_item = @items.find {|item|item.product_id == product_id}
         debugger
@@ -15,6 +15,11 @@ class Cart
             existing_item.pdf_data = pdf_data
         end
         debugger
+    end
+
+    def get_pdf_data(product_id)
+        existing_item = @items.find {|item|item.product_id == product_id}
+        existing_item.pdf_data if existing_item
     end
 
 	def add_product(product, quantity)

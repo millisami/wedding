@@ -6,7 +6,7 @@
         <% @products.each_with_index do |product,x| %>
             <div class="contentDesignSub<%= x + 1%>">
                 <% form_remote_tag(:url => add_to_cart_site_path(product), :html => { :id => "form#{x+1}", :name => "form#{x+1}" }) do -%>
-                    <%= link_to image_tag("#{product.image.public_filename if product.image}", :alt => product.name), (product.document.url if product.document), :class => 'img'  %>
+                    <%= link_to image_tag("#{product.image.public_filename if product.image}", :alt => product.name), (pdf_show_path(product.id)), :class => 'img'  %>
                     <div class="contentDesignSubBot<%= x + 1%>">
                         <%=h product.name %><br/>
                         <%= hidden_field_tag('id', product.id) %>
