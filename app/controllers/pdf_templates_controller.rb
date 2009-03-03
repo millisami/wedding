@@ -70,15 +70,20 @@ class PdfTemplatesController < ApplicationController
 
     def parse
         #THE INCOMING PARAMS IS OF THE PRODUCT IN THE SESSION CART
-        #@cart.add_pdf_data(params)
+        
+        @cart.add_pdf_xml_data(request.raw_post)
         respond_to do |format|
             format.html do
-                render :text => request.raw_post
-                # # Create a new file and write to it
+                render :text => "pdf data parsed and added"
+                #Create a new file and write to it
                  File.open("#{RAILS_ROOT}/tmp/pdf.xml", 'w') do |f2|
                    # use "\n" for two lines of text
                    f2.puts request.raw_post
                  end
+                 #TODO
+                 #Instead of writing to .xml file, serialize the contents of the xml data and
+                 #save to the session cart corresponding to product_id in the current cart
+                 
             end
 		end
     end

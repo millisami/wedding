@@ -6,20 +6,23 @@ class Cart
 		empty_all_items
 	end
 
-    def add_pdf_data(pdf_data)
-        product_id = pdf_data[:product_id].to_i
+    def add_pdf_xml_data(xml_data)
+        doc = Hpricot.XML(xml_data)
+        
+        product_id = (doc/:product_id).inner_html.to_i
+
         debugger
         existing_item = @items.find {|item|item.product_id == product_id}
         debugger
         if existing_item
-            existing_item.pdf_data = pdf_data
+            existing_item.pdf_xml_data = xml_data
         end
         debugger
     end
 
     def get_pdf_data(product_id)
         existing_item = @items.find {|item|item.product_id == product_id}
-        existing_item.pdf_data if existing_item
+        existing_item.pdf_xml_data if existing_item
     end
 
 	def add_product(product, quantity)
