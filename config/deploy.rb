@@ -185,7 +185,14 @@ set :application, "weddingcards"
 	    run "mkdir -p #{shared_path}/uploads/documents"
 	    run "ln -nsf #{shared_path}/uploads/documents #{release_path}/public/documents"
 	 end
-    end
+
+	 if File.exists?("#{shared_path}/uploads/pdf_xml_files")
+	    run "ln -nsf #{shared_path}/uploads/pdf_xml_files #{release_path}/public/pdf_xml_files"
+	else
+	    run "mkdir -p #{shared_path}/uploads/pdf_xml_files"
+	    run "ln -nsf #{shared_path}/uploads/pdf_xml_files #{release_path}/public/pdf_xml_files"
+	 end
+     end
 
     ##http://archive.jvoorhis.com/articles/2006/07/07/managing-database-yml-with-capistrano
      desc "Create database.yml in shared/config"
