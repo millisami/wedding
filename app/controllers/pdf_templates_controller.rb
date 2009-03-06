@@ -40,31 +40,47 @@ class PdfTemplatesController < ApplicationController
 
     def preview
         @product_details = Product.find(params[:id])
-        reloaded_hash = @cart.get_pdf_data(@product_details.id)
-        template(@product_details.document.path)
-#        reloaded_hash = case @product_details.document_file_name
-#            when "response_template.pdf"
-#                @file
-#            when "name_template.pdf"
-#            else
+        xml_data = @cart.get_pdf_xml_data(@product_details.id)
+        @xml_file = "#{RAILS_ROOT}/tmp/#{session.session_id}-#{@product_details.id}-pdf.xml"
+        @output_file_first = "#{RAILS_ROOT}/tmp/#{session.session_id}-#{@product_details.id}-first-output.pdf"
+        File.open(@xml_file, 'w') do |f|
+           # use "\n" for two lines of text
+           f.puts xml_data
+         end
+
+        #system('cmd.exe /c rake')
+        sys_command = "cmd.exe /c #{RAILS_ROOT}/lib/Pravat.exe -i=#{@product_details.document.path} -x=#{@xml_file} -d=#{@output_file_first}"
+        debugger
+        system(sys_command)
+
+        debugger
+
+        #re-render but without the <RadioButtonList> and <changefonts> omitted
+        xml_data = @cart.get_pdf_xml_data_stripped(@product_details.id)
+        @xml_file = "#{RAILS_ROOT}/tmp/#{session.session_id}-#{@product_details.id}-pdf.xml"
+        @output_file = "#{RAILS_ROOT}/tmp/#{session.session_id}-#{@product_details.id}-output.pdf"
+        File.open(@xml_file, 'w') do |f|
+           # use "\n" for two lines of text
+           f.puts xml_data
+         end
+
+        sys_command = "cmd.exe /c #{RAILS_ROOT}/lib/Pravat.exe -i=#{@output_file_first} -x=#{@xml_file} -d=#{@output_file}"
+        system(sys_command)
+        
+        render :text => "Preview done"
+#        return
 #
+#        send_file_options = {
+#            :type => 'application/pdf', #@product_details.document.content_type,
+#            #:length => @product_details.document.size,
+#            :disposition => 'inline',
+#            :status => "200 OK"
+#        }
+#        if RAILS_ENV == "production"
+#            send_file(@tmp_path, send_file_options, :x_sendfile => true) and return
+#        else
+#            send_file(@tmp_path, send_file_options) and return
 #        end
-        text(:response, reloaded_hash[:response])
-        text(:bodytext, reloaded_hash[:bodytext])
-        text(:RadioButtonList, reloaded_hash[:RadioButtonList])
-        text(:changefonts, reloaded_hash[:changefonts])
-        @pdf_stamper.close
-        send_file_options = {
-            :type => 'application/pdf', #@product_details.document.content_type,
-            #:length => @product_details.document.size,
-            :disposition => 'inline',
-            :status => "200 OK"
-        }
-        if RAILS_ENV == "production"
-            send_file(@tmp_path, send_file_options, :x_sendfile => true) and return
-        else
-            send_file(@tmp_path, send_file_options) and return
-        end
 
     end
 
@@ -75,15 +91,6 @@ class PdfTemplatesController < ApplicationController
         respond_to do |format|
             format.html do
                 render :text => "pdf data parsed and added"
-                #Create a new file and write to it
-                 File.open("#{RAILS_ROOT}/tmp/pdf.xml", 'w') do |f2|
-                   # use "\n" for two lines of text
-                   f2.puts request.raw_post
-                 end
-                 #TODO
-                 #Instead of writing to .xml file, serialize the contents of the xml data and
-                 #save to the session cart corresponding to product_id in the current cart
-                 
             end
 		end
     end

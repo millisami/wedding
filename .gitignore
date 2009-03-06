@@ -2,6 +2,7 @@ log/*.log
 tmp/*
 public/documents/**/*
 public/records/**/*
+public/pdf_xml_files/**/*
 nbproject/
 config/database.yml
 .DS_Store
