@@ -230,6 +230,8 @@ set :application, "weddingcards"
        run "ln -nsf #{shared_path}/uploads/records #{release_path}/public/records"
        run "rm -rf  #{current_path}/public/documents"
        run "ln -nsf #{shared_path}/uploads/documents #{release_path}/public/documents"
+       run "rm -rf  #{current_path}/public/pdf_xml_files"
+       run "ln -nsf #{shared_path}/uploads/pdf_xml_files #{release_path}/public/pdf_xml_files"
      end
      
     desc "Restarting mod_rails with restart.txt"

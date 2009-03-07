@@ -10,6 +10,7 @@ class Cart
         doc = Hpricot.XML(xml_data)
         product_id = (doc/:product_id).inner_html.to_i
         existing_item = @items.find {|item|item.product_id == product_id}
+        debugger
 
         if existing_item
             @xml_file = "#{RAILS_ROOT}/public/pdf_xml_files/#{session.session_id}-#{existing_item.id}-pdf.xml"
@@ -19,12 +20,14 @@ class Cart
             end
 
             existing_item.pdf_xml_data = @xml_file
+            debugger
         end
     end
 
     def get_pdf_xml_data(product_id)
         existing_item = @items.find {|item|item.product_id == product_id}
-        File.read(existing_item.pdf_xml_data) if existing_item
+        data = File.read(existing_item.pdf_xml_data) if existing_item
+        return data
     end
 
     def get_pdf_xml_data_stripped(product_id)
