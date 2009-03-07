@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090303052830) do
+ActiveRecord::Schema.define(:version => 20090307162335) do
 
   create_table "carts", :force => true do |t|
     t.datetime "created_at"
@@ -131,6 +131,9 @@ ActiveRecord::Schema.define(:version => 20090303052830) do
     t.string   "document_content_type"
     t.string   "document_file_size"
     t.float    "weight",                                              :default => 1000.0
+    t.string   "pdf_xml_file_name"
+    t.string   "pdf_xml_content_type"
+    t.string   "pdf_xml_file_size"
   end
 
   create_table "roles", :force => true do |t|

@@ -20,7 +20,8 @@ class Product < ActiveRecord::Base
 	belongs_to :product_set
 	has_many :line_items
 	has_attached_file :document
-	
+	has_attached_file :pdf_xml
+    
 	validates_presence_of :name
 	validates_numericality_of :price
 	#validates_uniqueness_of :name

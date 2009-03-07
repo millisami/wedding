@@ -2,7 +2,7 @@ log/*.log
 tmp/*
 public/documents/**/*
 public/records/**/*
-public/pdf_xml_files/**/*
+public/pdf_xmls/**/*
 public/pdf_xml_templates/**/*
 nbproject/
 config/database.yml
