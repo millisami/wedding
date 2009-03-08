@@ -1,36 +1,36 @@
-  <p>
+<p>
     <b>Name</b><br />
     <%= f.text_field :name %>
-  </p>
+</p>
 
 <p>
-	<b>Product Set</b><br />
-	<%#= select('product', 'product_set_id', [['choose one', '']] + @product_sets.collect {|pset| [pset.name, pset.id]}) %>
-	<%= f.collection_select(:product_set_id, ProductSet.find(:all), :id, :name, {:prompt => true}) %>
+    <b>Product Set</b><br />
+    <%#= select('product', 'product_set_id', [['choose one', '']] + @product_sets.collect {|pset| [pset.name, pset.id]}) %>
+    <%= f.collection_select(:product_set_id, ProductSet.find(:all), :id, :name, {:prompt => true}) %>
 
 </p>  
 <p>
     <b>Default Quantity</b><br />
     <%= f.text_field :default_qty %>
-  </p>
- 
+</p>
+
 <p>
     <b>Price</b>(SEK)<br />
     <%= f.text_field :price %>
-  </p>
+</p>
 <p>
     <b>Weight</b>(for 100 pcs in kilogram)<br />
     <%= f.text_field :weight %>
-  </p>
-  <p>
-  <b>Product Image</b><br />
+</p>
+<p>
+    <b>Product Image</b><br />
     <%= f.file_field :uploaded_data %>
-  </p>
-  <p>
+</p>
+<p>
     <b>PDF Template File</b><br />
-	<%= f.file_field :document%>
-  </p>
-    <p>
+    <%= f.file_field :document%>
+</p>
+<p>
     <b>PDF Template XML File</b><br />
-	<%= f.file_field :pdf_xml%>
-  </p>
+    <%= f.file_field :pdf_xml%>
+</p>

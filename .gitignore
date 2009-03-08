@@ -3,9 +3,9 @@ tmp/*
 public/documents/**/*
 public/records/**/*
 public/pdf_xmls/**/*
-public/pdf_xml_templates/**/*
 nbproject/
 config/database.yml
+config/app_config.yml
 .DS_Store
 doc/
 RoRED.cfg
