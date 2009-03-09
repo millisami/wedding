@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   
   # don't show passwords in logs
   filter_parameter_logging 'password'
-  filter_parameter_logging :card_number, :card_verification_value
+  filter_parameter_logging :card_number, :card_verification_value, :form1
 
   #include FaceboxRender
 

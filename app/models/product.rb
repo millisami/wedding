@@ -24,7 +24,10 @@ class Product < ActiveRecord::Base
     
 	validates_presence_of :name
 	validates_numericality_of :price
-	#validates_uniqueness_of :name
+
+	validates_attachment_presence :document
+    #validates_attachment_content_type :document, :content_type => [ 'application/mp3', 'application/x-mp3' ]
+    validates_attachment_size :document, :less_than => 10.megabytes
 
     protected
     def validate

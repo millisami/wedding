@@ -40,6 +40,8 @@ Rails::Initializer.run do |config|
   config.gem 'tzinfo'
   config.gem 'activemerchant', :lib => 'active_merchant', :version => '1.4.1'
   config.gem 'mislav-will_paginate', :version => '~> 2.2.3', :lib => 'will_paginate', :source => 'http://gems.github.com'
+  config.gem 'libxml-ruby', :version => '>= 1.0.0', :lib => 'libxml'
+
   #TODO
   #Add hpricot cnfig.gem used at pdf_templates/cart.rb model controller
   config.gem 'hpricot'
