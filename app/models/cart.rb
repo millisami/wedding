@@ -26,17 +26,25 @@ class Cart
 
     def get_pdf_xml_data(product_id)
         existing_item = @items.find {|item|item.product_id == product_id}
-        data = File.read(existing_item.pdf_xml_data) if existing_item
-        return data
+        doc = Hpricot.XML(File.read(existing_item.pdf_xml_data)) if existing_item
+        (doc/"RadioButtonList").remove
+        (doc/"changefonts").remove
+        return doc
     end
 
     def get_pdf_xml_data_stripped(product_id)
         existing_item = @items.find {|item|item.product_id == product_id}
         if existing_item && existing_item.pdf_xml_data
             doc = Hpricot.XML(File.read(existing_item.pdf_xml_data))
-            (doc/"RadioButtonList").remove
-            (doc/"changefonts").remove
-            return doc
+
+            doc2 = XML::Document.new
+            doc2.root = XML::Node.new('form1')
+            doc2.root << changefonts = XML::Node.new('changefonts')
+            changefonts.content = (doc/"changefonts").inner_html
+            doc2.root << radio_button_list = XML::Node.new('RadioButtonList')
+            radio_button_list.content = (doc/"RadioButtonList").inner_html
+            
+            return doc2
         end
     end
 
