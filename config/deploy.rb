@@ -223,6 +223,7 @@ namespace :deploy do
       database: #{application}_production
       <<: *login
         EOF
+        
         app_configuration =<<-APPCONFIG
         development:
   paypal_email: handma_1232606255_biz@gmail.com

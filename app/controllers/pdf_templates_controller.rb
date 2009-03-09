@@ -15,8 +15,13 @@ class PdfTemplatesController < ApplicationController
             f.puts doc
          end
 
+        if RAILS_ENV == "production"
+            sys_command = "mono "
+        else
+            sys_command = "cmd.exe /c "
+        end
         
-        sys_command = "cmd.exe /c #{RAILS_ROOT}/lib/Pravat.exe -i=#{@product_details.document.path} -x=#{@xml_file} -d=#{@output_pdf_file}"
+        sys_command << "#{RAILS_ROOT}/lib/Pravat.exe -i=#{@product_details.document.path} -x=#{@xml_file} -d=#{@output_pdf_file}"
         #debugger
         system(sys_command)
 
@@ -46,8 +51,12 @@ class PdfTemplatesController < ApplicationController
          end
 
         #system('cmd.exe /c rake')
-        sys_command = "cmd.exe /c #{RAILS_ROOT}/lib/Pravat.exe -i=#{@product_details.document.path} -x=#{@xml_file} -d=#{@output_file_first}"
-        #debugger
+        if RAILS_ENV == "production"
+            sys_command = "mono "
+        else
+            sys_command = "cmd.exe /c "
+        end
+        sys_command << "#{RAILS_ROOT}/lib/Pravat.exe -i=#{@product_details.document.path} -x=#{@xml_file} -d=#{@output_file_first}"
         system(sys_command)
 
         #debugger
@@ -60,7 +69,12 @@ class PdfTemplatesController < ApplicationController
            f.puts xml_data
          end
         debugger
-        sys_command = "cmd.exe /c #{RAILS_ROOT}/lib/Pravat.exe -i=#{@output_file_first} -x=#{@xml_file} -d=#{@output_file}"
+        if RAILS_ENV == "production"
+            sys_command = "mono "
+        else
+            sys_command = "cmd.exe /c "
+        end
+        sys_command << "#{RAILS_ROOT}/lib/Pravat.exe -i=#{@output_file_first} -x=#{@xml_file} -d=#{@output_file}"
         system(sys_command)
         
 #        render :text => "Preview done"
