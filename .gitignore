@@ -3,7 +3,7 @@ tmp/*
 public/documents/**/*
 public/records/**/*
 public/pdf_xmls/**/*
-public/pdf_xml_files/**/*
+public/pdf_xml_files/*
 nbproject/
 config/database.yml
 config/app_config.yml
