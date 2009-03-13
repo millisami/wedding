@@ -225,7 +225,7 @@ namespace :deploy do
         EOF
         
         app_configuration =<<-APPCONFIG
-        development:
+development:
   paypal_email: handma_1232606255_biz@gmail.com
   paypal_secret: foobar
   paypal_cert_id: WKKX2FSCFDB8C
