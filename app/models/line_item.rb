@@ -20,6 +20,7 @@ class LineItem < ActiveRecord::Base
 		line_item.product = product
 		line_item.quantity = quantity
 		line_item.price = product.price
+        line_item.weight = product.weight
         line_item.pdf_xml_data = nil
 		return line_item
 	end
