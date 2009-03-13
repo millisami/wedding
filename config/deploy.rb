@@ -170,6 +170,7 @@ end #end of slicehost namespace
  
 namespace :deploy do
     desc "Creating and Symlink the upload directories"
+    ##http://groups.google.com/group/capistrano/browse_thread/thread/66a21c5a10206c6a
     task :create_upload_symlink do
 
         if File.directory?("#{shared_path}/uploads/records")
@@ -278,4 +279,5 @@ APPCONFIG
     end
 end #deploy namespace end
 
+after 'deploy:update_code', 'deploy:create_upload_symlink'
 after 'deploy:update_code', 'deploy:symlink_shared'
