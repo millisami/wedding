@@ -29,6 +29,12 @@ a.addToCartBtn img {
      padding:15px;
      text-align:center;
 }
+span.customized {
+    position: relative;
+    top: 140px;
+    left: 0px;
+    color: #E48205;
+}
 .clearfix:after {
 content:".";
 display:block;
