@@ -172,27 +172,27 @@ namespace :deploy do
     desc "Creating and Symlink the upload directories"
     task :create_upload_symlink do
 
-        if File.exists?("#{shared_path}/uploads/records")
+        if File.directory?("#{shared_path}/uploads/records")
             run "ln -nsf #{shared_path}/uploads/records #{release_path}/public/records"
         else
             run "mkdir -p #{shared_path}/uploads/records"
             run "ln -nsf #{shared_path}/uploads/records #{release_path}/public/records"
         end
 	 
-        if File.exists?("#{shared_path}/uploads/documents")
+        if File.directory?("#{shared_path}/uploads/documents")
             run "ln -nsf #{shared_path}/uploads/documents #{release_path}/public/documents"
         else
             run "mkdir -p #{shared_path}/uploads/documents"
             run "ln -nsf #{shared_path}/uploads/documents #{release_path}/public/documents"
         end
 
-        if File.exists?("#{shared_path}/uploads/pdf_xml_files")
+        if File.directory?("#{shared_path}/uploads/pdf_xml_files")
             run "ln -nsf #{shared_path}/uploads/pdf_xml_files #{release_path}/public/pdf_xml_files"
         else
             run "mkdir -p #{shared_path}/uploads/pdf_xml_files"
             run "ln -nsf #{shared_path}/uploads/pdf_xml_files #{release_path}/public/pdf_xml_files"
         end
-        if File.exists?("#{shared_path}/uploads/pdf_xmls")
+        if File.directory?("#{shared_path}/uploads/pdf_xmls")
             run "ln -nsf #{shared_path}/uploads/pdf_xmls #{release_path}/public/pdf_xmls"
         else
             run "mkdir -p #{shared_path}/uploads/pdf_xmls"
