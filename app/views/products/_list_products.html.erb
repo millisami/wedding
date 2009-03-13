@@ -11,7 +11,7 @@
                     <div class="contentDesignSubBot<%= x + 1%>">
                         <%=h product.name %><br/>
                         <%= hidden_field_tag('id', product.id) %>
-                        <%= text_field_tag("quantity") %><span class="txtgrey"><%= product.price %>/pcs</span>
+                        <%= text_field_tag("quantity", @cart.get_quantity(product.id)) %><span class="txtgrey"><%= product.price %>/pcs</span>
                     </div>
     <%- end -%>
 

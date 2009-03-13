@@ -5,6 +5,14 @@ class Cart
 	def initialize
 		empty_all_items
 	end
+    def get_quantity(product_id)
+        existing_item = @items.find {|item|item.product_id == product_id}
+        if existing_item
+            return existing_item.quantity
+        else
+            return ""
+        end
+    end
     def is_pdf_customized(product_id)
         existing_item = @items.find {|item|item.product_id == product_id}
         if existing_item && existing_item.pdf_xml_data
