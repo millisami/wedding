@@ -279,5 +279,5 @@ APPCONFIG
     end
 end #deploy namespace end
 
-after 'deploy:update_code', 'deploy:create_upload_symlink'
+#after 'deploy:update_code', 'deploy:create_upload_symlink'
 after 'deploy:update_code', 'deploy:symlink_shared'
