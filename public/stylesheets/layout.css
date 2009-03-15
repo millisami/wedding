@@ -551,6 +551,8 @@ border:2px solid #c2b19d;
 }
 .btnPrev a, .btnNext a {
     text-indent: -999em;
+    border: 0px;
+    outline: 0px;
 }
 .btnNext1 {
     margin-left:10px;

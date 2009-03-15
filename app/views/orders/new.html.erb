@@ -8,13 +8,15 @@
     <h5>Order <br/>Summary</h5>
   </div>
   <div class="contentTitleSelect">
-    <%= select_tag(:exchange_rate, "<option>Currency</option>" + options_from_collection_for_select(@exchange_rate, :currency, :currency, session[:exchange_currency])) %>
+<!--
+<%= select_tag(:exchange_rate, "<option>Currency</option>" + options_from_collection_for_select(@exchange_rate, :currency, :currency, session[:exchange_currency])) %>
     <%= observe_field  'exchange_rate',
                                                 :url => change_currency_site_path(2),
                                                 :method => :put,
                                                 :on => 'change',
                                                 :with => 'exchange_rate'
                         %>
+   -->
   </div>
 </div> <!-- //innerContentTop -->
 
