@@ -549,6 +549,9 @@ border:2px solid #c2b19d;
 .btnPrev, .btnNext {
     margin:42px 0 0 0px;
 }
+.btnPrev a, .btnNext a {
+    text-indent: -999em;
+}
 .btnNext1 {
     margin-left:10px;
 }
