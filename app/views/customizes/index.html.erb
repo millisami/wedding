@@ -1,0 +1,13 @@
+<% title "Customizes" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for customize in @customizes %>
+    <tr>
+      <td><%=h customize.name %></td>
+    </tr>
+  <% end %>
+</table>
+

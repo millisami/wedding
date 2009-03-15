@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :customizes
+
 
   def map.controller_actions(controller, actions)
     actions.each do |action|
