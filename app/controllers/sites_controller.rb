@@ -97,6 +97,19 @@ class SitesController < ApplicationController
 	end
 
     def tax_delivery_cost
+        @total_quantity = 0
+        @cart.items.each do |item|
+            @total_quantity += item.quantity.to_i
+        end
+        #weight in kilo-gram
+        @total_weight = (@total_quantity.to_f / 100)
+        #weight in grams
+        #@total_weight = (@total_quantity.to_f / 100) * 1000
+
+        @shipping_rate = ShippingRate.shipping_total(@total_weight)
+        @tax_delivery_cost = @shipping_rate[0].rate_euro.to_s
+        #@shipping_rate = ShippingRate.find_by_sql("select rate_euro as shipping_cost from shipping_rates where weight >= #{@total_weight} limit 1")
+
         respond_to do |format|
             format.html {render :layout => false}
         end
