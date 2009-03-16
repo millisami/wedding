@@ -32,13 +32,10 @@
                 <img src="/images/card_design.jpg" alt="Card Design" /> </div>
             </div> <!-- //header -->
             <!-- nav -->
-            <ul id="nav">
-                <li class="active"><%= link_to '', root_path, :class => 'themes' %></li>
-                <li class="menu"><a href="#" class="format"></a></li>
-                <li class="menu"><a href="#" class="typeContent"></a></li>
-                <li class="menu"><%= link_to_remote '',  :update => "contentTop", :method => :get, :url => new_order_path, :html => {:class => "order"} %></li>
-                <li class="menu"><a href="#" class="confirmation"></a></li>
-            </ul>
+            <%= render :partial => "sites/menu" if  controller.controller_name == "sites" %>
+            <%= render :partial => "product_sets/menu" if  controller.controller_name == "product_sets" %>
+            <%= render :partial => "customizes/menu" if  controller.controller_name == "customizes" %>
+            <%= render :partial => "orders/menu" if  controller.controller_name == "orders" %>
             <!-- //end nav -->
             <div class="content">
                 <div id="contentTop" class="clearfix">

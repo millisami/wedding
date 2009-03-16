@@ -165,7 +165,7 @@ a img {
     width:156px;
     height:36px;
     display:block;
-    background:url(../images/txt_format-products-current.gif) no-repeat left;
+    background:url(../images/txt_type-content-current.gif) no-repeat left;
     cursor:default;
 }
 
@@ -533,7 +533,7 @@ border:2px solid #c2b19d;
     padding-left:4px;
 }
 .contentBotMenu li.tax {
-    margin:0 55px 0 4px;
+    margin:0 40px 0 4px;
 }
 .contentBotMenu li.fr {
     float:right;
