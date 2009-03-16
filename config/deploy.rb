@@ -167,7 +167,12 @@ end #end of slicehost namespace
 #############################################################
 # Deploy for Passenger
 #############################################################
- 
+namespace :gems do
+  desc "Install gems"
+  task :install, :roles => :app do
+    run "cd #{current_path} && #{sudo} rake RAILS_ENV=production gems:install"
+  end
+end
 namespace :deploy do
     desc "Creating and Symlink the upload directories"
     ##http://groups.google.com/group/capistrano/browse_thread/thread/66a21c5a10206c6a
