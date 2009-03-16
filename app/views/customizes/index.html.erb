@@ -1,13 +1,22 @@
-<% title "Customizes" %>
+<div class="innerContentTop clearfix">
+  <div class="contentTitleln">
+    <%= image_tag 'three.gif', :alt => 'Step Three' %> <br/>
+    <h5>Customize</h5>
+  </div>
+</div> <!-- //innerContentTop -->
 
-<table>
-  <tr>
-    <th>Name</th>
-  </tr>
-  <% for customize in @customizes %>
-    <tr>
-      <td><%=h customize.name %></td>
-    </tr>
-  <% end %>
-</table>
+<div id="innercontentBotWrapper" class="clearfix">
+    <div id="innercontentBot" class="clearfix">
+        <% for item in @cart.items -%>
 
+    <%= render :partial => 'sites/cart_item', :locals => { :item => item } %>
+
+<% end -%>
+<div class="btnSubmit">
+    <ul class="btns">
+        <li class="prev"><%= link_to "", root_path %></li>
+        <li class="next btnNext1"><%= link_to "", new_order_path  %></li>
+    </ul>
+</div>
+    </div> <!-- //innercontentBot -->
+</div> <!-- //innercontentBotWrapper -->
