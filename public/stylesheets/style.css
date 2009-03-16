@@ -35,6 +35,22 @@ span.customized {
     left: 0px;
     color: #E48205;
 }
+
+div.cart_item {
+	float: left;
+	padding: 5px;
+}
+div.cart_item span.customized {
+    position: relative;
+    top: -50px;
+    left: -90px;
+    color: #E48205;
+	font-size: 1.2em;
+}
+div.cart_item h3 {
+	font-size: 1.3em;
+	border-bottom: 1px solid #666666;
+}
 .clearfix:after {
 content:".";
 display:block;

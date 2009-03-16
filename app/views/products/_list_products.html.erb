@@ -36,12 +36,12 @@
     </ul>
     <ul class="btns">
         <li class="prev btnPrev"><%= link_to "Previous", root_path %></li>
-        <li class="next btnNext btnNext1"><%= link_to "Next", new_order_path  %> </li>
+        <li class="next btnNext btnNext1"><%= link_to "Next", customizes_path  %></li>
     </ul>
 </div>
 <!-- //end innercontentBot -->
 <%#=  javascript_tag "set_navigation(2)" %>
 <% javascript_tag do %>
-    set_navigation(2);
+    //set_navigation(2);
     //new PeriodicalExecuter(function() {new Ajax.Updater({success:'invoice',failure:'error'}, '/testing/invoice/16', {asynchronous:true, evalScripts:true})}, 10)
 <% end %>
