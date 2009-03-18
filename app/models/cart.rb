@@ -13,6 +13,7 @@ class Cart
             return ""
         end
     end
+
     def is_pdf_customized(product_id)
         existing_item = @items.find {|item|item.product_id == product_id}
         if existing_item && existing_item.pdf_xml_data
@@ -21,6 +22,16 @@ class Cart
             return false
         end
     end
+
+    def needs_customization(product_id)
+        existing_item = @items.find {|item|item.product_id == product_id}
+        if existing_item && existing_item.pdf_xml_data.blank?
+            return true
+        else
+            return false
+        end
+    end
+
     def add_pdf_xml_data(xml_data, session_id)
         doc = Hpricot.XML(xml_data)
         product_id = (doc/"product_id").inner_html.to_i

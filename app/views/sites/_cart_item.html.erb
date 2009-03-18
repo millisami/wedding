@@ -3,6 +3,7 @@
         <h3><%= h(item.product.name) %></h3>
         <%= link_to image_tag("#{item.product.image.public_filename}", :alt => item.product.name), (pdf_show_path(item.product.id)), :class => 'img'  %>
         <% if @cart.is_pdf_customized(item.product.id) %><span class="customized">Customized</span><% end %>
+        <% if @cart.needs_customization(item.product.id) %><span class="customized">Click to customize</span><% end %>
         <p>Quantity: <%= item.quantity %></p>
         <p>Price: <%= show_price(item.price) %></p>
         <span><%= link_to_remote 'Remove', :url => remove_from_cart_site_path(:id => item.product_id),
