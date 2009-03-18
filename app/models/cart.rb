@@ -14,6 +14,15 @@ class Cart
         end
     end
 
+    def can_order
+        @items.each do |item|
+            if item.pdf_xml_data.blank?
+                return false
+            end
+        end
+        return true
+    end
+
     def is_pdf_customized(product_id)
         existing_item = @items.find {|item|item.product_id == product_id}
         if existing_item && existing_item.pdf_xml_data

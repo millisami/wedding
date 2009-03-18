@@ -25,10 +25,15 @@ class OrdersController < ApplicationController
   # GET /orders/new
   # GET /orders/new.xml
   def new
+    if @cart.can_order
     @order = Order.new
     #@customer = Customer.new
     respond_to do |format|
       format.html #{ render :layout => false }
+    end
+    else
+        flash[:notice] = "You've not customized all the cart items. You need to customize all the items to place an order"
+        redirect_to(customizes_url)
     end
   end
 
