@@ -51,6 +51,24 @@ div.cart_item h3 {
 	font-size: 1.3em;
 	border-bottom: 1px solid #666666;
 }
+
+/*
+Width classes used by the site columns
+---------------------------------------------------*/
+.width100 {width: 100%;}
+.width75 {width: 74%;}
+.width50 {width: 49.7%;}
+.width33 {width: 32.7%;}
+.width25 {width: 24.7%;}
+
+/*
+Alignment classes
+--------------------------------*/
+.floatLeft {float: left;}
+.floatRight {float: right;}
+.alignLeft {text-align: left;}
+.alignRight {text-align: right;}
+
 .clearfix:after {
 content:".";
 display:block;
