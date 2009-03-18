@@ -71,7 +71,6 @@ class Order < ActiveRecord::Base
   end
 
   def paypal_url(return_url, notify_url, order_id)
-    values = {
       #Seller Password: 232606200
       #Seller ID: handma_1232606255_biz@gmail.com
 
@@ -79,6 +78,7 @@ class Order < ActiveRecord::Base
       #Buyer ID:buyer_1232549492_per@gmail.com
       #Test CC Number 4628438176984728
       #CVC Use any 3 digits like 123
+      values = {
       :business => APP_CONFIG[:paypal_email],
       :cmd => '_cart',
       :upload => 1,
@@ -138,6 +138,11 @@ class Order < ActiveRecord::Base
         self.update_attribute(:status, 'failed')
       end
     end
+  end
+
+  def process_with_invoice
+      self.update_attribute(:purchased_at, Time.now)
+      self.update_attribute(:status, 'processed')
   end
 
   def price_in_cents

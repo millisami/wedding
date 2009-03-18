@@ -49,6 +49,8 @@ class OrdersController < ApplicationController
           
 if @order.payment_type.eql?( "Paypal")
           redirect_to(@order.paypal_url(root_url, payment_notifications_url, @order.id))
+elsif @order.payment_type.eql?("Invoice")
+    redirect_to(confirmation_url)
 end
           #debugger
           if @order.process
