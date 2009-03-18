@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
 
 	def exchange_rate
     if session[:exchange_currency].nil?
-      session[:exchange_currency] = "SEK"
+      session[:exchange_currency] = "EUR"
     end
     @exchange_rate = ExchangeRate.all
 	end
