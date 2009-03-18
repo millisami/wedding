@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
     if session[:exchange_currency].nil?
       session[:exchange_currency] = "EUR"
     end
-    @exchange_rate = ExchangeRate.all
+    @exchange_rate = ExchangeRate.all(:conditions => { :currency => ["EUR", "SEK", "USD", "GBP"]})
 	end
 
   def discard_flash_if_xhr

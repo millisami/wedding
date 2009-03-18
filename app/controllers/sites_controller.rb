@@ -54,8 +54,8 @@ class SitesController < ApplicationController
 	def change_currency
         #product = Product.find(params[:id])
         @exchange_currency = params[:exchange_rate]
-        @converted_money=CurrencyExchange.currency_exchange(@cart.total_price, "SEK", @exchange_currency)
-        session[:exchange_currency] = @exchange_currency
+        @converted_money=CurrencyExchange.currency_exchange(@cart.total_price, "EUR", @exchange_currency)
+        session[:exchange_currency] = @exchange_currency.to_s
         respond_to do |format|
             format.js
         end
