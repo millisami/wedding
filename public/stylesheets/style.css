@@ -39,6 +39,22 @@ span.customized {
 div.cart_item {
 	float: left;
 	padding: 5px;
+    position: relative;
+}
+div.cart_item em {
+    color: #E48205;
+	font-size: 1.2em;
+display:block;
+font-style:normal;
+left:-3px;
+padding:2px 8px 0 22px;
+position:absolute;
+top:55px;
+}
+div.cart_item a.img {
+    border: 2px solid #998899;
+    padding: 3px;
+    display: block;
 }
 div.cart_item span.customized {
     position: relative;
@@ -48,8 +64,9 @@ div.cart_item span.customized {
 	font-size: 1.2em;
 }
 div.cart_item h3 {
-	font-size: 1.3em;
+	font-size: 1.4em;
 	border-bottom: 1px solid #666666;
+    margin-bottom: 5px;
 }
 
 /*
