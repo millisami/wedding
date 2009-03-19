@@ -68,7 +68,10 @@ div.cart_item h3 {
 	border-bottom: 1px solid #666666;
     margin-bottom: 5px;
 }
-
+#cart_total {
+    font-size: 1.2em;
+    color: #E48205;
+}
 /*
 Width classes used by the site columns
 ---------------------------------------------------*/
