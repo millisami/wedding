@@ -1,1 +1,3 @@
-page.remove dom_id(@product)
+page.delay(1) do
+    page.visual_effect :fade, dom_id(@product)
+end
