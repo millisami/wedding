@@ -119,12 +119,16 @@
         <div class="paymentVia">
     <h5>Payment via</h5>
     <ul>
-      <li><%= radio_button('order', 'payment_type', 'CreditCard') %>Credit Card</li>
-      <li><%= radio_button("order", "payment_type", "Paypal") %> Paypal</li>
-      <li><%= radio_button('order', 'payment_type', 'Invoice') %> Invoice (Sweden Only)</li>
+      <li><%= radio_button('order', 'payment_type', 'CreditCard', :onclick => update_page { |page|
+                page.show 'creditcardinfo' }) %>Credit Card</li>
+      <li><%= radio_button("order", "payment_type", "Paypal", :onclick => update_page { |page|
+                page.hide 'creditcardinfo' }) %> Paypal</li>
+      <li><%= radio_button('order', 'payment_type', 'Invoice', :onclick => update_page {|page|
+        page.hide 'creditcardinfo'}) %> Invoice (Sweden Only)</li>
     </ul>
   </div>
 
+      <div id="creditcardinfo">
       <h2>Billing Information</h2>
       <div class="formInput">
         <label>Credit Card Type</label>
@@ -148,6 +152,7 @@
       <div class="formInput">
         <label><abbr title="Card Verification Value">CVV</abbr>/<abbr title="Card Validation Check">CVC</abbr></label>
         <%= f.text_field(:card_verification_value) %>
+      </div>
       </div>
     </div>
     <div class="orderFormRight">
