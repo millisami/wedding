@@ -1,3 +1,2 @@
-# TODO Operate on the page objects
-#page.assign 'cart_total', @cart.total_price
 page << render(:partial => 'totals')
+page.insert_html :before, dom_id(@product), "<em>Click to customize</em>"

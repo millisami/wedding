@@ -1,10 +1,12 @@
 class Cart
 	attr_reader :items
 	attr_reader :total_price
+    attr_reader :converted_total_price
 	
 	def initialize
 		empty_all_items
 	end
+
     def get_quantity(product_id)
         existing_item = @items.find {|item|item.product_id == product_id}
         if existing_item
@@ -91,12 +93,14 @@ class Cart
             @items << LineItem.new_based_on(product, quantity)
         end
         @total_price += product.price * quantity
+        #convert_total_price
 	end
 
 	def remove_product(product)
         existing_item = @items.find {|item|item.product_id == product.id}
         if existing_item
             @total_price -= existing_item.quantity.to_i * existing_item.price.to_f
+           # convert_total_price
             @items.delete(existing_item)
             File.delete(existing_item.pdf_xml_data) if File.exist?(existing_item.pdf_xml_data.to_s)
         end
@@ -107,8 +111,9 @@ class Cart
         if existing_item
             existing_item.quantity = quantity.to_i
             @total_price = product.price.to_f * quantity.to_i
+            #convert_total_price
         else
-            self.add_product(product)
+            self.add_product(product, quantity)
         end
 	end
 
@@ -119,5 +124,16 @@ class Cart
 	def empty_all_items
         @items = []
         @total_price = 0.0
+        @converted_total_price = 0.0
 	end
+    
+    def calculate_price(price)
+        CurrencyExchange.currency_exchange(price, "EUR", session[:exchange_currency]).to_f
+    end
+
+    protected
+    
+    def convert_total_price
+        @converted_total_price=CurrencyExchange.currency_exchange(@total_price, "EUR", session[:exchange_currency])
+    end
 end
