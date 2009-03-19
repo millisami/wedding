@@ -98,9 +98,7 @@ class Cart
         if existing_item
             @total_price -= existing_item.quantity.to_i * existing_item.price.to_f
             @items.delete(existing_item)
-        end
-        if existing_item
-            File.delete(existing_item.pdf_xml_data) if File.exist?(existing_item.pdf_xml_data)
+            File.delete(existing_item.pdf_xml_data) if File.exist?(existing_item.pdf_xml_data.to_s)
         end
 	end
 
