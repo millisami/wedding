@@ -6,8 +6,10 @@
         <% @products.each_with_index do |product,x| %>
             <div class="contentDesignSub<%= x + 1%>">
                 <% form_remote_tag(:url => add_to_cart_site_path(product), :html => { :id => "form#{x+1}", :name => "form#{x+1}" }) do -%>
+        <% if @cart.is_pdf_customized(product.id) %><em>Customized</em><% end %>
+        <% if @cart.needs_customization(product.id) %><em>Click to customize</em><% end %>
+
                     <%= link_to image_tag("#{product.image.public_filename if product.image}", :alt => product.name), (pdf_show_path(product.id)), :class => 'img'  %>
-                    <% if @cart.is_pdf_customized(product.id) %><span class="customized">Customized</span><% end %>
                     <div class="contentDesignSubBot<%= x + 1%>">
                         <%=h product.name %><br/>
                         <%= hidden_field_tag('id', product.id) %>

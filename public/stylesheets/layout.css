@@ -456,7 +456,17 @@ border:2px solid #c2b19d;
     position: relative;
     height: 255px;
 }
-
+.contentDesignSub1 em, .contentDesignSub2 em, .contentDesignSub3 em, .contentDesignSub4 em, .contentDesignSub5 em, .contentDesignSub6 em {
+    color:#E48205;
+display:block;
+font-size:1.2em;
+font-style:normal;
+left:-3px;
+padding:2px 8px 0 22px;
+position:absolute;
+top:106px;
+z-index: 3;
+}
 .contentDesignSub1{width:172px;}
 
 .contentDesignSub2{width:102px;}
