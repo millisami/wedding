@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
  # GET /products
   # GET /products.xml
   def index
-    @products = @product_set.products(:all, :limit => 6)
+    @products = @product_set.products.find(:all, :limit => 6)
 
     respond_to do |format|
       format.html  { render :partial => "list_products" }
