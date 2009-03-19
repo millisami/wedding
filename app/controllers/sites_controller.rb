@@ -26,6 +26,14 @@ class SitesController < ApplicationController
             format.js
         end
 	end
+	def remove_from_cart_order_page
+        @product = Product.find(params[:id])
+        @cart.remove_product(@product)
+        flash[:notice] = "Item removed successfully!"
+        respond_to do |format|
+            format.js
+        end
+	end
 
 	def update_cart_quantity
         product = Product.find(params[:id])

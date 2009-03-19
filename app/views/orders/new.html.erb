@@ -38,12 +38,15 @@
     <% for item in @cart.items
             product = item.product
       -%>
-    <tr id="cart_item_<%= item.product_id %>">
+    <tr id="<%= dom_id(product) %>">
       <td><%= text_field_tag("quantity",item.quantity)  %> </td>
       <td><%= h(product.name) %></td>
       <td><%= product.price %> </td>
       <td><%= item.quantity * product.price %> </td>
       <td><%= link_to "Preview", "#" %> |
+            <%= link_to_remote "Remove", :url => { :controller => :sites,  :action => :remove_from_cart_order_page, :id => item.product_id},
+                                                                :confirm => 'Are you sure?',
+                                                                :method => :delete%>
           <% form_remote_tag :url => { :controller => :sites,  :action => :remove_from_cart, :id => item.product_id} do %>
             <%= submit_tag "Remove" %>
           <% end %>
