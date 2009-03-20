@@ -129,12 +129,11 @@ send_file(@output_pdf_file, send_file_options) and return
     end
 
     def parse
-        #THE INCOMING PARAMS IS OF THE PRODUCT IN THE SESSION CART
-        
         @cart.add_pdf_xml_data(request.raw_post, session.session_id)
         respond_to do |format|
             format.html do
-                render :text => "pdf data parsed and added"
+                flash[:notice] = "The item has been modified and saved."
+                redirect_to(customizes_path)
             end
 		end
     end
