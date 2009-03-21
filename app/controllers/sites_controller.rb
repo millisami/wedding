@@ -76,47 +76,7 @@ class SitesController < ApplicationController
         end
 	end
 
-	def checkout
-        @customer = Customer.new
-        respond_to do |format|
-            format.html
-		
-        end
-	end
-
-	def save_order
-        @customer = Customer.new(params[:customer])
-        credit_card_number = params[:credit_card]
-        @order = Order.new
-        @order.line_items << @cart.items
-        @customer.orders << @order
-        if @customer.save
-            #try to process payment
-            #if payment fails, send user to fix-it page
-            #if payment succeeds
-            @cart.empty_all_items
-            redirect_to(:action => 'show_receipt', :id => @order.id)
-        else
-            render(:action => 'checkout')
-        end
-	end
-
-	def show_receipt
-        #dsf
-	end
-
     def tax_delivery_cost
-        @total_quantity = 0
-        @cart.items.each do |item|
-            @total_quantity += item.quantity.to_i
-        end
-        #weight in kilo-gram
-        @total_weight = (@total_quantity.to_f / 100)
-        #weight in grams
-        #@total_weight = (@total_quantity.to_f / 100) * 1000
-
-        @shipping_rate = ShippingRate.shipping_total(@total_weight)
-        @tax_delivery_cost = @shipping_rate.rate_euro.to_s
         respond_to do |format|
             format.html {render :layout => false}
         end

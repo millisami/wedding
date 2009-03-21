@@ -3,6 +3,7 @@
 # and open the template in the editor.
 %>
 
-Total Quantity: <%= @total_quantity %><br />
-Total Weight: <%= @total_weight %><br />
-Total Delivery Cost: <%= @tax_delivery_cost %>
+Total Delivery Cost: <%= @cart.shipping_cost %>
+Total Quantity: <%= @cart.total_quantity %><br />
+Total Weight: <%= @cart.total_weight %><br />
+

@@ -1,10 +1,11 @@
 class Cart
 	attr_reader :items
 	attr_reader :total_price
-    attr_reader :converted_total_price
+    attr_reader :converted_total_price, :shipping_cost, :total_weight, :total_quantity
     attr_accessor :exchange_currency
 	
 	def initialize
+        @exchange_currency = 'EUR'
 		empty_all_items
 	end
 
@@ -126,10 +127,26 @@ class Cart
         @items = []
         @total_price = 0.0
         @converted_total_price = 0.0
+        @total_weight = 0.0
+        @shipping_cost = 0.0
+        @total_quantity = 0
 	end
     
     def calculate_price(price)
         CurrencyExchange.currency_exchange(price, "EUR", @exchange_currency).to_f
+    end
+
+    def shipping_cost
+        @total_quantity = 0
+        @items.each do |item|
+            @total_quantity += item.quantity.to_i
+        end
+        #weight in kilo-gram
+        @total_weight = (@total_quantity.to_f / 100)
+        #weight in grams
+        #@total_weight = (@total_quantity.to_f / 100) * 1000
+
+        @shipping_cost = ShippingRate.shipping_total(@total_weight).rate_euro.to_s
     end
 
     protected
@@ -137,4 +154,5 @@ class Cart
     def convert_total_price
         @converted_total_price=CurrencyExchange.currency_exchange(@total_price, "EUR", @exchange_currency)
     end
+
 end
