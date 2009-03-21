@@ -29,15 +29,14 @@ class Order < ActiveRecord::Base
   has_many :transactions, :class_name => 'OrderTransaction'
   has_one :payment_notification
 
-  #Validations
-  validates_size_of :line_items, :minimum => 1
-  validates_length_of :ship_to_first_name, :in => 2..255
-  validates_length_of :ship_to_last_name, :in => 2..255
-  validates_length_of :ship_to_address1, :in => 2..255
-  validates_length_of :ship_to_address2, :in => 2..255
-  validates_length_of :ship_to_city, :in => 2..255
-  validates_length_of :ship_to_postal_code, :in => 2..255
-  validates_length_of :ship_to_country, :in => 2..255
+    #Validations
+    validates_size_of :line_items, :minimum => 1
+    validates_length_of :ship_to_first_name, :in => 2..255
+    validates_length_of :ship_to_last_name, :in => 2..255
+    validates_length_of :ship_to_address1, :in => 2..255
+    validates_length_of :ship_to_city, :in => 2..255
+    validates_length_of :ship_to_postal_code, :in => 2..255
+    validates_length_of :ship_to_country, :in => 2..255
 
   validates_length_of :phone_number, :in => 7..20
   validates_length_of :customer_ip, :in => 7..15
