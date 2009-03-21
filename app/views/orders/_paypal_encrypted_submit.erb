@@ -1,0 +1,5 @@
+<% form_tag APP_CONFIG[:paypal_url] do %>
+  <%= hidden_field_tag :cmd, "_s-xclick" %>
+  <%= hidden_field_tag :encrypted, @order.paypal_encrypted(root_url, payment_notifications_url(:secret => APP_CONFIG[:paypal_secret])) %>
+  <p><%= submit_tag "Checkout" %></p>
+<% end %>
