@@ -72,6 +72,27 @@ div.cart_item h3 {
     font-size: 1.2em;
     color: #E48205;
 }
+#flash_messages {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: auto;
+	z-index: 9;
+    width: 720px;
+}
+#flash_content {
+    font-size: 1.2em;
+    padding: 10px;
+	background: #ffffff;
+	border: 4px solid #cccccc;
+    margin: 0px auto;
+}
+#notice {
+    width: 700px;
+    text-align: center;
+    padding: 10px;
+    color: #E48205;
+}
 /*
 Width classes used by the site columns
 ---------------------------------------------------*/
@@ -93,7 +114,7 @@ Alignment classes
 content:".";
 display:block;
 height:0;
-clear:both; 
+clear:both;
 visibility:hidden;
 }
 .clearfix {display:inline-block;}

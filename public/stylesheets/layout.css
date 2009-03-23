@@ -64,14 +64,14 @@ html>body* .thankyou {margin:119px 0 90px 180px;}
 a.logo {
     float:left;
     margin:50px 40px 0 0;
-    
+
 }
 a img {
     border: 0px;
 }
 
 #nav {
-    
+
     width:940px;
     height:36px;
     background:url(../images/nav_bg.gif) repeat-x;
@@ -222,7 +222,7 @@ a img {
     width:940px;
 }
 #contentTop {
-
+    position: relative;
     width:875px;
     background:url(../images/content-top_bg.gif) no-repeat left bottom;
     border-bottom: 2px solid #dbccbc;
@@ -432,7 +432,7 @@ border:2px solid #c2b19d;
     border-bottom: 2px solid #cdb9a4;
     padding:0 0 40px -1px !important;
     margin-bottom: 55px;
-    
+
 }
 .contentDesignDetail {
     width:875px;

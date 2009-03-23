@@ -1,7 +1,9 @@
 <%- flash.each do |key, msg| -%>
   <div id="<%= key %>">
+      <div id="flash_content">
     <p style="float:right;"><%= link_to_function 'X', "Effect.Fade('#{key}')" %></p>
     <p><%= msg %></p>
+    </div>
     <div class="clear"></div>
   </div>
 <%- end -%>
