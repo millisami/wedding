@@ -8,7 +8,7 @@ Total Items: <%=  @order.line_items.size %>
 <table>
     <tr><th>Item Name</th><th>Unit Price</th><th>Quantity</th><th>Amount</th></tr>
     <% @order.line_items.each do |item| %>
-    <tr>
+    <tr class="<%= cycle :odd, :even  %>">
         <td><%=h item.product.name %></td>
         <td><%= item.price.to_f %></td>
         <td><%= item.quantity %></td>
