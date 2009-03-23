@@ -53,6 +53,7 @@ class OrdersController < ApplicationController
                     elsif @order.payment_type.eql?("Invoice")
                         session[:order_id] = @order.id
                         send_order_email(@order)
+                        @order.update_attribute(:purchased_at, Time.now)
                         redirect_to(confirmations_path) and return
                     end
                     #debugger
