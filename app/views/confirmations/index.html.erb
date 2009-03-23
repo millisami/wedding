@@ -1,0 +1,13 @@
+<% title "Confirmations" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for confirmation in @confirmations %>
+    <tr>
+      <td><%=h confirmation.name %></td>
+    </tr>
+  <% end %>
+</table>
+
