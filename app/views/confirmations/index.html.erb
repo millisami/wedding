@@ -1,13 +1,16 @@
-<% title "Confirmations" %>
+<div class="innerContentTop clearfix">
+    <div class="contentTitleln">
+        <%= image_tag 'five.gif', :alt => 'Final Step' %> <br/><br/>
+        <h5>Confirmation</h5>
+    </div> <!-- //contentTitleln -->
+</div> <!-- //innerContentTop -->
 
-<table>
-  <tr>
-    <th>Name</th>
-  </tr>
-  <% for confirmation in @confirmations %>
-    <tr>
-      <td><%=h confirmation.name %></td>
-    </tr>
-  <% end %>
-</table>
-
+<div id="innercontentBotWrapper" class="clearfix">
+    <div id="innercontentBot" class="clearfix">
+        <div class="thankyou">
+            <strong>Thank you!</strong><br/>
+            Thanks for your order. A confirmation has been sent to you  via E-mail.<br/>
+            <a href="<%= root_path %>">Back to startpage </a>
+        </div>
+    </div> <!-- //innercontentBot -->
+</div> <!-- //innercontentBotWrapper -->
