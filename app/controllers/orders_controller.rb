@@ -51,10 +51,13 @@ class OrdersController < ApplicationController
                         #redirect_to(@order.paypal_url(root_url, payment_notifications_url, @order.id))
                         render :partial => 'paypal_encrypted_submit', :object => @order
                     elsif @order.payment_type.eql?("Invoice")
-                        redirect_to(confirmation_url)
+                        session[:order_id] = @order.id
+                        send_order_email(@order)
+                        redirect_to(confirmations_path) and return
                     end
                     #debugger
                     if @order.process
+                        send_order_email(@order)
                         flash[:notice] = 'Your order has been submitted'
                         session[:order_id] = @order.id
                     else
@@ -66,6 +69,11 @@ class OrdersController < ApplicationController
                 end
             end
         end
+    end
+
+    def send_order_email(order)
+        logger.debug "Pending to send the order emails with data: #{order.to_yaml}"
+        OrderMailer.deliver_order_email(order)
     end
 
 end
