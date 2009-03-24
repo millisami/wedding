@@ -97,7 +97,7 @@ class Cart
         @total_price += product.price * quantity
         convert_total_price
         #using constant instead of logger because logger is available to controller/model/view, not for the custom classes
-        RAILS_DEFAULT_LOGGER.debug "Product: #{product.to_yml} added to cart"
+        RAILS_DEFAULT_LOGGER.debug "Product: #{product.to_yaml} added to cart"
 	end
 
 	def remove_product(product)
