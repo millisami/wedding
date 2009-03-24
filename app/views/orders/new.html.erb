@@ -42,32 +42,27 @@
       <td><%= text_field_tag("quantity",item.quantity)  %> </td>
       <td><%= h(product.name) %></td>
       <td><%= product.price %> </td>
-      <td><%= item.quantity * product.price %> </td>
-      <td><%= link_to "Preview", "#" %> |
+      <td><%= (item.quantity * product.price).to_s + ' ' + session[:exchange_currency] %> </td>
+      <td><%= link_to "Preview", pdf_preview_path(product.id) %> |
             <%= link_to_remote "Remove", :url => { :controller => :sites,  :action => :remove_from_cart_order_page, :id => item.product_id},
                                                                 :confirm => 'Are you sure?',
                                                                 :method => :delete%>
-          <% form_remote_tag :url => { :controller => :sites,  :action => :remove_from_cart, :id => item.product_id} do %>
-            <%= submit_tag "Remove" %>
-          <% end %>
       </td>
     </tr>
     <% end -%>
     <tr>
       <th>Total</th>
-      <th>USD</th>
+      <th><%= session[:exchange_currency] %></th>
       <th> </th>
-      <th><%= @cart.total_price %></th>
+      <th><%= @cart.total_price %> <%= session[:exchange_currency] %> </th>
       <th> </th>
     </tr>
     <tr>
       <th colspan="2">Shipping (UPS door-to door)
-        <select id="select" name="select">
-          <option>Choose Country</option>
-        </select>
+      <%= country_code_select(:order, :ship_to_country, priority_countries=[{:code=>'US',:name=>'United States'}], {:selected=>'SE',:include_blank=>true}) %>
       </th>
       <th> </th>
-      <th>$85</th>
+      <th><%= @cart.shipping_cost %> <%= session[:exchange_currency] %></th>
       <th> </th>
     </tr>
   </tbody>
