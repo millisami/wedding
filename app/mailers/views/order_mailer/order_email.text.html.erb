@@ -1,9 +1,9 @@
-Dear <%=h @order.ship_to_first_name %>
+<h2>Dear <%=h @order.ship_to_first_name %></h2>
 
-Order ID: <%= @order.id %>
+<h3>Order ID: <%= @order.id %></h3>
 
-Following are the items that you've ordered.
-Total Items: <%=  @order.line_items.size %>
+<p>Following are the items that you've ordered.<br />
+Total Items: <%=  @order.line_items.size %></p>
 
 <table>
     <tr><th>Item Name</th><th>Unit Price</th><th>Quantity</th><th>Amount</th></tr>
@@ -16,5 +16,3 @@ Total Items: <%=  @order.line_items.size %>
     </tr>
     <% end  %>
 </table>
-
--- Hande Made Wedding Cards.
