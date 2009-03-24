@@ -168,10 +168,10 @@ end #end of slicehost namespace
 # Deploy for Passenger
 #############################################################
 namespace :gems do
-  desc "Install gems"
-  task :install, :roles => :app do
-    run "cd #{current_path} && #{sudo} rake RAILS_ENV=production gems:install"
-  end
+    desc "Install gems"
+    task :install, :roles => :app do
+        run "cd #{current_path} && #{sudo} rake RAILS_ENV=production gems:install"
+    end
 end
 namespace :deploy do
     desc "Creating and Symlink the upload directories"
@@ -248,7 +248,7 @@ production:
   paypal_secret: foobar
   paypal_cert_id: WKKX2FSCFDB8C
   paypal_url: "https://www.sandbox.paypal.com/cgi-bin/webscr"
-APPCONFIG
+        APPCONFIG
 
         run "mkdir -p #{shared_path}/config" unless File.exists?("#{shared_path}/config")
         
@@ -271,6 +271,15 @@ APPCONFIG
         run "ln -nsf #{shared_path}/uploads/pdf_xmls #{release_path}/public/pdf_xmls"
         run "rm -rf  #{current_path}/public/pdf_xml_files"
         run "ln -nsf #{shared_path}/uploads/pdf_xml_files #{release_path}/public/pdf_xml_files"
+    end
+
+    desc "tail production log files"
+    task :tail_logs, :roles => :app do
+        run "tail -f #{shared_path}/log/production.log" do |channel, stream, data|
+            puts  # for an extra line break before the host name
+            puts "#{channel[:host]}: #{data}" 
+            break if stream == :err
+        end
     end
      
     desc "Restarting mod_rails with restart.txt"
