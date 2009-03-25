@@ -258,18 +258,12 @@ production:
 
     desc "Symlinking uploads and database.yml"
     task :symlink_shared do
-        run "rm -rf  #{current_path}/config/database.yml"
         run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-        run "rm -rf  #{current_path}/config/app_config.yml"
         run "ln -nfs #{shared_path}/config/app_config.yml #{release_path}/config/app_config.yml"
 
-        run "rm -rf  #{current_path}/public/records"
         run "ln -nsf #{shared_path}/uploads/records #{release_path}/public/records"
-        run "rm -rf  #{current_path}/public/documents"
         run "ln -nsf #{shared_path}/uploads/documents #{release_path}/public/documents"
-        run "rm -rf  #{current_path}/public/pdf_xmls"
         run "ln -nsf #{shared_path}/uploads/pdf_xmls #{release_path}/public/pdf_xmls"
-        run "rm -rf  #{current_path}/public/pdf_xml_files"
         run "ln -nsf #{shared_path}/uploads/pdf_xml_files #{release_path}/public/pdf_xml_files"
     end
 
