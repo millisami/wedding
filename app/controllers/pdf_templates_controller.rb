@@ -120,12 +120,12 @@ send_file(@output_pdf_file, send_file_options) and return
             :disposition => 'inline',
             :status => "200 OK"
         }
-        if RAILS_ENV == "production"
-            send_file(@output_file, send_file_options, :x_sendfile => true) and return
-        else
-            send_file(@output_file, send_file_options) and return
-        end
-
+#        if RAILS_ENV == "production"
+#            send_file(@output_file, send_file_options, :x_sendfile => true) and return
+#        else
+#            send_file(@output_file, send_file_options) and return
+#        end
+        send_file(@output_file, send_file_options) and return
     end
 
     def parse
