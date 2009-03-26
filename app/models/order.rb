@@ -149,11 +149,6 @@ class Order < ActiveRecord::Base
         end
     end
 
-    def process_with_invoice
-        self.update_attribute(:purchased_at, Time.now)
-        self.update_attribute(:status, 'processed')
-    end
-
     def price_in_cents
         (@cart.total_price*100).round
     end
