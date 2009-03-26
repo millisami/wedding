@@ -1,0 +1,79 @@
+/* 
+    Document   : admin-style
+    Created on : Mar 25, 2009, 3:45:56 PM
+    Author     : millisami
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+#zone-bar {
+	background: #b2d281;
+	min-height: 30px;
+	padding: 5px 10px 0 10px;
+	}
+	#zone-bar ul {
+		display: block;
+		}
+		#zone-bar ul li {
+			height: 18px;
+			padding: 5px 5px 0 5px;
+			position: relative;
+			float: left;
+			margin-right: 10px;
+			}
+			#zone-bar ul li:hover {
+				background: url(../images/zonebar-navleft.png) center left no-repeat;
+			}
+			#zone-bar ul li a {
+				display: block;
+				float: left;
+				height: 23px;
+				position: relative;
+				top: -5px;
+				right: -5px;
+				padding-right: 3px;
+				color: #383838;
+				font-weight: bold;
+				font-size: 1.1em;
+				text-decoration: none;
+				}
+				#zone-bar ul li a:hover {
+					background: url(../images/zonebar-navright.png) center right no-repeat;
+				}
+				#zone-bar ul li a span {
+					position: relative;
+					top: 6px;
+				}
+			#zone-bar ul li ul {
+				display: none;
+				position: absolute;
+				top: 29px;
+				left: 0px;
+				width: 150px;
+				border: 1px solid #ccc;
+				background: white;
+				padding: 10px 0 0 0;
+				}
+				#zone-bar ul li ul li {
+					float: none;
+					padding: 0; margin: 0;
+					height: 100%;
+				}
+				#zone-bar ul li ul li:hover {
+					background: none;
+					}
+					#zone-bar ul li ul li a {
+						display: block;
+						float: none;
+						margin-left: -5px;
+						padding: 5px 0 0 10px;
+						width: 140px;
+					}
+					#zone-bar ul li ul li a:hover {
+						background: #d9f0b7;
+					}
