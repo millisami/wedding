@@ -8,5 +8,8 @@
 #content {  
   /* takes care of POS IE and it's support for transparent .png */
   background: none;
-  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/bg/content.png',sizingMethod='scale');
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/bg/content.png',sizingMethod='scale');
 }
+
+/* hack from http://css-tricks.com/ie-fix-bicubic-scaling-for-images */
+img { -ms-interpolation-mode: bicubic; }

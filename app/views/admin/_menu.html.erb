@@ -1,42 +1,60 @@
-<ul id="cssdropdown">
-<!-- <li><%= link_to "Main menu", root_path %></li> -->
-<% if logged_in? %>
-<li class="mainitems"><%= link_to h(current_user.login.capitalize), user_path(current_user) %>
-	<ul class="subuls">
-		<li><%= link_to 'Edit Profile', edit_user_path(current_user) %></li>
-		<li><%= link_to 'Change Password', change_password_path %></li>
-		<li><%= link_to 'Log Out', logout_url %></li>
-	</ul>
-</li>
-<% if current_user.has_role?('administrator') %>
-<li class="mainitems"><%= link_to 'Users', users_path %>
-	<ul class="subuls">
-		<li><%= link_to 'Administer Users', users_path %></li>
-	</ul>
-<li class="mainitems"><%= link_to 'Categories', admin_categories_path %>
-	<ul class="subuls">
-		<li><%= link_to 'Categories List', admin_categories_path %></li>
-	</ul>
-</li>
-<li class="mainitems"><%= link_to 'Product Sets', admin_product_sets_path %>
-	<ul class="subuls">
-		<li><%= link_to 'New Product Set', new_admin_product_set_path %></li>
-                <li><%= link_to 'Product Sets List', admin_product_sets_path %></li>
-	</ul>
-</li>
-<li class="mainitems"><%= link_to 'Products', admin_products_path %>
-    <ul class="subuls">
-		<li><%= link_to 'New Product', new_admin_product_path %></li>
+<div id="zone-bar">
+    <ul>
+        <li>
+            <a href="#"><span>
+                    Technology &nbsp;
+                    <em class="opener-technology">
+                        <img src="/images/zonebar-downarrow.png" alt="dropdown" />
+                    </em>
+            </span></a>
+            <ul class="technologysublist">
+                <li><a href="#">Apple</a></li>
+                <li><a href="#">Design</a></li>
+                <li><a href="#">Gadgets</a></li>
+            </ul>
+        </li>
     </ul>
-</li>
-<li class="mainitems"><%= link_to 'Pages', admin_pages_path %>
-	<ul class="subuls">
-		<li><%= link_to 'Create Page', new_admin_page_path %></li>
-	</ul>
-</li>
-<% end %>
-<% else %>
-<li class="mainitems"><%= link_to 'Log In', new_session_path %></li>
-<li class="mainitems"><%= link_to 'Forgot Password?', forgot_password_path %></li>
-<% end %>
+</div>
+
+<ul id="cssdropdown">
+    <!-- <li><%= link_to "Main menu", root_path %></li> -->
+    <% if logged_in? %>
+        <li class="mainitems"><%= link_to h(current_user.login.capitalize), user_path(current_user) %>
+            <ul class="subuls">
+                <li><%= link_to 'Edit Profile', edit_user_path(current_user) %></li>
+                <li><%= link_to 'Change Password', change_password_path %></li>
+                <li><%= link_to 'Log Out', logout_url %></li>
+            </ul>
+        </li>
+        <% if current_user.has_role?('administrator') %>
+            <li class="mainitems"><%= link_to 'Users', users_path %>
+            <ul class="subuls">
+                <li><%= link_to 'Administer Users', users_path %></li>
+            </ul>
+            <li class="mainitems"><%= link_to 'Categories', admin_categories_path %>
+                <ul class="subuls">
+                    <li><%= link_to 'Categories List', admin_categories_path %></li>
+                </ul>
+            </li>
+            <li class="mainitems"><%= link_to 'Product Sets', admin_product_sets_path %>
+                <ul class="subuls">
+                    <li><%= link_to 'New Product Set', new_admin_product_set_path %></li>
+                    <li><%= link_to 'Product Sets List', admin_product_sets_path %></li>
+                </ul>
+            </li>
+            <li class="mainitems"><%= link_to 'Products', admin_products_path %>
+                <ul class="subuls">
+                    <li><%= link_to 'New Product', new_admin_product_path %></li>
+                </ul>
+            </li>
+            <li class="mainitems"><%= link_to 'Pages', admin_pages_path %>
+                <ul class="subuls">
+                    <li><%= link_to 'Create Page', new_admin_page_path %></li>
+                </ul>
+            </li>
+        <% end %>
+    <% else %>
+        <li class="mainitems"><%= link_to 'Log In', new_session_path %></li>
+        <li class="mainitems"><%= link_to 'Forgot Password?', forgot_password_path %></li>
+    <% end %>
 </ul>
