@@ -39,9 +39,8 @@ ActionController::Routing::Routes.draw do |map|
     :add_to_cart => :post,
     :remove_from_cart => :delete,
     :update_cart_quantity => :put,
-    :show_receipt => :get,
-    :change_currency => :put,
-  }
+    :show_receipt => :get
+  }, :new => {:change_currency => :get}
   map.save_cart '/save_cart', :controller => 'sites', :action => 'save_cart'
   map.show_cart '/show_cart', :controller => 'sites', :action => 'show_cart'
   map.save_order '/save_order', :controller => 'sites', :action => 'save_order'

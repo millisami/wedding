@@ -30,8 +30,8 @@
         <li class="fr"><%= select_tag(:exchange_rate, options_from_collection_for_select(@exchange_rate, :currency, :currency, session[:exchange_currency])) %>
 
             <%= observe_field  'exchange_rate',
-              :url => change_currency_site_path(2),
-              :method => :put,
+              :url => change_currency_new_site_path,
+              :method => :get,
               :on => 'change',
               :with => 'exchange_rate'
         %></li>
