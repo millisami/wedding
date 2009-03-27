@@ -77,3 +77,8 @@
 					#zone-bar ul li ul li a:hover {
 						background: #d9f0b7;
 					}
+li span.handle {
+    cursor: move;
+    color: #878;
+    
+}

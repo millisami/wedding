@@ -96,4 +96,20 @@ class Admin::ProductSetsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def sort
+      @products = Product.find_all_by_product_set_id(params[:id], :order => "position")
+      #@products = Product.all(:conditions => { :product_set_id => params[:id] }, :order => "position ASC")
+       respond_to do |format|
+      format.html
+    end
+  end
+
+  def save_position
+    params[:products].each_with_index do |id, index|
+        Product.update_all(['position=?', index+1], ['id=?', id])
+    end
+    render :nothing => true
+end
+
 end

@@ -1,9 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :confirmations
-
-  map.resources :customizes
-
-
   def map.controller_actions(controller, actions)
     actions.each do |action|
 	    self.send("#{action}", "/#{action}", :controller => controller, :action => action)
@@ -12,7 +7,7 @@ ActionController::Routing::Routes.draw do |map|
  
   map.namespace :admin do |admin|
     admin.resources :categories, :has_many => :product_sets
-    admin.resources :product_sets, :has_many => :products
+    admin.resources :product_sets, :has_many => :products, :member => { :sort => :get }, :collection => { :save_position => :post }
     admin.resources :products
     admin.resources :pages
     admin.resources :shipping_rates, :member => {:get_text => :get, :update_in_place_edit => :post}
@@ -24,6 +19,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :shipping_rates
   map.resources :payment_notifications
+  map.resources :confirmations
+  map.resources :customizes
 
   #map.controller_actions 'payments', %w[checkout confirm]
   map.controller_actions 'sites', %w[tax_delivery_cost]

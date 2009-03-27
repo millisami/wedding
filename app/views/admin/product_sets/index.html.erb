@@ -15,6 +15,7 @@
     <td><%=h product_set.category.name %></td>
 	<td><%=h product_set.products.size %></td>
     <td><%= link_to 'Add Product', new_admin_product_set_product_path(:product_set_id => product_set) %></td>
+    <td><%= link_to 'Sort Products', sort_admin_product_set_path(product_set) %></td>
 	<td><%= link_to 'Show', [:admin, product_set] %></td>
     <td><%= link_to 'Edit', edit_admin_product_set_path(product_set) %></td>
     <td><%= link_to 'Destroy', [:admin, product_set], :confirm => 'Are you sure?', :method => :delete %></td>

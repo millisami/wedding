@@ -1,0 +1,12 @@
+Total products: <%= @products.size %>
+<ul id="products">
+    <% for product in @products %>
+        <% content_tag_for :li, product do %>
+            <span class="handle">[drag]</span>
+            <%= link_to h(product.name), product %>
+            <% end %>
+        <% end %>
+</ul>
+<%= sortable_element("products", :url => save_position_admin_product_sets_path, :handle => "handle") %>
+
+<%= link_to 'Back to Product Sets', admin_product_sets_path %>

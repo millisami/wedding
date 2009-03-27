@@ -5,7 +5,7 @@ class ProductSetsController < ApplicationController
   def index
 	@product_sets = @category.product_sets.find(:all)
 
-	@products = Product.find(:all, :conditions => ["product_set_id = ?", @product_sets.first ], :limit => 6)
+	@products = Product.find(:all, :conditions => ["product_set_id = ?", @product_sets.first ], :limit => 6, :order => 'position')
     respond_to do |format|
       format.html
       # format.js
