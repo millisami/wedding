@@ -206,65 +206,27 @@ namespace :deploy do
         end
     end
 
-    ##http://archive.jvoorhis.com/articles/2006/07/07/managing-database-yml-with-capistrano
+    ##http://groups.google.com/group/capistrano/browse_thread/thread/7d625673d0920fa1
+    #But got to replace #{release_path} with #{current_path} to run it manually.
     desc "Create database.yml and app_config.yml in shared/config"
-    task :after_setup do
-        database_configuration =<<-EOF
-    login: &login
-      adapter: mysql
-      host: localhost
-      port: 3306
-      username: weddingcards
-      password: weddingcards123
+     task :upload_config do
+         run "mkdir -p #{shared_path}/config" unless File.exists?("#{shared_path}/config")
+       #put(File.read('config/environment.rb'),"#{release_path}/config/environment.rb", :mode => 0744) if File.exists?('config/environment.rb')
+       put(File.read('config/database.yml'),"#{current_path}/config/database.yml", :mode => 0744) if File.exists?('config/database.yml')
+       put(File.read('config/app_config.yml'),"#{current_path}/config/app_config.yml", :mode => 0744) if File.exists?('config/app_config.yml')
+     end
 
-    development:
-      database: #{application}_development
-      <<: *login
-
-    test:
-      database: #{application}_test
-      <<: *login
-
-    production:
-      database: #{application}_production
-      <<: *login
-        EOF
-        
-        app_configuration =<<-APPCONFIG
-development:
-  paypal_email: handma_1232606255_biz@gmail.com
-  paypal_secret: foobar
-  paypal_cert_id: WKKX2FSCFDB8C
-  paypal_url: "https://www.sandbox.paypal.com/cgi-bin/webscr"
-
-test:
-  paypal_email: test@example.com
-  paypal_secret: testsecret
-  paypal_cert_id: 123456789
-  paypal_url: testpaypalurl
-
-production:
-  paypal_email: handma_1232606255_biz@gmail.com
-  paypal_secret: foobar
-  paypal_cert_id: WKKX2FSCFDB8C
-  paypal_url: "https://www.sandbox.paypal.com/cgi-bin/webscr"
-        APPCONFIG
-
-        run "mkdir -p #{shared_path}/config" unless File.exists?("#{shared_path}/config")
-        
-        put database_configuration, "#{shared_path}/config/database.yml"
-        put app_configuration, "#{shared_path}/config/app_config.yml"
-    end
-
-    desc "Symlinking uploads and database.yml"
+    desc "Symlinking upload directories and *.yml files"
     task :symlink_shared do
-        run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-        run "ln -nfs #{shared_path}/config/app_config.yml #{release_path}/config/app_config.yml"
-
-        run "ln -nsf #{shared_path}/uploads/records #{release_path}/public/records"
-        run "ln -nsf #{shared_path}/uploads/documents #{release_path}/public/documents"
-        run "ln -nsf #{shared_path}/uploads/pdf_xmls #{release_path}/public/pdf_xmls"
-        run "ln -nsf #{shared_path}/uploads/pdf_xml_files #{release_path}/public/pdf_xml_files"
+            #run "ln -fs #{deploy_to}/shared/sphinx/production/ #{release_path}/db/sphinx/production"
+            files=%w(database.yml app_config.yml)
+            files.each do |f|
+                run "ln -nfs #{shared_path}/config/#{f} #{release_path}/config/#{f}"
+            end
+            dirs=%(records documents pdf_xmls pdf_xml_files)
+            dirs.each do |d|
+                run "ln -nsf #{shared_path}/uploads/#{d} #{release_path}/public/#{d}"
+            end
     end
 
     desc "tail production log files"
@@ -298,20 +260,33 @@ production:
 end #deploy namespace end
 
 namespace :passenger do
-  desc "Restart Passenger"
-  task :restart, :roles => :app do
-    run "touch #{current_path}/tmp/restart.txt"
-  end
+    desc "Restart Passenger"
+    task :restart, :roles => :app do
+        run "touch #{current_path}/tmp/restart.txt"
+    end
 
-  desc "Stop Passenger"
-  task :stop, :roles => :app do
-    run "touch #{current_path}/tmp/stop.txt"
-  end
+    desc "Stop Passenger"
+    task :stop, :roles => :app do
+        run "touch #{current_path}/tmp/stop.txt"
+    end
 
-  desc "Start (or un-stop) Passenger"
-  task :start, :roles => :app do
-    run "rm -f #{current_path}/tmp/stop.txt"
-  end
+    desc "Start (or un-stop) Passenger"
+    task :start, :roles => :app do
+        run "rm -f #{current_path}/tmp/stop.txt"
+    end
+
+    # requires root
+    desc "Check memory stats"
+    task :memory do
+        run "sudo passenger-memory-stats"
+    end
+
+    # requires root
+    desc "Check status of rails processes"
+    task :status do
+        run "sudo passenger-status"
+    end
+
 end
 
 #after 'deploy:update_code', 'deploy:create_upload_symlink'
