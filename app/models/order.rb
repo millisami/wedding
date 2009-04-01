@@ -55,18 +55,7 @@ class Order < ActiveRecord::Base
     end
 
     def process
-        # begin
-        #debugger
-      
         process_with_active_merchant if self.payment_type == "CreditCard"
-        process_with_invoice if self.payment_type == "Invoice"
-        debugger
-        #rescue => e
-        #      logger.error("Order #{id} failed with error message #{e}")
-        #      self.error_message = 'Error while processing order'
-        #      self.status = 'failed'
-        #      save!
-        # end
     end
 
     def paypal_encrypted(return_url, notify_url)
@@ -151,5 +140,6 @@ class Order < ActiveRecord::Base
 
     def price_in_cents
         (@cart.total_price*100).round
+        #1000 pennies is $10
     end
 end
